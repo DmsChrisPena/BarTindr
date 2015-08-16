@@ -4,6 +4,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using BarTindr.Models;
+using BarTindr.Data.Models;
+using BarTindr.Data;
 
 namespace BarTindr
 {

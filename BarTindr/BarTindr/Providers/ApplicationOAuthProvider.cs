@@ -10,6 +10,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using BarTindr.Models;
+using BarTindr.Data.Models;
 
 namespace BarTindr.Providers
 {

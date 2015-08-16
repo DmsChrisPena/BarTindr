@@ -315,6 +315,16 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BarTindr.Data.Models\BarTindr.Data.Models.csproj">
+      <Project>{47141e65-a534-463f-8c02-e6b00ada46ec}</Project>
+      <Name>BarTindr.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BarTindr.Data\BarTindr.Data.csproj">
+      <Project>{88cbec3a-89c2-40f5-95af-a1467f9eafd3}</Project>
+      <Name>BarTindr.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

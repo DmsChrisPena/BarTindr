@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using BarTindr.Models;
 using BarTindr.Providers;
 using BarTindr.Results;
+using BarTindr.Data.Models;
 
 namespace BarTindr.Controllers
 {
