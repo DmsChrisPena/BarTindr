@@ -12,6 +12,9 @@ namespace BarTindr
     {
         public static void Register(HttpConfiguration config)
         {
+            config.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();
