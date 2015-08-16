@@ -1,7 +1,12 @@
+(function() {
+  angular.module('BarTindrApp', [
+    'ionic', 
+    'ngRoute'
+    ])
 
-angular.module('BarTindrApp', ['ionic'])
+  .run(['$ionicPlatform', IonicPlatform]);
 
-.run(function($ionicPlatform) {
+  function IonicPlatform($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -12,4 +17,5 @@ angular.module('BarTindrApp', ['ionic'])
       StatusBar.styleDefault();
     }
   });
-})
+  }
+})();
