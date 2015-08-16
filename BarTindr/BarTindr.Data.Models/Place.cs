@@ -21,5 +21,6 @@ namespace BarTindr.Data.Models
         public bool IsChosen { get; set; }
 
         public virtual ICollection<ApplicationUser> ApplicationUsers { get; set; }
+
     }
 }

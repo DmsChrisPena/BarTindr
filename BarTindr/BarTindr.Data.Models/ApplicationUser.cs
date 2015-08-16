@@ -15,13 +15,8 @@ namespace BarTindr.Data.Models
         public bool IsActive { get; set; }
         public int Radius { get; set; }
 
-        [ForeignKey("Place")]
-        public int PlaceId { get; set; }
-        public virtual Place Place { get; set; }
-
-        [ForeignKey("Location")]
-        public int LocationId { get; set; }
-        public virtual Location Location { get; set; }
+        public virtual ICollection<Place> Places { get; set; }
+        public virtual ICollection<Location> Locations { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {

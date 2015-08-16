@@ -14,7 +14,7 @@ namespace BarTindr.Controllers.Api
 
         public IHttpActionResult Get()
         {
-            var user = _repo.GetUser();
+            var user = _repo.GetUserPlaces();
 
             return Ok(user);
         }

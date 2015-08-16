@@ -57,63 +57,43 @@ namespace BarTindr.Repository
             return vm;
         }
 
-        public UserViewModel GetUser()
+        public List<UserViewModel> GetUserPlaces()
         {
 
-            var user = _db.Users.First();
+            var user = _db.Users;
 
-            UserViewModel vm = new UserViewModel()
+            var vm = user.Select(u => new UserViewModel
             {
-                Email = user.Email,
-                Radius = user.Radius,
-                IsActive = user.IsActive,
-                LocationId = user.Location.LocationId,
-                State = user.Location.State,
-                City = user.Location.City,
-                Longitude = user.Location.Longitude,
-                Latitude = user.Location.Latitude,
-                LocationIsActive = user.Location.IsActive,
-                PlaceId = user.Place.PlaceId,
-                PlaceName = user.Place.Name,
-                Rating = user.Place.Rating,
-                IsClosed = user.Place.IsClosed,
-                DisplayPhone = user.Place.DisplayPhone,
-                TextSnipit = user.Place.TextSnipit,
-                PlaceImageUrl = user.Place.ImageUrl,
-                PlaceCategory = user.Place.Category,
-                IsChosen = user.Place.IsChosen
-            };
+                UserId = u.Id,
+                Email = u.Email,
+                IsActive = u.IsActive,
+                Radius = u.Radius,
+                Places = u.Places.Select(p => new PlaceViewModel {
+                    PlaceId = p.PlaceId,
+                    Name = p.Name,
+                    Rating = p.Rating,
+                    IsClosed = p.IsClosed,
+                    DisplayPhone = p.DisplayPhone,
+                    TextSnipit = p.TextSnipit,
+                    ImageUrl = p.ImageUrl,
+                    Category = p.Category,
+                    IsChosen = p.IsChosen
+                }).ToList(),
+                Locations = u.Locations.Select(l => new LocationViewModel
+                {
+                    LocationId = l.LocationId,
+                    State = l.State,
+                    City = l.City,
+                    Longitude = l.Longitude,
+                    Latitude = l.Latitude,
+                    IsActive = l.IsActive
+                }).ToList()
+            }).ToList();
 
-
-
-
-            //foreach (var use in user)
-            //{
-            //    vm.Add(new UserViewModel
-            //    {
-            //          Email = use.Email,
-            //        Radius = use.Radius,
-            //        IsActive = use.IsActive,
-            //        LocationId = use.Location.LocationId,
-            //        State = use.Location.State,
-            //        City = use.Location.City,
-            //        Longitude = use.Location.Longitude,
-            //        Latitude = use.Location.Latitude,
-            //        LocationIsActive = use.Location.IsActive,
-            //        PlaceId = use.Place.PlaceId,
-            //        PlaceName = use.Place.Name,
-            //        Rating = use.Place.Rating,
-            //        IsClosed = use.Place.IsClosed,
-            //        DisplayPhone = use.Place.DisplayPhone,
-            //        TextSnipit = use.Place.TextSnipit,
-            //        PlaceImageUrl = use.Place.ImageUrl,
-            //        PlaceCategory = use.Place.Category,
-            //        IsChosen = use.Place.IsChosen
-            //    });
-            //}
 
             return vm;
         }
+
 
     }
 }

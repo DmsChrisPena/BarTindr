@@ -44,9 +44,7 @@ namespace BarTindr.Data.Migrations
                     UserName = "cadeawinter@gmail.com",
                     Email = "cadeawinter@gmail.com",
                     Radius = 15,
-                    IsActive = true,
-                    LocationId = 1,
-                    PlaceId = 1
+                    IsActive = true
                 };
 
                 userManager.Create(cade, "123456");
@@ -61,9 +59,7 @@ namespace BarTindr.Data.Migrations
                     UserName = "chrispena@gmail.com",
                     Email = "chrispena@gmail.com",
                     Radius = 20,
-                    IsActive = true,
-                    LocationId = 1,
-                    PlaceId = 2
+                    IsActive = true
                 };
 
                 userManager.Create(chris, "123456");
