@@ -12,6 +12,7 @@ namespace BarTindr.Controllers.Api
     {
         private new Repositories _repo = new Repositories();
 
+        [Authorize]
         public IHttpActionResult Get()
         {
             var user = _repo.GetUserPlaces();
