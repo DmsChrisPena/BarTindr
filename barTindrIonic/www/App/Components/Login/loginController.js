@@ -12,7 +12,8 @@
 		function loginUser() {
 			if($window.sessionStorage.getItem('token') != null) {
 			} else {
-				loginService.login('chrispena@gmail.com', '123456').then(success, fail);
+				
+				loginService.login($scope.email, $scope.password).then(success, fail);
 
 				function success(data) {
 					console.log(data);
