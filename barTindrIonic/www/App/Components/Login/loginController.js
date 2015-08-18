@@ -3,7 +3,7 @@
 		.module('BarTindrApp')
 		.controller('LoginController', ['$scope', 'loginService', '$window', '$ionicPopup', LoginController]);
 
-	function LoginController($scope, loginService, $window, $ionicPopup) {
+	function LoginController($scope, loginService, $window, $stateProvider) {
 
 		$scope.loginUser = loginUser;
 		$scope.getUser = getUser;
@@ -16,9 +16,16 @@
 				loginService.login($scope.email, $scope.password).then(success, fail);
 
 				function success(data) {
+					console.log(data);
+					$scope.email = '';
+					$scope.password = '';
 				}
 
 				function fail(data) {
+
+					console.log(data);
+					$scope.email = '';
+					$scope.password = '';
 				}
 			}
 		}
