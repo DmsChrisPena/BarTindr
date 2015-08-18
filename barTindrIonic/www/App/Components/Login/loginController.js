@@ -3,7 +3,7 @@
 		.module('BarTindrApp')
 		.controller('LoginController', ['$scope', 'loginService', '$window', LoginController]);
 
-	function LoginController($scope, loginService, $window) {
+	function LoginController($scope, loginService, $window, $stateProvider) {
 
 		$scope.loginUser = loginUser;
 		$scope.getUser = getUser;
@@ -17,10 +17,13 @@
 
 				function success(data) {
 					console.log(data);
+					$scope.email = '';
+					$scope.password = '';
 				}
 
 				function fail() {
-
+					$scope.email = '';
+					$scope.password = '';
 				}
 			}
 		}

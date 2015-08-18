@@ -1,9 +1,9 @@
 (function() {
 	angular
 		.module('BarTindrApp')
-		.factory('loginService', ['$http', '$q', '$window', loginService]);
+		.factory('loginService', ['$http', '$q', '$window', '$location', loginService]);
 
-	function loginService($http, $q, $window) {
+	function loginService($http, $q, $window, $location) {
 		var service = {};
 
 		service.login = login;
@@ -21,6 +21,7 @@
 				console.log(data);
 				$window.sessionStorage.setItem('token', data.access_token);
 				deferred.resolve();
+				$location.path('/home')
 			}).error(function(data) {
 				deferred.reject();
 			});

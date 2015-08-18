@@ -17,6 +17,11 @@
 				url: '/register',
 				templateUrl: 'App/Components/Register/registerView.html',
 				controller: 'RegisterController'
+			})
+			.state('home', {
+				url: '/home',
+				templateUrl: 'App/Components/Home/homeView.html',
+				controller: 'HomeController'
 			});
 
 
