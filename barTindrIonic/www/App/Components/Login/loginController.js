@@ -7,6 +7,7 @@
 
 		$scope.loginUser = loginUser;
 		$scope.getUser = getUser;
+		$scope.logoutUser = logoutUser;
 
 
 		function loginUser() {
@@ -39,6 +40,13 @@
 				console.log(data);
 			}
 		}
+
+		function logoutUser() {
+			loginService.logout();
+			$location.path('/')
+		}
+
+
 
 	}
 
