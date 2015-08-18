@@ -19,5 +19,6 @@ namespace BarTindr.Controllers.Api
 
             return Ok(user);
         }
+
     }
 }

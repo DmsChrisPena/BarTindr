@@ -17,6 +17,10 @@ using BarTindr.Models;
 using BarTindr.Providers;
 using BarTindr.Results;
 using BarTindr.Data.Models;
+using System.Net.Mail;
+using System.Net;
+using System.Configuration;
+using SendGrid;
 
 namespace BarTindr.Controllers
 {
@@ -332,6 +336,28 @@ namespace BarTindr.Controllers
             var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, Radius = model.Radius, IsActive = model.IsActive };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+
+            #region SendWelcomeEmail
+                var welcomeEmail = new SendGridMessage();
+                welcomeEmail.From = new MailAddress("Bartindr.Welcome@gmail.com");
+
+                string recipients = user.Email;
+
+                welcomeEmail.AddTo(recipients);
+
+                welcomeEmail.Subject = "Welcome To BarTindr";
+
+                welcomeEmail.Html = "<p>Hello World!</p>";
+                welcomeEmail.Text = "Hello World plain text!";
+
+                var credentials = new NetworkCredential("dmschrispena", "1q0p2w9o");
+
+                var transportWeb = new Web("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");
+
+                // Send the email.
+                transportWeb.DeliverAsync(welcomeEmail);
+            #endregion
+
 
             if (!result.Succeeded)
             {
