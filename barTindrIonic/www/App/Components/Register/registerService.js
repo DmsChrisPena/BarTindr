@@ -1,9 +1,9 @@
 (function() {
 	angular
 		.module('BarTindrApp')
-		.factory('registerService', ['$http', '$window', '$q', registerService]);
+		.factory('registerService', ['$http', '$window', '$q', '$ionicPopup', '$location', registerService]);
 
-	function registerService($http, $window, $q) {
+	function registerService($http, $window, $q, $ionicPopup, $location) {
 		var service = {};
 
 		service.register = register
@@ -23,10 +23,21 @@
 					'isActive': isActive
 				}
 			}).success(function(data) {
-				console.log(data);
+				//Need to login them in and set session token but can't because I hate CORS
+
+				$location.path('/');
 				deferred.resolve(data);
 			}).error(function(data) {
-				console.log(data);
+				var errorMessage = [];
+
+				for(var dat in data.modelState) {
+					errorMessage.push(data.modelState[dat][0]);
+				}
+
+				$ionicPopup.alert({
+					title: '<h4>Registration Error</h4>',
+					template: '<h5 class="text-center">' + errorMessage.join('<br/>') + '</h5>'
+				})
 				deferred.reject(data);
 			});
 

@@ -1,21 +1,29 @@
 (function() {
 	angular
 		.module('BarTindrApp')
-		.controller('RegisterController', ['$scope', 'registerService', RegisterController]);
+		.controller('RegisterController', ['$scope', 'registerService', '$ionicPopup', 'loginService', RegisterController]);
 
-	function RegisterController($scope, registerService) {
+	function RegisterController($scope, registerService, $ionicPopup, loginService) {
 
 		$scope.registerUser = registerUser;
 
 		function registerUser() {
-			registerService.register($scope.regEmail, $scope.regPassword, $scope.regConfirmPassword, $scope.regEmail, 15, true).then(success, fail);
+			registerService.register(
+				$scope.regEmail,
+				$scope.regPassword, 
+				$scope.regConfirmPassword, 
+				$scope.regEmail, 
+				15, 
+				true).then(success, fail);
 
-			function success() {
-				console.log("IT WORKED!");
+			function success(data) {
+				$scope.regEmail = '';
+				$scope.regPassword = '';
+				$scope.regConfirmPassword = '';
+				$scope.regEmail	= '';
 			}
 
-			function fail() {
-				console.log("It didn't work");
+			function fail(data) {
 			}
 		}
 

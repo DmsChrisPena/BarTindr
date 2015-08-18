@@ -1,9 +1,9 @@
 (function() {
 	angular
 		.module('BarTindrApp')
-		.factory('loginService', ['$http', '$q', '$window', loginService]);
+		.factory('loginService', ['$http', '$q', '$window', '$ionicPopup', loginService]);
 
-	function loginService($http, $q, $window) {
+	function loginService($http, $q, $window, $ionicPopup) {
 		var service = {};
 
 		service.login = login;
@@ -20,9 +20,13 @@
 			}).success(function(data) {
 				console.log(data);
 				$window.sessionStorage.setItem('token', data.access_token);
-				deferred.resolve();
+				deferred.resolve(data);
 			}).error(function(data) {
-				deferred.reject();
+				$ionicPopup.alert({
+					title: '<h5>Invalid Login</h5>',
+					template: '<h5 class="text-center">' + data.error_description + '</h5>'
+				});
+				deferred.reject(data);
 			});
 
 			return deferred.promise;
