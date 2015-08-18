@@ -1,7 +1,28 @@
 (function() {
 	angular
 		.module('BarTindrApp')
-		.config(['$stateProvider', '$routeProvider', '$urlRouterProvider', '$httpProvider', Config]);
+		.config(['$stateProvider', '$routeProvider', '$urlRouterProvider', '$httpProvider', Config])
+		.run(['$rootScope', '$window', '$location', LoginCheck])
+
+	//Checks if user is logged in and routes them to the right views
+	function LoginCheck($rootScope, $window, $location) {
+		$rootScope.$on('$stateChangeSuccess', function(event, next, current) {
+			var userAuthed = $window.sessionStorage.getItem('token');
+
+			if(userAuthed) {
+				if(next.url =='/') {
+					$location.path('/home');
+				}
+				if(next.url == '/register') {
+					$location.path('/home');
+				}
+			} else {
+				if(next.url != '/register' && '/') {
+					$location.path('/')
+				}
+			}
+		});
+	};
 
 
 	function Config($stateProvider, $routeProvider, $urlRouterProvider, $httpProvider) {

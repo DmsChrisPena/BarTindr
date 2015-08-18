@@ -22,9 +22,7 @@
 				}
 
 				function fail(data) {
-
 					console.log(data);
-					$scope.email = '';
 					$scope.password = '';
 				}
 			}
