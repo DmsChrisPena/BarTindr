@@ -21,6 +21,7 @@ using System.Net.Mail;
 using System.Net;
 using System.Configuration;
 using SendGrid;
+using System.IO;
 
 namespace BarTindr.Controllers
 {
@@ -347,7 +348,7 @@ namespace BarTindr.Controllers
 
                 welcomeEmail.Subject = "Welcome To BarTindr";
 
-                welcomeEmail.Html = "<p>Hello World!</p>";
+                welcomeEmail.Html = File.ReadAllText(HttpContext.Current.Server.MapPath("~/App_Data/Templates/WelcomeEmail.txt"));
                 welcomeEmail.Text = "Hello World plain text!";
 
                 var credentials = new NetworkCredential("dmschrispena", "1q0p2w9o");
