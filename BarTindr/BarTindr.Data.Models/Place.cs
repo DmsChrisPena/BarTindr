@@ -20,7 +20,7 @@ namespace BarTindr.Data.Models
         public string Category { get; set; }
         public bool IsChosen { get; set; }
 
-        public virtual ICollection<ApplicationUser> ApplicationUsers { get; set; }
+        public virtual ICollection<UserPlaces> UserPlaces { get; set; }
 
     }
 }

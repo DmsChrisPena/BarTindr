@@ -15,8 +15,8 @@ namespace BarTindr.Data.Models
         public bool IsActive { get; set; }
         public int Radius { get; set; }
 
-        public virtual ICollection<Place> Places { get; set; }
-        public virtual ICollection<Location> Locations { get; set; }
+        public virtual ICollection<UserPlaces> UserPlaces { get; set; }
+        public virtual ICollection<UserLocations> UserLocations { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {

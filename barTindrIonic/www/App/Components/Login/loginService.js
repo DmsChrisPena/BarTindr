@@ -8,6 +8,7 @@
 
 		service.login = login;
 		service.getUserInfo = getUserInfo;
+		service.logout = logout;
 
 		function login(username, password) {
 			var deferred = $q.defer();
@@ -47,6 +48,10 @@
 			});
 
 			return deferred.promise;
+		}
+
+		function logout() {
+			$window.sessionStorage.removeItem('token');
 		}
 
 		return service;

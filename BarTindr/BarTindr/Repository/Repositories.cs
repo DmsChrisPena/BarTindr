@@ -57,41 +57,80 @@ namespace BarTindr.Repository
             return vm;
         }
 
-        public List<UserViewModel> GetUserPlaces()
+        public List<UserViewModel> GetUserPlaces(string userId)
         {
 
             var user = _db.Users;
 
-            var vm = user.Select(u => new UserViewModel
-            {
+            var vm = user.Where(i => i.Id == userId).Select(u => new UserViewModel {
                 UserId = u.Id,
                 Email = u.Email,
                 IsActive = u.IsActive,
                 Radius = u.Radius,
-                Places = u.Places.Select(p => new PlaceViewModel {
+                Places = u.UserPlaces.Select(p => new PlaceViewModel
+                {
                     PlaceId = p.PlaceId,
-                    Name = p.Name,
-                    Rating = p.Rating,
-                    IsClosed = p.IsClosed,
-                    DisplayPhone = p.DisplayPhone,
-                    TextSnipit = p.TextSnipit,
-                    ImageUrl = p.ImageUrl,
-                    Category = p.Category,
-                    IsChosen = p.IsChosen
+                    Name = p.Place.Name,
+                    Rating = p.Place.Rating,
+                    IsClosed = p.Place.IsClosed,
+                    DisplayPhone = p.Place.DisplayPhone,
+                    TextSnipit = p.Place.TextSnipit,
+                    ImageUrl = p.Place.ImageUrl,
+                    Category = p.Place.Category,
+                    IsChosen = p.Place.IsChosen
                 }).ToList(),
-                Locations = u.Locations.Select(l => new LocationViewModel
+                Locations = u.UserLocations.Select(l => new LocationViewModel
                 {
                     LocationId = l.LocationId,
-                    State = l.State,
-                    City = l.City,
-                    Longitude = l.Longitude,
-                    Latitude = l.Latitude,
-                    IsActive = l.IsActive
+                    State = l.Location.State,
+                    City = l.Location.City,
+                    ZipCode = l.Location.ZipCode,
+                    Country = l.Location.Country,
+                    Longitude = l.Location.Longitude,
+                    Latitude = l.Location.Latitude,
+                    IsActive = l.Location.IsActive
                 }).ToList()
             }).ToList();
 
-
             return vm;
+        }
+
+        public void SetNewLocation(LocationViewModel location, string user)
+        {
+            var oldLoc = _db.Locations.Where(l => l.UserLocations.FirstOrDefault().ApplicationUserId == user && l.IsActive).FirstOrDefault();
+
+            if(oldLoc != null)
+            {
+                oldLoc.IsActive = false;
+            }
+            
+
+            var loc = new Location
+            {
+                Latitude = location.Latitude,
+                Longitude = location.Longitude,
+                City = location.City,
+                State = location.State,
+                ZipCode = location.ZipCode,
+                Country = location.Country,
+                IsActive = true
+            };
+
+            _db.Locations.Add(loc);
+
+            _db.SaveChanges();
+
+
+            var userLocation = new UserLocations
+            {
+                LocationId = loc.LocationId,
+                ApplicationUserId = user
+            };
+
+            _db.UserLocations.Add(userLocation);
+
+            _db.SaveChanges();
+
         }
 
 

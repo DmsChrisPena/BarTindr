@@ -1,7 +1,8 @@
 (function() {
   angular.module('BarTindrApp', [
     'ionic', 
-    'ngRoute'
+    'ngRoute',
+    'angularReverseGeocode'
     ])
   .run(['$ionicPlatform', IonicPlatform]);
 

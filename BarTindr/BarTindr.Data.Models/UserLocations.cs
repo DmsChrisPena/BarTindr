@@ -14,14 +14,12 @@ namespace BarTindr.Data.Models
         [Key]
         public int UserLocationsId { get; set; }
 
-        public int ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
         [ForeignKey("ApplicationUserId")]
-        [InverseProperty("Locations")]
         public virtual ApplicationUser ApplicationUser { get; set; }
 
         public int LocationId { get; set; }
         [ForeignKey("LocationId")]
-        [InverseProperty("ApplicationUsers")]
         public virtual Location Location { get; set; }
 
     }

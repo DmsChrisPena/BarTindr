@@ -1,5 +1,18 @@
 <ion-view view-title="" name="">
   <ion-content class="has-header">
 		<p>Home</p>
+
+		<div ng-if="locationFound">
+			<p>Accuracy: {{currentPosition.accuracy}}</p>
+			<p>Latitute: {{currentPosition.latitude}}</p>
+			<p>Longitude: {{currentPosition.longitude}}</p>
+		</div>
+	<button class="button button-block button-positive" ng-click="setLocation();">
+	Set Location
+	</button>
+
+	<button class="button button-block button-assertive" ng-click="logoutUser();">
+	  Logout
+	</button>
   </ion-content>
 </ion-view>

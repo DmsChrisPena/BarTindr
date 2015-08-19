@@ -6,7 +6,7 @@
 	function LoginController($scope, loginService, $window, $stateProvider) {
 
 		$scope.loginUser = loginUser;
-		$scope.getUser = getUser;
+		$scope.logoutUser = logoutUser;
 
 
 		function loginUser() {
@@ -28,17 +28,12 @@
 			}
 		}
 
-		function getUser() {
-			loginService.getUserInfo().then(success,fail);
-
-			function success(data) {
-				console.log(data);
-			}
-
-			function fail(data) {
-				console.log(data);
-			}
+		function logoutUser() {
+			loginService.logout();
+			$location.path('/')
 		}
+
+
 
 	}
 
