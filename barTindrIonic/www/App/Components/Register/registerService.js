@@ -28,17 +28,26 @@
 				$location.path('/');
 				deferred.resolve(data);
 			}).error(function(data) {
-				var errorMessage = [];
+				if(data != null) {
+					var errorMessage = [];
 
-				for(var dat in data.modelState) {
-					errorMessage.push(data.modelState[dat][0]);
+					for(var dat in data.modelState) {
+						errorMessage.push(data.modelState[dat][0]);
+					}
+
+					$ionicPopup.alert({
+						title: '<h4>Registration Error</h4>',
+						template: '<h5 class="text-center">' + errorMessage.join('<br/>') + '</h5>'
+					});
+					deferred.reject(data);
+				} else {
+
+					$ionicPopup.alert({
+						title: '<h4>Registration Error</h4>',
+						template: '<h5 class="text-center">Geez, Our registration isnt working. Try again!</h5>'
+					});
+					deferred.reject();
 				}
-
-				$ionicPopup.alert({
-					title: '<h4>Registration Error</h4>',
-					template: '<h5 class="text-center">' + errorMessage.join('<br/>') + '</h5>'
-				})
-				deferred.reject(data);
 			});
 
 			return deferred.promise;
