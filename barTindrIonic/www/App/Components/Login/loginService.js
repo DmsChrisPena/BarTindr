@@ -24,10 +24,18 @@
 				deferred.resolve();
 				$location.path('/home')
 			}).error(function(data) {
-				$ionicPopup.alert({
-					title: '<h5>Invalid Login</h5>',
-					template: '<h5 class="text-center">' + data.error_description + '</h5>'
-				});
+				if(data) {
+					$ionicPopup.alert({
+						title: '<h5>Invalid Login</h5>',
+						template: '<h5 class="text-center">' + data.error_description + '</h5>'
+					});
+				} else {
+					$ionicPopup.alert({
+						title: '<h5>Invalid Login</h5>',
+						template: '<h5 class="text-center">This one is our bad. Try again!</h5>'
+					});
+				}
+
 				deferred.reject(data);
 			});
 
