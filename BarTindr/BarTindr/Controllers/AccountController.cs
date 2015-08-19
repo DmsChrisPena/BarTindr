@@ -351,9 +351,9 @@ namespace BarTindr.Controllers
                 welcomeEmail.Html = File.ReadAllText(HttpContext.Current.Server.MapPath("~/App_Data/Templates/WelcomeEmail.txt"));
                 welcomeEmail.Text = "Hello World plain text!";
 
-                var credentials = new NetworkCredential("dmschrispena", "1q0p2w9o");
+                var credentials = new NetworkCredential("cadeawinter", "TeamBartindr69");
 
-                var transportWeb = new Web("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");
+                var transportWeb = new Web("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");
 
                 // Send the email.
                 transportWeb.DeliverAsync(welcomeEmail);

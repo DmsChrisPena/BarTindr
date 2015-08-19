@@ -811,7 +811,7 @@ body.outlook p {
                           <td>
 
 
-                            <p>Bartindr is an app that takes the struggle out of planning your night out. Our team has self-defined themselves as party animals, so we know we know the frustration that comes with finding the happening spots in the area. Bartindr aims to provide you with all the avaiable options so you can't say you have nothing to do (I'm looking at you Matt).</p>
+                            <p>Bartindr is an app that takes the struggle out of planning your night out. Our team has self-defined themselves as party animals, so we know the frustration that comes with finding the happening spots in the area. Bartindr aims to provide you with all the avaiable options so you can't say you have nothing to do (I'm looking at you Matt).</p>
                             <p>We need your help with making this app even better! If you think there is something we missed or a feature that would enhance your experience, click the link below and you won't regret it (like that last shot of Teqilla)</p>
 
                           </td>
