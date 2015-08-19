@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 
 namespace BarTindr.Controllers.Api
 {
@@ -15,7 +16,9 @@ namespace BarTindr.Controllers.Api
         [Authorize]
         public IHttpActionResult Get()
         {
-            var user = _repo.GetUserPlaces();
+            var userId = User.Identity.GetUserId();
+
+            var user = _repo.GetUserPlaces(userId);
 
             return Ok(user);
         }

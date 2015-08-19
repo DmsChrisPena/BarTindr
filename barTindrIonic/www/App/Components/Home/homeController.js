@@ -1,15 +1,78 @@
 (function() {
 	angular
 		.module('BarTindrApp')
-		.controller('HomeController', ['$scope', 'loginService', '$location', HomeController]);
+		.controller('HomeController', ['$scope', 'loginService', '$location', 'homeService', HomeController]);
 
-	function HomeController($scope, loginService, $location) {
+	function HomeController($scope, loginService, $location, homeService) {
+
+		//Functions
 		$scope.logoutUser = logoutUser;
+		$scope.setLocation = setLocation;
+		$scope.getUserInfo = getUserInfo;
 
-			function logoutUser() {
-				loginService.logout();
-				$location.path('/');
-		};
+		
+
+		function logoutUser() {
+			loginService.logout();
+			$location.path('/');
+		}
+
+		function setLocation() {		
+			navigator.geolocation.getCurrentPosition(function(pos) {
+				var locationResults = [];
+				var locationObj = {
+					latitude: pos.coords.latitude,
+					longitude: pos.coords.longitude
+				}
+				function getLocation(scope, element, attrs) {
+		            var geocoder = new google.maps.Geocoder();
+		            var latlng = new google.maps.LatLng(locationObj.latitude, locationObj.longitude);
+		            geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+		            	locationResults.push(results[1].address_components[0].long_name);
+		            	locationResults.push(results[1].address_components[1].long_name);
+		            	locationResults.push(results[1].address_components[2].long_name);
+		            	locationResults.push(results[1].address_components[3].long_name);
+
+
+		            	//Check this in the morning
+		            	locationObj.zipCode = locationResults[0];
+		        		locationObj.city = locationResults[1];
+		        		locationObj.state = locationResults[2];
+		        		locationObj.country = locationResults[3];
+		            });
+		        }
+
+
+		        getLocation();
+
+				setTimeout(function(){homeService.setNewLocation(locationObj).then(success, fail)}, 400);				
+
+				function success(data) {
+					console.log(data);
+				}
+
+				function fail(data) {
+					console.log(data);
+				}
+
+			});
+
+
+		}
+
+		//I'm kinda drunk and this works now! It get user info
+		function getUserInfo() {
+			loginService.getUserInfo().then(success, fail);
+
+			function success(data) {
+				console.log(data);
+			}
+
+			function fail(data) {
+				console.log(data);
+			}
+		}
+
 	}
 
 })();

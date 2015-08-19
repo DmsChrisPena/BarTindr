@@ -14,11 +14,27 @@ namespace BarTindr.Data.Migrations
                         LocationId = c.Int(nullable: false, identity: true),
                         State = c.String(),
                         City = c.String(),
-                        Longitude = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Latitude = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Longitude = c.Double(nullable: false),
+                        Latitude = c.Double(nullable: false),
+                        ZipCode = c.Int(nullable: false),
+                        Country = c.String(),
                         IsActive = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.LocationId);
+            
+            CreateTable(
+                "dbo.UserLocations",
+                c => new
+                    {
+                        UserLocationsId = c.Int(nullable: false, identity: true),
+                        ApplicationUserId = c.String(maxLength: 128),
+                        LocationId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.UserLocationsId)
+                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
+                .ForeignKey("dbo.Locations", t => t.LocationId, cascadeDelete: true)
+                .Index(t => t.ApplicationUserId)
+                .Index(t => t.LocationId);
             
             CreateTable(
                 "dbo.AspNetUsers",
@@ -68,6 +84,33 @@ namespace BarTindr.Data.Migrations
                 .Index(t => t.UserId);
             
             CreateTable(
+                "dbo.AspNetUserRoles",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        RoleId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.RoleId })
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
+                .Index(t => t.UserId)
+                .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.UserPlaces",
+                c => new
+                    {
+                        UserPlacesId = c.Int(nullable: false, identity: true),
+                        ApplicationUserId = c.String(maxLength: 128),
+                        PlaceId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.UserPlacesId)
+                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
+                .ForeignKey("dbo.Places", t => t.PlaceId, cascadeDelete: true)
+                .Index(t => t.ApplicationUserId)
+                .Index(t => t.PlaceId);
+            
+            CreateTable(
                 "dbo.Places",
                 c => new
                     {
@@ -84,19 +127,6 @@ namespace BarTindr.Data.Migrations
                 .PrimaryKey(t => t.PlaceId);
             
             CreateTable(
-                "dbo.AspNetUserRoles",
-                c => new
-                    {
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        RoleId = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => new { t.UserId, t.RoleId })
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
-                .Index(t => t.UserId)
-                .Index(t => t.RoleId);
-            
-            CreateTable(
                 "dbo.AspNetRoles",
                 c => new
                     {
@@ -107,62 +137,36 @@ namespace BarTindr.Data.Migrations
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
             
-            CreateTable(
-                "dbo.ApplicationUserLocations",
-                c => new
-                    {
-                        ApplicationUser_Id = c.String(nullable: false, maxLength: 128),
-                        Location_LocationId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.ApplicationUser_Id, t.Location_LocationId })
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUser_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Locations", t => t.Location_LocationId, cascadeDelete: true)
-                .Index(t => t.ApplicationUser_Id)
-                .Index(t => t.Location_LocationId);
-            
-            CreateTable(
-                "dbo.PlaceApplicationUsers",
-                c => new
-                    {
-                        Place_PlaceId = c.Int(nullable: false),
-                        ApplicationUser_Id = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => new { t.Place_PlaceId, t.ApplicationUser_Id })
-                .ForeignKey("dbo.Places", t => t.Place_PlaceId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUser_Id, cascadeDelete: true)
-                .Index(t => t.Place_PlaceId)
-                .Index(t => t.ApplicationUser_Id);
-            
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.UserLocations", "LocationId", "dbo.Locations");
+            DropForeignKey("dbo.UserPlaces", "PlaceId", "dbo.Places");
+            DropForeignKey("dbo.UserPlaces", "ApplicationUserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.UserLocations", "ApplicationUserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.PlaceApplicationUsers", "ApplicationUser_Id", "dbo.AspNetUsers");
-            DropForeignKey("dbo.PlaceApplicationUsers", "Place_PlaceId", "dbo.Places");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.ApplicationUserLocations", "Location_LocationId", "dbo.Locations");
-            DropForeignKey("dbo.ApplicationUserLocations", "ApplicationUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
-            DropIndex("dbo.PlaceApplicationUsers", new[] { "ApplicationUser_Id" });
-            DropIndex("dbo.PlaceApplicationUsers", new[] { "Place_PlaceId" });
-            DropIndex("dbo.ApplicationUserLocations", new[] { "Location_LocationId" });
-            DropIndex("dbo.ApplicationUserLocations", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.UserPlaces", new[] { "PlaceId" });
+            DropIndex("dbo.UserPlaces", new[] { "ApplicationUserId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
-            DropTable("dbo.PlaceApplicationUsers");
-            DropTable("dbo.ApplicationUserLocations");
+            DropIndex("dbo.UserLocations", new[] { "LocationId" });
+            DropIndex("dbo.UserLocations", new[] { "ApplicationUserId" });
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.Places");
+            DropTable("dbo.UserPlaces");
+            DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
+            DropTable("dbo.UserLocations");
             DropTable("dbo.Locations");
         }
     }
