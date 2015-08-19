@@ -255,6 +255,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EmailService.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ForgotPasswordViewModel.cs" />
     <Compile Include="Models\ViewModel\LocationViewModel.cs" />
     <Compile Include="Models\ViewModel\PlaceViewModel.cs" />
     <Compile Include="Models\ViewModel\UserViewModel.cs" />

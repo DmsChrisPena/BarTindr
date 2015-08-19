@@ -6,6 +6,9 @@ using Microsoft.Owin;
 using BarTindr.Models;
 using BarTindr.Data.Models;
 using BarTindr.Data;
+using SendGrid;
+using System.Net.Mail;
+using System.Net;
 
 namespace BarTindr
 {
@@ -16,6 +19,22 @@ namespace BarTindr
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
         {
+        }
+
+        public override Task SendEmailAsync(string userId, string subject, string body)
+        {
+            return base.SendEmailAsync(userId, subject, body);
+        }
+
+        public Task SendConfirmEmailAsync(string email)
+        {
+            string subject = "Welcome To BarTindr";
+            string htmlBody = "<p>Hello World!</p>";
+            string textBody = "Hello World plain text!";
+
+            Models.EmailService emailService = new Models.EmailService();
+
+            return emailService.SendAsync(subject: subject, htmlBody: htmlBody, textBody: textBody, destination: email);
         }
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
@@ -41,6 +60,8 @@ namespace BarTindr
             {
                 manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
+
+            manager.EmailService = new EmailService();
             return manager;
         }
     }

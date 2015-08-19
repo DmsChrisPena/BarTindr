@@ -119,7 +119,34 @@ namespace BarTindr.Controllers
             };
         }
 
+        // POST: /Account/ForgotPassword
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("ForgotPassword")]
+        public async Task<IHttpActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await UserManager.FindByNameAsync(model.Email);
+                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                {
+                    // Don't reveal that the user does not exist or is not confirmed
+                    return BadRequest("ForgotPasswordConfirmation");
+                }
+
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Link("Register", new { });
+                Console.WriteLine(callbackUrl);
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+            }
+
+            // If we got this far, something failed, redisplay form
+            return Ok(model);
+        }
+
+
         // POST api/Account/ChangePassword
+        [HttpPost]
         [Route("ChangePassword")]
         public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
         {
@@ -130,7 +157,7 @@ namespace BarTindr.Controllers
 
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -138,6 +165,12 @@ namespace BarTindr.Controllers
 
             return Ok();
         }
+
+
+
+
+
+
 
         // POST api/Account/SetPassword
         [Route("SetPassword")]
@@ -325,7 +358,7 @@ namespace BarTindr.Controllers
 
         // POST api/Account/Register
         [AllowAnonymous]
-        [Route("Register")]
+        [Route("Register", Name = "Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
             if (!ModelState.IsValid)
@@ -336,15 +369,24 @@ namespace BarTindr.Controllers
             var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, Radius = model.Radius, IsActive = model.IsActive };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                //await SignInManager.SignInAsync(user, isPersistent:false, remeberBrowser:false);
+            }
+            string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            //var callbackUrl = Url.Route("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+            //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
+            await UserManager.SendConfirmEmailAsync(user.Email);
+
+            //return RedirectToAction("Index", "Home");
             #region SendWelcomeEmail
-                var welcomeEmail = new SendGridMessage();
+            var welcomeEmail = new SendGridMessage();
                 welcomeEmail.From = new MailAddress("Bartindr.Welcome@gmail.com");
 
                 string recipients = user.Email;
-
+             
                 welcomeEmail.AddTo(recipients);
-
                 welcomeEmail.Subject = "Welcome To BarTindr";
 
                 welcomeEmail.Html = "<p>Hello World!</p>";
