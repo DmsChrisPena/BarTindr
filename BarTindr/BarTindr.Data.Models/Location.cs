@@ -11,6 +11,7 @@ namespace BarTindr.Data.Models
     {
         [Key]
         public int LocationId { get; set; }
+        public string Name { get; set; }
         public string State { get; set; }
         public string City { get; set; }
         public double Longitude { get; set; }

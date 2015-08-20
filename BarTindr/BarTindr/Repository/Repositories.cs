@@ -46,6 +46,7 @@ namespace BarTindr.Repository
             {
                 vm.Add(new LocationViewModel
                 {
+                    Name = location.Name,
                     State = location.State,
                     City = location.City,
                     Longitude = location.Longitude,
@@ -82,6 +83,7 @@ namespace BarTindr.Repository
                 Locations = u.UserLocations.Select(l => new LocationViewModel
                 {
                     LocationId = l.LocationId,
+                    Name = l.Location.Name,
                     State = l.Location.State,
                     City = l.Location.City,
                     ZipCode = l.Location.ZipCode,
@@ -108,6 +110,7 @@ namespace BarTindr.Repository
 
             var loc = new Location
             {
+                Name = location.Name,
                 Latitude = location.Latitude,
                 Longitude = location.Longitude,
                 City = location.City,

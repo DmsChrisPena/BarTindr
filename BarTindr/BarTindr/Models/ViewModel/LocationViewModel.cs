@@ -8,6 +8,7 @@ namespace BarTindr.Models.ViewModel
     public class LocationViewModel
     {
         public int LocationId { get; set; }
+        public string Name { get; set; }
         public string State { get; set; }
         public string City { get; set; }
         public int ZipCode { get; set; }

@@ -22,7 +22,7 @@ namespace BarTindr.Data.Migrations
 
             Location[] location =
             {
-                new Location { State = "Texas", City = "Houston", Latitude = 654.265465476587,  Longitude = 465.546543648398, IsActive = true, ZipCode = 77450, Country = "USA", Radius = 15 }
+                new Location { State = "Texas", City = "Houston", Latitude = 654.265465476587,  Longitude = 465.546543648398, IsActive = true, ZipCode = 77450, Country = "USA", Radius = 15, Name = "Your Moms House" }
             };
 
             context.Locations.AddOrUpdate(l => l.State, location);

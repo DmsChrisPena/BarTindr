@@ -13,7 +13,7 @@ namespace BarTindr.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201508200347573_initial"; }
+            get { return "201508200527366_initial"; }
         }
         
         string IMigrationMetadata.Source

@@ -9,7 +9,6 @@
 		$scope.logoutUser = logoutUser;
 		$scope.setLocation = setLocation;
 		$scope.getUserInfo = getUserInfo;
-
 		
 
 		function logoutUser() {
