@@ -39,11 +39,10 @@ namespace BarTindr.Models
             myMessage.Text = textBody;
             myMessage.Html = htmlBody;
 
-            var credentials = new NetworkCredential(ConfigurationManager.AppSettings["emailService:Account"],
-                                                    ConfigurationManager.AppSettings["emailService:Password"]);
+            var credentials = new NetworkCredential("cadeawinter", "TeamBartindr69");
 
             // Create a Web transport for sending email.
-            var transportWeb = new Web(credentials);
+            var transportWeb = new Web("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");
 
             // Send the email.
             if (transportWeb != null)

@@ -20,11 +20,19 @@ namespace BarTindr
             : base(store)
         {
         }
-
-        public override Task SendEmailAsync(string userId, string subject, string body)
+        public Task SendForgotPasswordAsync(string email, string callbackUrl)
         {
-            return base.SendEmailAsync(userId, subject, body);
+            string subject = "Forgot Password"; 
+            string htmlBody = "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>";
+            string textBody = "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>";
+
+
+            Models.EmailService emailService = new Models.EmailService();
+
+            return emailService.SendAsync(subject: subject, htmlBody: htmlBody, textBody: textBody, destination: email);
         }
+
+
 
         public Task SendConfirmEmailAsync(string email)
         {
@@ -61,7 +69,7 @@ namespace BarTindr
                 manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
 
-            manager.EmailService = new EmailService();
+            manager.EmailService = new Models.EmailService();
             return manager;
         }
     }

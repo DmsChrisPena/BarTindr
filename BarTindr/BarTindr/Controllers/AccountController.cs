@@ -138,7 +138,7 @@ namespace BarTindr.Controllers
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Link("Register", new { });
                 Console.WriteLine(callbackUrl);
-                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                await UserManager.SendForgotPasswordAsync(user.Email, callbackUrl);
             }
 
             // If we got this far, something failed, redisplay form
@@ -367,7 +367,7 @@ namespace BarTindr.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, Radius = model.Radius, IsActive = model.IsActive };
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email};
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
