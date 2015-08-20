@@ -117,6 +117,7 @@ namespace BarTindr.Repository
                 State = location.State,
                 ZipCode = location.ZipCode,
                 Country = location.Country,
+                Radius = location.Radius,
                 IsActive = true
             };
 
