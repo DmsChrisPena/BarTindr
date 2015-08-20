@@ -17,6 +17,7 @@ namespace BarTindr.Data.Models
         public double Latitude { get; set; }
         public int ZipCode { get; set; }
         public string Country { get; set; }
+        public double Radius { get; set; }
         public bool IsActive { get; set; }
 
         public virtual ICollection<UserLocations> UserLocations { get; set; }

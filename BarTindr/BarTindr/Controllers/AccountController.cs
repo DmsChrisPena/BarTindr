@@ -334,7 +334,7 @@ namespace BarTindr.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, Radius = model.Radius, IsActive = model.IsActive };
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, IsActive = model.IsActive };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

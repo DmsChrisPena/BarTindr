@@ -22,7 +22,7 @@ namespace BarTindr.Data.Migrations
 
             Location[] location =
             {
-                new Location { State = "Texas", City = "Houston", Latitude = 654.265465476587,  Longitude = 465.546543648398, IsActive = true, ZipCode = 77450, Country = "USA" }
+                new Location { State = "Texas", City = "Houston", Latitude = 654.265465476587,  Longitude = 465.546543648398, IsActive = true, ZipCode = 77450, Country = "USA", Radius = 15 }
             };
 
             context.Locations.AddOrUpdate(l => l.State, location);
@@ -43,7 +43,6 @@ namespace BarTindr.Data.Migrations
                 {
                     UserName = "cadeawinter@gmail.com",
                     Email = "cadeawinter@gmail.com",
-                    Radius = 15,
                     IsActive = true
                 };
 
@@ -58,7 +57,6 @@ namespace BarTindr.Data.Migrations
                 {
                     UserName = "chrispena@gmail.com",
                     Email = "chrispena@gmail.com",
-                    Radius = 20,
                     IsActive = true
                 };
 
