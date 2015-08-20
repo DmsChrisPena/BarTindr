@@ -13,7 +13,6 @@ namespace BarTindr.Data.Models
     public class ApplicationUser : IdentityUser
     {
         public bool IsActive { get; set; }
-        public int Radius { get; set; }
 
         public virtual ICollection<UserPlaces> UserPlaces { get; set; }
         public virtual ICollection<UserLocations> UserLocations { get; set; }

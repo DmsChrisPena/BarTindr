@@ -50,6 +50,7 @@ namespace BarTindr.Repository
                     City = location.City,
                     Longitude = location.Longitude,
                     Latitude = location.Latitude,
+                    Radius = location.Radius,
                     IsActive = location.IsActive
                 });
             }
@@ -66,7 +67,6 @@ namespace BarTindr.Repository
                 UserId = u.Id,
                 Email = u.Email,
                 IsActive = u.IsActive,
-                Radius = u.Radius,
                 Places = u.UserPlaces.Select(p => new PlaceViewModel
                 {
                     PlaceId = p.PlaceId,
@@ -88,6 +88,7 @@ namespace BarTindr.Repository
                     Country = l.Location.Country,
                     Longitude = l.Location.Longitude,
                     Latitude = l.Location.Latitude,
+                    Radius = l.Location.Radius,
                     IsActive = l.Location.IsActive
                 }).ToList()
             }).ToList();

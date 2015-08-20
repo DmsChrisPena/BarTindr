@@ -18,6 +18,7 @@ namespace BarTindr.Data.Migrations
                         Latitude = c.Double(nullable: false),
                         ZipCode = c.Int(nullable: false),
                         Country = c.String(),
+                        Radius = c.Double(nullable: false),
                         IsActive = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.LocationId);
@@ -42,7 +43,6 @@ namespace BarTindr.Data.Migrations
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         IsActive = c.Boolean(nullable: false),
-                        Radius = c.Int(nullable: false),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
