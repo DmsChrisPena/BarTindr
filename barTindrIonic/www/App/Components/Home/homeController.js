@@ -1,9 +1,9 @@
 (function() {
 	angular
 		.module('BarTindrApp')
-		.controller('HomeController', ['$scope', 'loginService', '$location', 'homeService', '$timeout', HomeController]);
+		.controller('HomeController', ['$scope', 'loginService', '$location', 'homeService', '$timeout', '$state', HomeController]);
 
-	function HomeController($scope, loginService, $location, homeService, $timeout) {
+	function HomeController($scope, loginService, $location, homeService, $timeout, $state) {
 
 		//Functions
 		$scope.logoutUser = logoutUser;
@@ -13,7 +13,7 @@
 
 		function logoutUser() {
 			loginService.logout();
-			$location.path('/');
+			$state.go('login');
 		}
 
 		function setLocation() {		

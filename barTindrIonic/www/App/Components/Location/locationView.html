@@ -7,13 +7,13 @@
     </div>
     <h1 class="title">Create Location</h1>
     <div class="buttons pull-right">
-      <button class="button button-icon icon ion-checkmark-round" ng-click='setLocation();'></button>
+      <button class="button button-icon icon ion-checkmark-round" ng-click='saveLocation();'></button>
     </div>
   </ion-header-bar>
   <ion-content class="has-header" scroll="false">
 	    <label style="padding-top: 0px; margin-top: 0px;" class="item item-input item-floating-label">
 	      <span class="input-label">Location</span>
-	      <input type="text" placeholder="Enter location name" ng-model="location.name" hide-keyboard-on-enter>
+	      <input type="text" placeholder="Enter location name" ng-model="locationInfo.name" hide-keyboard-on-enter>
 	    </label>
 	    <div class="range range-positive" data-tap-disabled="true">
 	      	<i style="color: #387EF5" class="icon ion-ionic"></i>

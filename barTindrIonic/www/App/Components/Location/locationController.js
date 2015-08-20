@@ -1,118 +1,152 @@
 (function() {
 	angular
 		.module('BarTindrApp')
-		.controller('LocationController', ['$scope', 'loginService', 'locationService', '$ionicLoading', 'homeService', '$state', LocationController]);
+		.controller('LocationController', ['$scope', 'loginService', 'locationService', '$ionicLoading', '$state', '$ionicPopup', LocationController]);
 		
-	function LocationController($scope, loginService, locationService, $ionicLoading, homeService, $state) {
+	function LocationController($scope, loginService, locationService, $ionicLoading, $state, $ionicPopup) {
 
 		//Functions
-		// $scope.getUserInfo = getUserInfo;
 		$scope.convertToMeters = convertToMeters;
-		$scope.setLocation = setLocation;
+		$scope.findLocation = findLocation;
+		$scope.saveLocation = saveLocation;
 
 
 		//Variables
 		$scope.center = {};
 		$scope.paths = {};
-		$scope.location = {
-			name: ""
-		};
-		$scope.formattedAddress = [];
+		$scope.locationInfo = {};
 
 		$ionicLoading.show({
-			template: 'Finding location...<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>',
-			duration: 2000
+			template: 'Finding location...<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>'
 		});
 
-		function findLocation() {
-			navigator.geolocation.getCurrentPosition(function(pos) {
-				console.log(pos)
-				var locationResults = [];
-				var locationObj = {
-					latitude: pos.coords.latitude,
-					longitude: pos.coords.longitude
+		function findLocation(save) {
+			//Find current location
+			locationService.findGeolocation().then(geolocationSuccess, geolocationFail);
+
+
+			function geolocationSuccess(position) {
+
+				//Get all the location information
+				locationService.reverseGeo(position).then(reverseSuccess, reverseFail);
+
+				function reverseSuccess(geocode) {
+					$ionicLoading.hide();
+
+					if(save == null) {
+						//Define leaflet map center
+						$scope.center = {
+							lat: position.coords.latitude,
+							lng: position.coords.longitude,
+							zoom: 10
+						};
+
+						$scope.markers = {
+							marker: {
+								draggable: false,
+								message: $scope.locationInfo.name,
+								lat: position.coords.latitude,
+								lng: position.coords.longitude,
+								icon: {}
+							}
+						};
+
+						$scope.paths = {
+							circle: {
+								type: 'circle',
+								radius: 24140.2,
+								miles: 15,
+								latlngs: $scope.markers.marker,
+								clickable: false
+							}
+						};
+					}
+
+
+					//Format the address
+					var formattedGeocode = locationService.addressFormatter(geocode);
+
+					//Define object to be saved to database
+					$scope.locationInfo = {
+						latitude: position.coords.latitude,
+						longitude: position.coords.longitude,
+						name: formattedGeocode.name,
+						address: formattedGeocode.address,
+						city: formattedGeocode.city,
+						state: formattedGeocode.state,
+						country: formattedGeocode.country,
+						zipCode: formattedGeocode.zipCode,
+						radius: $scope.paths.circle.radius
+					};
+
+					//Overload to save information	
+					if(save) {
+
+						//Is loading for the save function
+						$ionicLoading.show({
+							template: 'Saving ' + $scope.locationInfo.name + '...<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>',
+							duration: 1000
+						});
+
+						locationService.setNewLocation($scope.locationInfo).then(saveSuccess, saveFail);
+
+						function saveSuccess() {
+							$ionicLoading.hide();
+							$state.go('home');
+						}
+						function saveFail() {
+							$ionicLoading.hide();
+							
+						}
+					}
+
 				}
 
-			    function getLocation(scope, element, attrs) {
-		            var geocoder = new google.maps.Geocoder();
-		            var latlng = new google.maps.LatLng(locationObj.latitude, locationObj.longitude);
-		            geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+				function reverseFail(err) {
+					console.log(err);
+				}
+			}
 
-						function addressArray(address) {
-			            	var regex = /^([^,]+)\s*,\s*([^,]+)\s*,\s*(\w{2})\s*(\d{5})\s*,\s*(.*)$/
-			            	return address[0].formatted_address.match(regex).splice(1);
-						}
-		            	$scope.formattedAddress = addressArray(results);
+			//Cannot find location
+			function geolocationFail(err) {
+				$ionicLoading.hide();
+				$ionicPopup.alert({
+					title: '<h5>Error Locating</h5>',
+					template: '<h5 class="text-center">' + err + '</h5>'
+				});
+			}
 
-		        		$scope.location = {
-		        			name: $scope.formattedAddress[1] + ", " + $scope.formattedAddress[2]
-		        		}
-					    $scope.center = {
-					        lat: pos.coords.latitude,
-					        lng: pos.coords.longitude,
-					        zoom: 10
-					    };
-					    $scope.markers = {
-					        marker: {
-					            draggable: false,
-					            message: $scope.location.name,
-					            lat: pos.coords.latitude,
-					            lng: pos.coords.longitude,
-					            icon: {}
-					        }
-					    };
-					    $scope.paths = {
-					        circle: {
-					            type: 'circle',
-					            radius: 24140.2,
-					            miles: 15,
-					            latlngs: $scope.markers.marker,
-					            clickable: false
-					        }
-					    };
-
-		            });
-		        }
-		        getLocation();
-
-			});
 		}
-		findLocation();
+
+		$scope.findLocation();		
 
 		function convertToMeters() {
+			//Converts the miles to meters for the leaflet map
 			$scope.paths.circle.radius = locationService.convertToMeters($scope.paths.circle.miles);
+			//Updates the radius for our main data object	
+			$scope.locationInfo.radius = $scope.paths.circle.radius;
 		}
 
-		function setLocation() {
+		function saveLocation() {
+			//Is loading for the save function
 			$ionicLoading.show({
-				template: 'Saving ' + $scope.location.name + '...<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>',
+				template: 'Saving ' + $scope.locationInfo.name + '...<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>',
 				duration: 1000
-			})
-			var locationData = {
-				name: $scope.location.name,
-				address: $scope.formattedAddress[0],
-				city: $scope.formattedAddress[1],
-				country: $scope.formattedAddress[4],
-				state: $scope.formattedAddress[2],
-				longitude: $scope.paths.circle.latlngs.lng,
-				latitude: $scope.paths.circle.latlngs.lat,
-				zipCode:  $scope.formattedAddress[3],
-				radius: $scope.paths.circle.radius
-			}
+			});
 			
-			homeService.setNewLocation(locationData).then(success, fail)
+			locationService.setNewLocation($scope.locationInfo).then(saveSuccess, saveFail);
 
-			function success() {
+			function saveSuccess() {
 				$ionicLoading.hide();
-				console.log("It worked");
 				$state.go('home');
 			}
-			function fail() {
+			function saveFail() {
 				$ionicLoading.hide();
-				console.log("failed");
+				
 			}
 		}
 
 		
 	}
+
 })();
