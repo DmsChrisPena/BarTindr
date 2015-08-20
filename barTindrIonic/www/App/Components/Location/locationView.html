@@ -1,5 +1,27 @@
-<ion-view view-title="" name="">
-  <ion-content class="has-header">
-
-  </ion-content>
+<ion-view view-title="Location" name="Location">
+  <ion-header-bar class="bar-positive" align-title="center">
+    <div class="buttons pull-left">
+      <button class="button button-icon" ui-sref="geofences">
+        <i class="ion-chevron-left"></i>
+      </button>
+    </div>
+    <h1 class="title">Create Location</h1>
+    <div class="buttons pull-right">
+      <button class="button button-icon icon ion-checkmark-round"></button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="has-header" scroll="false">
+	    <label style="padding-top: 0px; margin-top: 0px;" class="item item-input item-floating-label">
+	      <span class="input-label">Location</span>
+	      <input type="text" placeholder="Enter location name" ng-model="geofence.notification.text" hide-keyboard-on-enter>
+	    </label>
+	    <div class="range range-positive" data-tap-disabled="true">
+	      	<i style="color: #387EF5" class="icon ion-ionic"></i>
+	      	<input type="range" name="volume" min="1" max="50" ng-change="convertToMeters(paths.circle.radius);" ng-model="paths.circle.radius">
+	      	{{ paths.circle.radius }}
+	    </div>
+		<div style="width: 100%; position: absolute; top: 130px; bottom: 0px;" data-tap-disabled="true">
+		  <leaflet resizeable markers="markers" paths="paths" center="center"  width="100%" height="100%"></leaflet>
+		</div>  
+   </ion-content>
 </ion-view>

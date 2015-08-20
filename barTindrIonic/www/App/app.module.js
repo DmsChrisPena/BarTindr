@@ -2,6 +2,7 @@
   angular.module('BarTindrApp', [
     'ionic', 
     'ngRoute',
+    'leaflet-directive',
     'angularReverseGeocode'
     ])
   .run(['$ionicPlatform', IonicPlatform]);
