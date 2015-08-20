@@ -13,6 +13,7 @@ namespace BarTindr.Data.Migrations
                     {
                         LocationId = c.Int(nullable: false, identity: true),
                         Name = c.String(),
+                        Address = c.String(),
                         State = c.String(),
                         City = c.String(),
                         Longitude = c.Double(nullable: false),

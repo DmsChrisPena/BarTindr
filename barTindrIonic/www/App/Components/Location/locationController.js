@@ -16,7 +16,8 @@
 		$scope.paths = {};
 		$scope.location = {
 			name: ""
-		}
+		};
+		$scope.formattedAddress = [];
 
 		$ionicLoading.show({
 			template: 'Finding location...<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>',
@@ -36,21 +37,15 @@
 		            var geocoder = new google.maps.Geocoder();
 		            var latlng = new google.maps.LatLng(locationObj.latitude, locationObj.longitude);
 		            geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-		            	console.log(results)
-		            	locationResults.push(results[0].address_components[6].long_name);
-		            	locationResults.push(results[0].address_components[2].long_name);
-		            	locationResults.push(results[0].address_components[4].long_name);
-		            	locationResults.push(results[0].address_components[5].long_name);
 
-
-		            	//Check this in the morning
-		            	locationObj.zipCode = locationResults[0];
-		        		locationObj.city = locationResults[1];
-		        		locationObj.state = locationResults[2];
-		        		locationObj.country = locationResults[3];
+						function addressArray(address) {
+			            	var regex = /^([^,]+)\s*,\s*([^,]+)\s*,\s*(\w{2})\s*(\d{5})\s*,\s*(.*)$/
+			            	return address[0].formatted_address.match(regex).splice(1);
+						}
+		            	$scope.formattedAddress = addressArray(results);
 
 		        		$scope.location = {
-		        			name: locationObj.city + ", " + locationObj.state
+		        			name: $scope.formattedAddress[1] + ", " + $scope.formattedAddress[2]
 		        		}
 					    $scope.center = {
 					        lat: pos.coords.latitude,
@@ -71,10 +66,6 @@
 					            type: 'circle',
 					            radius: 24140.2,
 					            miles: 15,
-					            state: locationObj.state,
-					            city: locationObj.city,
-					            zipCode: locationObj.zipCode,
-					            country: locationObj.country,
 					            latlngs: $scope.markers.marker,
 					            clickable: false
 					        }
@@ -90,9 +81,6 @@
 
 		function convertToMeters() {
 			$scope.paths.circle.radius = locationService.convertToMeters($scope.paths.circle.miles);
-			console.log($scope.paths.circle.radius)
-			console.log($scope.location);
-			console.log($scope.paths);
 		}
 
 		function setLocation() {
@@ -102,23 +90,25 @@
 			})
 			var locationData = {
 				name: $scope.location.name,
-				state: $scope.paths.circle.state,
-				city:  $scope.paths.circle.city,
-				country: $scope.paths.circle.country,
+				address: $scope.formattedAddress[0],
+				city: $scope.formattedAddress[1],
+				country: $scope.formattedAddress[4],
+				state: $scope.formattedAddress[2],
 				longitude: $scope.paths.circle.latlngs.lng,
 				latitude: $scope.paths.circle.latlngs.lat,
-				zipCode:  $scope.paths.circle.zipCode,
+				zipCode:  $scope.formattedAddress[3],
 				radius: $scope.paths.circle.radius
 			}
+			
 			homeService.setNewLocation(locationData).then(success, fail)
 
 			function success() {
-				// $ionicLoading.hide();
+				$ionicLoading.hide();
 				console.log("It worked");
 				$state.go('home');
 			}
 			function fail() {
-				// $ionicLoading.hide();
+				$ionicLoading.hide();
 				console.log("failed");
 			}
 		}

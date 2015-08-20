@@ -22,6 +22,7 @@ namespace BarTindr.Repository
             {
                 vm.Add(new PlaceViewModel
                 {
+                    PlaceId = place.PlaceId,
                     Name = place.Name,
                     Rating = place.Rating,
                     IsClosed = place.IsClosed,
@@ -46,7 +47,11 @@ namespace BarTindr.Repository
             {
                 vm.Add(new LocationViewModel
                 {
+                    LocationId = location.LocationId,
                     Name = location.Name,
+                    Address = location.Address,
+                    Country = location.Country,
+                    ZipCode = location.ZipCode,
                     State = location.State,
                     City = location.City,
                     Longitude = location.Longitude,
@@ -84,6 +89,7 @@ namespace BarTindr.Repository
                 {
                     LocationId = l.LocationId,
                     Name = l.Location.Name,
+                    Address = l.Location.Address,
                     State = l.Location.State,
                     City = l.Location.City,
                     ZipCode = l.Location.ZipCode,
@@ -113,6 +119,7 @@ namespace BarTindr.Repository
                 Name = location.Name,
                 Latitude = location.Latitude,
                 Longitude = location.Longitude,
+                Address = location.Address,
                 City = location.City,
                 State = location.State,
                 ZipCode = location.ZipCode,
