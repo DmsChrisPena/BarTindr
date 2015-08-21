@@ -7,26 +7,19 @@
     </div>
     <h1 class="title">Your Locations</h1>
     <div class="buttons pull-right">
-      <button class="button button-icon ion-ios-navigate-outline" nav-direction="forward" ui-sref="location"></button>
+      <button class="button button-icon ion-ios-navigate-outline" nav-direction="back" ui-sref="location"></button>
     </div>
   </ion-header-bar>
   <ion-content class="has-header" scroll="false">
-  	<div class="list">
-  		<a class="item" href="#">
-  			Midtown
+  <div class="card" ng-cloak ng-hide='locations[0].locations.length != 0'>
+    <div class="item item-text-wrap">
+        <p class="text-center">Add a location by clicking <a ui-sref="location">HERE!</a></p>
+    </div>
+  </div>
+  <div class="list" ng-show='locations[0].locations'>
+  		<a class="item" href="#" ng-repeat="location in locations[0].locations">
+  			{{location.name}} -- {{location.city}}, {{location.state}}
 		</a>
-		<a class="item" href="#">
-  			The Heights
-		</a>
-		<a class="item" href="#">
-  			Denver, CO
-		</a>
-		<a class="item" href="#">
-  			Pike's Place, Seattle, WA
-		</a>
-		<a class="item" href="#">
-  			Pedro's House
-		</a>
-  	</div>
+  </div>
    </ion-content>
 </ion-view>

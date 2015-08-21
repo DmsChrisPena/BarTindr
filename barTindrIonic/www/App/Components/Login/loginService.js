@@ -7,7 +7,6 @@
 		var service = {};
 
 		service.login = login;
-		service.getUserInfo = getUserInfo;
 		service.logout = logout;
 
 		function login(username, password) {
@@ -19,7 +18,6 @@
 				data: 'username=' + username + '&password=' + password + '&grant_type=password',
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 			}).success(function(data) {
-				console.log(data);
 				$window.sessionStorage.setItem('token', data.access_token);
 				deferred.resolve();
 				$location.path('/home')
@@ -42,21 +40,7 @@
 			return deferred.promise;
 		}
 
-		function getUserInfo() {
-			var deferred = $q.defer();
 
-			$http({
-				url: 'http://localhost:52355/api/user',
-				method: 'GET',
-				header: { 'Authorization': 'Bearer ' + $window.sessionStorage.getItem('token') }
-			}).success(function(data) {
-				deferred.resolve(data)
-			}).error(function(data) {
-				deferred.reject(data);
-			});
-
-			return deferred.promise;
-		}
 
 		function logout() {
 			$window.sessionStorage.removeItem('token');
