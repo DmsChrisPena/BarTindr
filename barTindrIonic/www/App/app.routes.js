@@ -48,6 +48,11 @@
 				url: '/location',
 				templateUrl: 'App/Components/Location/locationView.html',
 				controller: 'LocationController'
+			})
+			.state('locationList', {
+				url: '/locationList',
+				templateUrl: 'App/Components/LocationList/locationListView.html',
+				controller: 'LocationListController'
 			});
 
 
