@@ -149,7 +149,11 @@
 			}
 			function saveFail() {
 				$ionicLoading.hide();
-				
+				$state.go('home');
+				$ionicPopup.alert({
+					title: '<h5>Could Not Save</h5>',
+					template: '<h5 class="text-center">Location couldn\'t save. Please try again!</h5>'
+				});
 			}
 		}
 
