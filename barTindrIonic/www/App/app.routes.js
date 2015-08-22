@@ -49,6 +49,11 @@
 				templateUrl: 'App/Components/Location/locationView.html',
 				controller: 'LocationController'
 			})
+			.state('locationAddress', {
+				url: '/locationAddress',
+				templateUrl: 'App/Components/LocationAddress/locationAddressView.html',
+				controller: 'LocationAddressController'
+			})
 			.state('locationList', {
 				url: '/locationList',
 				templateUrl: 'App/Components/LocationList/locationListView.html',

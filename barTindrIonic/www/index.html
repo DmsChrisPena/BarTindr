@@ -16,11 +16,19 @@
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
+
+
+    <!-- NgAutoComplete File -->
+    <script src="lib/ionic/js/Scripts/ngautocomplete.js"></script>
+
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
     <!-- Custom JS File -->
     <script src="js/app.js"></script>
+
+    <!-- Auto Complete Google Places API -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
 
     <!-- ngRoute File -->
     <script src="lib/ionic/js/Scripts/angular-route.min.js"></script>
@@ -28,8 +36,7 @@
     <!-- Jquery File -->
     <script src="lib/ionic/js/Scripts/jquery-1.11.3.js"></script>
     <script src="lib/ionic/js/Scripts/angular-reverse-geocode.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false"></script>
 
 
   </head>
@@ -65,6 +72,9 @@
         <!-- Location -->
         <script src="App/Components/Location/locationController.js"></script>
         <script src="App/Components/Location/locationService.js"></script>
+        <!-- Location Address -->
+        <script src="App/Components/LocationAddress/locationAddressController.js"></script>
+        <script src="App/Components/LocationAddress/locationAddressService.js"></script>
         <!-- Location List -->
         <script src="App/Components/LocationList/locationListController.js"></script>
         <script src="App/Components/LocationList/locationListService.js"></script>

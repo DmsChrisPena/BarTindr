@@ -3,7 +3,8 @@
     'ionic', 
     'ngRoute',
     'leaflet-directive',
-    'angularReverseGeocode'
+    'angularReverseGeocode',
+    'ngAutocomplete'
     ])
   .run(['$ionicPlatform', IonicPlatform]);
 
@@ -18,6 +19,7 @@
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
-  });
+  })
+
   }
 })();

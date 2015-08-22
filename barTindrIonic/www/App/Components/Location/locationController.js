@@ -1,9 +1,9 @@
 (function() {
 	angular
 		.module('BarTindrApp')
-		.controller('LocationController', ['$scope', 'loginService', 'locationService', '$ionicLoading', '$state', '$ionicPopup', LocationController]);
+		.controller('LocationController', ['$scope', 'locationService', '$ionicLoading', '$state', '$ionicPopup', LocationController]);
 		
-	function LocationController($scope, loginService, locationService, $ionicLoading, $state, $ionicPopup) {
+	function LocationController($scope, locationService, $ionicLoading, $state, $ionicPopup) {
 
 		//Functions
 		$scope.convertToMeters = convertToMeters;
@@ -20,7 +20,9 @@
 			template: 'Finding location...<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>'
 		});
 
-		function findLocation(save) {
+
+
+		function findLocation() {
 			//Find current location
 			locationService.findGeolocation().then(geolocationSuccess, geolocationFail);
 
@@ -33,38 +35,40 @@
 				function reverseSuccess(geocode) {
 					$ionicLoading.hide();
 
-					if(save == null) {
-						//Define leaflet map center
-						$scope.center = {
+					//Define leaflet map center
+					$scope.center = {
+						lat: position.coords.latitude,
+						lng: position.coords.longitude,
+						zoom: 10
+					};
+
+					$scope.markers = {
+						marker: {
+							draggable: false,
+							message: $scope.locationInfo.name,
 							lat: position.coords.latitude,
 							lng: position.coords.longitude,
-							zoom: 10
-						};
+							icon: {}
+						}
+					};
 
-						$scope.markers = {
-							marker: {
-								draggable: false,
-								message: $scope.locationInfo.name,
-								lat: position.coords.latitude,
-								lng: position.coords.longitude,
-								icon: {}
-							}
-						};
-
-						$scope.paths = {
-							circle: {
-								type: 'circle',
-								radius: 24140.2,
-								miles: 15,
-								latlngs: $scope.markers.marker,
-								clickable: false
-							}
-						};
-					}
+					$scope.paths = {
+						circle: {
+							type: 'circle',
+							radius: 24140.2,
+							miles: 15,
+							latlngs: $scope.markers.marker,
+							clickable: false
+						}
+					};
 
 
 					//Format the address
 					var formattedGeocode = locationService.addressFormatter(geocode);
+
+
+					//Sets name
+					$scope.locationName = formattedGeocode.name;
 
 					//Define object to be saved to database
 					$scope.locationInfo = {
@@ -78,27 +82,6 @@
 						zipCode: formattedGeocode.zipCode,
 						radius: $scope.paths.circle.radius
 					};
-
-					//Overload to save information	
-					if(save) {
-
-						//Is loading for the save function
-						$ionicLoading.show({
-							template: 'Saving ' + $scope.locationInfo.name + '...<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>',
-							duration: 1000
-						});
-
-						locationService.setNewLocation($scope.locationInfo).then(saveSuccess, saveFail);
-
-						function saveSuccess() {
-							$ionicLoading.hide();
-							$state.go('home');
-						}
-						function saveFail() {
-							$ionicLoading.hide();
-							
-						}
-					}
 
 				}
 

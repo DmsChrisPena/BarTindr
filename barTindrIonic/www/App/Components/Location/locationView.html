@@ -11,10 +11,10 @@
     </div>
   </ion-header-bar>
   <ion-content class="has-header" scroll="false">
-	    <label style="padding-top: 0px; margin-top: 0px;" class="item item-input item-floating-label">
-	      <span class="input-label">Location</span>
-	      <input type="text" placeholder="Enter location name" ng-model="locationInfo.name" hide-keyboard-on-enter>
-	    </label>
+    <label class="item item-input item-floating-label">
+      <span class="input-label">Location Name</span>
+      <input ng-model="locationName"  type="text" placeholder="Enter Location...">
+    </label>
 	    <div class="range range-positive" data-tap-disabled="true">
 	      	<i style="color: #387EF5" class="icon ion-ionic"></i>
 	      	<input type="range" name="volume" min="1" max="20" ng-change="convertToMeters();" ng-model="paths.circle.miles">
