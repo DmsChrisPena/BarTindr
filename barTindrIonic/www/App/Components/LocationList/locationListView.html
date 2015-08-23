@@ -17,8 +17,9 @@
     </div>
   </div>
   <div class="list" ng-show='locations[0].locations'>
-  		<a class="item" href="#" ng-repeat="location in locations[0].locations">
-  			{{location.name}} -- {{location.city}}, {{location.state}}
+  		<a class="item text-center" style="{{location.isActive ? 'background-color: #CCFFCC;' : ''}}" href="#" ng-click="editLocation(location);" ng-repeat="location in locations[0].locations | orderBy: '-isActive'">
+  			<p>{{location.name}} -- {{location.city}}, {{location.state}}</p>
+        <h6>{{location.isCurrentLocation ? 'Current Location' : 'Address Location'}} -- Radius: {{location.radius | toMiles }}</h6>
 		</a>
   </div>
    </ion-content>

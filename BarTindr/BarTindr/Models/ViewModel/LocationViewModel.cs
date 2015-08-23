@@ -18,5 +18,6 @@ namespace BarTindr.Models.ViewModel
         public double Latitude { get; set; }
         public double Radius { get; set; }
         public bool IsActive { get; set; }
+        public bool IsCurrentLocation { get; set; }
     }
 }

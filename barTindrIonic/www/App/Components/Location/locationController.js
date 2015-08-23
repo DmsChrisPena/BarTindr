@@ -1,9 +1,9 @@
 (function() {
 	angular
 		.module('BarTindrApp')
-		.controller('LocationController', ['$scope', 'locationService', '$ionicLoading', '$state', '$ionicPopup', LocationController]);
+		.controller('LocationController', ['$scope', 'locationService', '$ionicLoading', '$state', '$ionicPopup', 'getLocationService', LocationController]);
 		
-	function LocationController($scope, locationService, $ionicLoading, $state, $ionicPopup) {
+	function LocationController($scope, locationService, $ionicLoading, $state, $ionicPopup, getLocationService) {
 
 		//Functions
 		$scope.convertToMeters = convertToMeters;
@@ -15,11 +15,48 @@
 		$scope.center = {};
 		$scope.paths = {};
 		$scope.locationInfo = {};
-
 		$ionicLoading.show({
 			template: 'Finding location...<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>'
 		});
 
+
+
+		// function editLocation() {
+		// 	var locInfo = getLocationService.getLocation();
+		// 	console.log();
+		// 	$ionicLoading.hide();
+
+		// 	$scope.locationName = locInfo.name
+
+		// 	//Define leaflet map center
+		// 	$scope.center = {
+		// 		lat: locInfo.latitude,
+		// 		lng: locInfo.longitude,
+		// 		zoom: 10
+		// 	};
+
+		// 	$scope.markers = {
+		// 		marker: {
+		// 			draggable: false,
+		// 			message: locInfo.name,
+		// 			lat: locInfo.latitude,
+		// 			lng: locInfo.longitude,
+		// 			icon: {}
+		// 		}
+		// 	};
+
+		// 	$scope.paths = {
+		// 		circle: {
+		// 			type: 'circle',
+		// 			radius: locInfo.radius,
+		// 			miles: (locInfo.radius / 1609.344),
+		// 			latlngs: $scope.markers.marker,
+		// 			clickable: false
+		// 		}
+		// 	};			
+		// }
+
+		// editLocation();
 
 
 		function findLocation() {
@@ -56,7 +93,7 @@
 						circle: {
 							type: 'circle',
 							radius: 24140.2,
-							miles: 15,
+							miles: 10,
 							latlngs: $scope.markers.marker,
 							clickable: false
 						}
@@ -80,7 +117,8 @@
 						state: formattedGeocode.state,
 						country: formattedGeocode.country,
 						zipCode: formattedGeocode.zipCode,
-						radius: $scope.paths.circle.radius
+						radius: $scope.paths.circle.radius,
+						isCurrentLocation: true
 					};
 
 				}

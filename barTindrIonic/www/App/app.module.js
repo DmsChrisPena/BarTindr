@@ -6,7 +6,20 @@
     'angularReverseGeocode',
     'ngAutocomplete'
     ])
-  .run(['$ionicPlatform', IonicPlatform]);
+  .run(['$ionicPlatform', IonicPlatform])
+  .filter('toMiles', toMiles);
+
+  function toMiles() {
+    return function(input) {
+      var miles = input / 1609.344;
+
+      if(miles == 1) {
+        return miles + ' Mile';
+      } else {
+        return miles + ' Miles';
+      }
+    }
+  }
 
   function IonicPlatform($ionicPlatform) {
   $ionicPlatform.ready(function() {

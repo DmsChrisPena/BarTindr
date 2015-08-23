@@ -1,7 +1,29 @@
 (function() {
 	angular
 		.module('BarTindrApp')
-		.factory('locationListService', ['$http', '$q', '$window', '$ionicPopup', '$state', locationListService]);
+		.factory('locationListService', ['$http', '$q', '$window', '$ionicPopup', '$state', locationListService])
+		.service('getLocationService', ['$ionicPopup', getLocationService]);
+
+		function getLocationService($ionicPopup) {
+			var locationInformation = '';
+
+			return {
+				getLocation: function() {
+					if(locationInformation == '') {						
+						$ionicPopup.alert({
+							title: '<h5>No Location Infomation</h5>',
+							template: '<h5 class="text-center">Couldn\'t find your location. Please Try again...</h5>'
+						});
+						return false
+					} else {
+						return locationInformation
+					}
+				},
+				setLocation: function(locInfo) {
+					locationInformation = locInfo;
+				}
+			}
+		}
 
 		function locationListService($http, $q, $window, $ionicPopup, $state) {
 			var service = {};
@@ -29,6 +51,8 @@
 
 				return deferred.promise;
 			}
+
+
 			return service;
 		};
 
