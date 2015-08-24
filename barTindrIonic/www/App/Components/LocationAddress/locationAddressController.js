@@ -50,7 +50,7 @@
 				})
 				$http({
 					method: "GET",
-					url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + $scope.locationResult.replace(/ /g, "+") + "&key=AIzaSyCMNnhspsI29RamXbhSD-qiV06PoXOIH7o"
+					url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + $scope.locationResult + "&key=AIzaSyCMNnhspsI29RamXbhSD-qiV06PoXOIH7o"
 				}).success(function(data) {
 					var longlat = data.results[0].geometry.location;
 					var posObj = {

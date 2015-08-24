@@ -34,8 +34,15 @@ namespace BarTindr.Controllers.Api
         {
             var userId = User.Identity.GetUserId();
 
-
             _repo.SetNewLocation(location, userId);
+
+            return Ok();
+        }
+
+        [Authorize]
+        public IHttpActionResult Put(LocationViewModel location)
+        {
+            _repo.UpdateLocation(location);
 
             return Ok();
         }

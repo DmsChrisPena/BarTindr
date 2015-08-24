@@ -1,9 +1,9 @@
 (function() {
 	angular
 	.module('BarTindrApp')
-	.controller('EditAddressController', ['editCurrentService', '$scope', '$stateParams', '$ionicLoading', 'locationService', '$http', '$ionicPopup', EditAddressController]);
+	.controller('EditAddressController', ['editCurrentService', '$scope', '$stateParams', '$ionicLoading', 'locationService', '$http', '$ionicPopup', '$state', EditAddressController]);
 
-	function EditAddressController(editCurrentService, $scope, $stateParams, $ionicLoading, locationService, $http, $ionicPopup) {
+	function EditAddressController(editCurrentService, $scope, $stateParams, $ionicLoading, locationService, $http, $ionicPopup, $state) {
 		//Functions
 		$scope.getEditInfomation = getEditInfomation;
 		$scope.disableTap = disableTap;
@@ -11,6 +11,7 @@
 		$scope.findLocation = findLocation;
 		$scope.toMeters = toMeters;
 		$scope.promptNameChange = promptNameChange;
+		$scope.saveLocation = saveLocation;
 
 		//Variables
 		$scope.center = {};
@@ -44,8 +45,9 @@
 				})
 				$http({
 					method: "GET",
-					url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + $scope.locationInfo.fullAddress.replace(/ /g, "+") + "&key=AIzaSyCMNnhspsI29RamXbhSD-qiV06PoXOIH7o"
+					url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + $scope.locationInfo.fullAddress + "&key=AIzaSyCMNnhspsI29RamXbhSD-qiV06PoXOIH7o"
 				}).success(function(data) {
+					$ionicLoading.hide();
 					var longlat = data.results[0].geometry.location;
 					var posObj = {
 						coords: {
@@ -65,6 +67,7 @@
 
 						//Define object to be saved to database
 						$scope.locationInfo = {
+							locationId: $scope.locationId,
 							latitude: posObj.coords.latitude,
 							longitude: posObj.coords.longitude,
 							name: $scope.addressLocationName,
@@ -157,11 +160,26 @@
 			}
 		}
 
+		function saveLocation() {
+			$http({
+				method: 'PUT',
+				url: "http://localhost:52355/api/locations",
+				data: $scope.locationInfo
+			}).success(function(data){
+				console.log(data);
+				$state.go('locationList');
+			}).error(function(data){
+				console.log(data);
+				$state.go('locationList');
+			});
+		}
+
 		//Get Information by params to edit
 		function getEditInfomation() {
 			editCurrentService.getEditInfomation($stateParams.addressId).then(getLocationSuccess, getLocationFail);
 
 			function getLocationSuccess(data) {
+				$scope.locationId = data.locationId;
 				$scope.locationInfo = data;
 				$scope.addressLocationName = data.name;
 

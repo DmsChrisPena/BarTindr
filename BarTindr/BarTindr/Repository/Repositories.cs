@@ -155,6 +155,28 @@ namespace BarTindr.Repository
 
         }
 
+        public void UpdateLocation(LocationViewModel location)
+        {
+            var loc = _db.Locations.Where(l => l.LocationId == location.LocationId).FirstOrDefault();
+
+            if(loc != null)
+            {
+                if (location.Name != null) loc.Name = location.Name;
+                if (location.Address != null) loc.Address = location.Address;
+                if (location.State != null) loc.State = location.State;
+                if (location.City != null) loc.City = location.City;
+                if (location.FullAddress != null) loc.FullAddress = location.FullAddress;
+                if (!location.Longitude.Equals(0)) loc.Longitude = location.Longitude;
+                if (!location.Latitude.Equals(0)) loc.Latitude = location.Latitude;
+                if (location.ZipCode != 0) loc.ZipCode = location.ZipCode;
+                if (location.Country != null) loc.Country = location.Country;
+                if (!location.Radius.Equals(0)) loc.Radius = location.Radius;
+            }
+
+            _db.SaveChanges();
+        }
+        
+
         public LocationViewModel GetEditLocation(int locationId)
         {
             var locations = _db.Locations;
