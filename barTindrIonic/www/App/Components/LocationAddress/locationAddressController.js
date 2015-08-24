@@ -79,7 +79,8 @@
 							state: formattedGeocode.state,
 							country: formattedGeocode.country,
 							zipCode: formattedGeocode.zipCode,
-							radius:   24140.2,
+							fullAddress: $scope.locationResult,
+							radius:   16093.44,
 							isCurrentLocation: false
 						};
 					}
@@ -115,6 +116,7 @@
 						}
 					};
 
+
 				}).error(function(data) {
 					console.log(data);
 				});
@@ -140,7 +142,6 @@
 				template: 'Saving ' + $scope.locationInfo.name + '...<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>',
 				duration: 1000
 			});
-			
 			locationService.setNewLocation($scope.locationInfo).then(saveSuccess, saveFail);
 
 			function saveSuccess() {
