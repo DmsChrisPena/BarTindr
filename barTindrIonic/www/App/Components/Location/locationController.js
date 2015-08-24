@@ -52,7 +52,7 @@
 					$scope.paths = {
 						circle: {
 							type: 'circle',
-							radius: 24140.2,
+							radius: 16093.44,
 							miles: 10,
 							latlngs: $scope.markers.marker,
 							clickable: false

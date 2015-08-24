@@ -11,13 +11,49 @@
     </div>
   </ion-header-bar>
   <ion-content class="has-header" scroll="false">
-    <h4 class="text-center">{{locationInfo.name}}</h4>
-    <h6 class="text-center">{{locationInfo.isCurrentLocation ? 'Current Location' : 'Address Location'}}</h6>
-    <label class="item item-input item-floating-label">
-      <span class="input-label">Location Name</span>
-      <input ng-focus="disableTap();" type="text" id="locationSearch" ng-autocomplete ng-model="locationInfo.address"  type="text" placeholder="Enter Location...">
-    </label>
-    <div style="width: 100%; position: absolute; top: 300px; bottom: 0px;" data-tap-disabled="true">
+    <h4 style="margin-bottom: 4px;" class="text-center">{{addressLocationName}}</h4>
+    <div style="padding-top: 0px;" class="row">
+      <div class="col text-center">
+        <button style="line-height: 5px; min-height: 20px;" class="button button-small button-assertive" ng-click="promptNameChange();">Edit Name</button>
+      </div>
+    </div>
+    <h6 class="text-center">{{fullAddress}}</h6>
+      <div class="range range-positive" data-tap-disabled="true">
+          <i style="color: #387EF5" class="icon ion-ionic"></i>
+          <input type="range" name="volume" min="1" max="10" ng-change="toMeters();" ng-model="locationMiles.miles">
+          {{ locationMiles.miles }} {{ locationMiles.miles == 1 ? "Mile" : "Miles"}}
+      </div>
+
+<ul style="margin-bottom: 2px;" class="list">
+  <li class="item item-toggle">
+     Edit Address
+     <label class="toggle toggle-energized">
+       <input ng-model="isEditting" type="checkbox">
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
+  </li>
+</ul>
+  <div ng-if="isEditting" class="card">
+    <div class="item item-text-wrap">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" ng-focus="disableTap();" type="text" id="locationSearch" ng-autocomplete ng-model="$parent.locationInfo.fullAddress"  type="text" placeholder="Enter Location..." >
+      </label>
+    <div class="row" style="height: 50px;">
+      <div class="col col-50">
+        <button ng-click="clearLocation();" class="button button-assertive button-block icon-left button-small ion-backspace button-positive">Clear</button>
+      </div>
+      <div class="col col-50">
+        <button ng-click="findLocation();" class="button button-balanced button-block icon-right button-small ion-ios-location button-positive">Set</button>
+      </div>
+    </div>
+    </div>
+
+  </div>
+
+    <div style="width: 100%; position: absolute; top: 370px; bottom: 0px;" data-tap-disabled="true">
       <leaflet resizeable markers="markers" paths="paths" center="center"  width="100%" height="100%"></leaflet>
     </div>  
    </ion-content>

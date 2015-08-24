@@ -15,7 +15,7 @@
     <h6 class="text-center">{{locationInfo.isCurrentLocation ? 'Current Location' : 'Address Location'}}</h6>
       <div class="range range-positive" data-tap-disabled="true">
           <i style="color: #387EF5" class="icon ion-ionic"></i>
-          <input type="range" name="volume" min="1" max="10" ng-change="convertLocationRadius();" ng-model="editLocationInfo.miles">
+          <input type="range" name="volume" min="1" max="10" ng-change="convertLocationRadius();" ng-model="locationInfo.miles">
           {{ locationInfo.miles }} {{ locationInfo.miles == 1 ? "Mile" : "Miles"}}
       </div>
     <div style="width: 100%; position: absolute; top: 300px; bottom: 0px;" data-tap-disabled="true">
