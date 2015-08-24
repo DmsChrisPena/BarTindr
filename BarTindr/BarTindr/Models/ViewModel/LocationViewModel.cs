@@ -14,6 +14,7 @@ namespace BarTindr.Models.ViewModel
         public string City { get; set; }
         public int ZipCode { get; set; }
         public string Country { get; set; }
+        public string FullAddress { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }
         public double Radius { get; set; }
