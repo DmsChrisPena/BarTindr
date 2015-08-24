@@ -1,10 +1,15 @@
 (function() {
 	angular
 		.module('BarTindrApp')
-		.controller('LocationListController', ['$scope', 'locationListService', '$ionicLoading', LocationListController]);
+		.controller('LocationListController', ['$scope', 'locationListService', '$ionicLoading', 'getLocationService', '$state', LocationListController]);
 		
-	function LocationListController($scope, locationListService, $ionicLoading) {
+	function LocationListController($scope, locationListService, $ionicLoading, getLocationService, $state) {
 		$scope.getUserInfo = getUserInfo;
+		$scope.setLocation = setLocation;
+
+		function setLocation(loc) {
+			getLocationService.setLocation(loc);
+		}
 
 		function getUserInfo() {
 			$ionicLoading.show({

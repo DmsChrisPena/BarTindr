@@ -57,7 +57,8 @@ namespace BarTindr.Repository
                     Longitude = location.Longitude,
                     Latitude = location.Latitude,
                     Radius = location.Radius,
-                    IsActive = location.IsActive
+                    IsActive = location.IsActive,
+                    IsCurrentLocation = location.IsCurrentLocation
                 });
             }
 
@@ -97,7 +98,8 @@ namespace BarTindr.Repository
                     Longitude = l.Location.Longitude,
                     Latitude = l.Location.Latitude,
                     Radius = l.Location.Radius,
-                    IsActive = l.Location.IsActive
+                    IsActive = l.Location.IsActive,
+                    IsCurrentLocation = l.Location.IsCurrentLocation
                 }).ToList()
             }).ToList();
 
@@ -125,7 +127,8 @@ namespace BarTindr.Repository
                 ZipCode = location.ZipCode,
                 Country = location.Country,
                 Radius = location.Radius,
-                IsActive = true
+                IsActive = true,
+                IsCurrentLocation = location.IsCurrentLocation
             };
 
             _db.Locations.Add(loc);

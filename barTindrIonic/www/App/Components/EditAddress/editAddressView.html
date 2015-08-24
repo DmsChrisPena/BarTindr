@@ -1,0 +1,19 @@
+<ion-view view-title="Location" name="Location">
+  <ion-header-bar class="bar-positive" align-title="center">
+    <div class="buttons pull-left">
+      <button class="button button-icon" nav-direction="back" ui-sref="locationList">
+        <i class="ion-chevron-left"></i>
+      </button>
+    </div>
+    <h1 class="title">Edit Address</h1>
+    <div class="buttons pull-right">
+      <button class="button button-icon icon ion-checkmark-round" ng-click='promptCreateName();'></button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="has-header" scroll="false">
+    <h4 class="text-center">{{editLocationInfo.name}}</h4>
+    <h6 class="text-center">{{editLocationInfo.isCurrentLocation ? 'Current Location' : 'Address Location'}}</h6>
+  
+    <p>{{'Location ID: ' + myId}}</p>
+   </ion-content>
+</ion-view>

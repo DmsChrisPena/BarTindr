@@ -22,6 +22,7 @@ namespace BarTindr.Data.Migrations
                         Country = c.String(),
                         Radius = c.Double(nullable: false),
                         IsActive = c.Boolean(nullable: false),
+                        IsCurrentLocation = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.LocationId);
             

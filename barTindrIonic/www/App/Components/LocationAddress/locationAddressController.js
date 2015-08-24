@@ -20,13 +20,12 @@
 		$scope.locationInfo = {};
 		$scope.promptLocation = {};
 		$scope.miles = {
-			value: 15
+			value: 10
 		};
 		$scope.converted = {
-			radius: 24140.2
+			radius: 16093.44
 		};
 		$scope.locationResult = "";
-
 
 
 		function disableTap() {
@@ -80,7 +79,8 @@
 							state: formattedGeocode.state,
 							country: formattedGeocode.country,
 							zipCode: formattedGeocode.zipCode,
-							radius:   24140.2
+							radius:   24140.2,
+							isCurrentLocation: false
 						};
 					}
 
@@ -206,7 +206,7 @@
 
 			}
 		}
-
+		
 	}
 
 })();
