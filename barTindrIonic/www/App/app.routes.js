@@ -2,10 +2,10 @@
 	angular
 		.module('BarTindrApp')
 		.config(['$stateProvider', '$routeProvider', '$urlRouterProvider', '$httpProvider', Config])
-		.run(['$rootScope', '$window', '$location', LoginCheck]);
+		.run(['$rootScope', '$window', '$location', '$state', LoginCheck]);
 
 	//Checks if user is logged in and routes them to the right views
-	function LoginCheck($rootScope, $window, $location) {
+	function LoginCheck($rootScope, $window, $location, $state) {
 		$rootScope.$on('$stateChangeSuccess', function(event, next, current) {
 			var userAuthed = $window.sessionStorage.getItem('token');
 

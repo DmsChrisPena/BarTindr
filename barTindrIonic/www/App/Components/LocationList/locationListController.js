@@ -7,6 +7,7 @@
 		$scope.getUserInfo = getUserInfo;
 		$scope.setLocation = setLocation;
 
+
 		function setLocation(loc) {
 			getLocationService.setLocation(loc);
 		}
