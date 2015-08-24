@@ -25,9 +25,11 @@ namespace BarTindr.Repository
                     PlaceId = place.PlaceId,
                     Name = place.Name,
                     Rating = place.Rating,
-                    IsClosed = place.IsClosed,
-                    DisplayPhone = place.DisplayPhone,
-                    TextSnipit = place.TextSnipit,
+                    IsOpen = place.IsOpen,
+                    Status = place.Status,
+                    Phone = place.Phone,
+                    Address = place.Address,
+                    WebsiteUrl = place.WebsiteUrl,
                     ImageUrl = place.ImageUrl,
                     Category = place.Category,
                     IsChosen = place.IsChosen
@@ -54,6 +56,7 @@ namespace BarTindr.Repository
                     ZipCode = location.ZipCode,
                     State = location.State,
                     City = location.City,
+                    FullAddress = location.FullAddress,
                     Longitude = location.Longitude,
                     Latitude = location.Latitude,
                     Radius = location.Radius,
@@ -79,9 +82,11 @@ namespace BarTindr.Repository
                     PlaceId = p.PlaceId,
                     Name = p.Place.Name,
                     Rating = p.Place.Rating,
-                    IsClosed = p.Place.IsClosed,
-                    DisplayPhone = p.Place.DisplayPhone,
-                    TextSnipit = p.Place.TextSnipit,
+                    IsOpen = p.Place.IsOpen,
+                    Status = p.Place.Status,
+                    Phone = p.Place.Phone,
+                    Address = p.Place.Address,
+                    WebsiteUrl = p.Place.WebsiteUrl,
                     ImageUrl = p.Place.ImageUrl,
                     Category = p.Place.Category,
                     IsChosen = p.Place.IsChosen
@@ -95,6 +100,7 @@ namespace BarTindr.Repository
                     City = l.Location.City,
                     ZipCode = l.Location.ZipCode,
                     Country = l.Location.Country,
+                    FullAddress = l.Location.FullAddress,
                     Longitude = l.Location.Longitude,
                     Latitude = l.Location.Latitude,
                     Radius = l.Location.Radius,
@@ -114,7 +120,7 @@ namespace BarTindr.Repository
             {
                 oldLoc.IsActive = false;
             }
-            
+
 
             var loc = new Location
             {
@@ -126,6 +132,7 @@ namespace BarTindr.Repository
                 State = location.State,
                 ZipCode = location.ZipCode,
                 Country = location.Country,
+                FullAddress = location.FullAddress,
                 Radius = location.Radius,
                 IsActive = true,
                 IsCurrentLocation = location.IsCurrentLocation
@@ -161,6 +168,7 @@ namespace BarTindr.Repository
                 City = u.City,
                 ZipCode = u.ZipCode,
                 Country = u.Country,
+                FullAddress = u.FullAddress,
                 Longitude = u.Longitude,
                 Latitude = u.Latitude,
                 Radius = u.Radius,
