@@ -11,14 +11,13 @@
     </div>
   </ion-header-bar>
   <ion-content class="has-header" scroll="false">
-    <h4 class="text-center">{{editLocationInfo.name}}</h4>
-    <h6 class="text-center">{{editLocationInfo.isCurrentLocation ? 'Current Location' : 'Address Location'}}</h6>
+    <h4 class="text-center">{{locationInfo.name}}</h4>
+    <h6 class="text-center">{{locationInfo.isCurrentLocation ? 'Current Location' : 'Address Location'}}</h6>
       <div class="range range-positive" data-tap-disabled="true">
           <i style="color: #387EF5" class="icon ion-ionic"></i>
           <input type="range" name="volume" min="1" max="10" ng-change="convertLocationRadius();" ng-model="editLocationInfo.miles">
-          {{ editLocationInfo.miles }} {{ editLocationInfo.miles == 1 ? "Mile" : "Miles"}}
+          {{ locationInfo.miles }} {{ locationInfo.miles == 1 ? "Mile" : "Miles"}}
       </div>
-      <p>{{'Location ID: ' + myId}}</p>
     <div style="width: 100%; position: absolute; top: 300px; bottom: 0px;" data-tap-disabled="true">
       <leaflet resizeable markers="markers" paths="paths" center="center"  width="100%" height="100%"></leaflet>
     </div>  

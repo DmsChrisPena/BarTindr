@@ -1,26 +1,44 @@
 (function() {
 	angular
 	.module('BarTindrApp')
-	.controller('EditAddressController', ['getLocationService', '$scope', '$stateParams', EditAddressController]);
+	.controller('EditAddressController', ['editCurrentService', '$scope', '$stateParams', '$ionicLoading', EditAddressController]);
 
-	function EditAddressController(getLocationService, $scope, $stateParams) {
-		$scope.myId = $stateParams.addressId;
-
+	function EditAddressController(editCurrentService, $scope, $stateParams, $ionicLoading) {
 		//Functions
-		$scope.renderLocationInfo = renderLocationInfo;
+		$scope.getEditInfomation = getEditInfomation;
+		$scope.disableTap = disableTap;
+
+		$ionicLoading.show({
+			template: 'Loading location...<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>'
+		});
 
 
-		function renderLocationInfo() {
+		function disableTap() {
+		    container = document.getElementsByClassName('pac-container');
+		    angular.element(container).attr('data-tap-disabled', 'true');
 
-			$scope.editLocationInfo = getLocationService.getLocation();
-
-			$scope.editLocationInfo.miles = $scope.editLocationInfo.radius / 1609.344
-
+		    angular.element(container).on("click", function(){
+		        document.getElementById('locationSearch').blur();
+		    });
 		}
 
-		$scope.renderLocationInfo();
 
+		//Get Information by params to edit
+		function getEditInfomation() {
+			editCurrentService.getEditInfomation($stateParams.addressId).then(getLocationSuccess, getLocationFail);
 
+			function getLocationSuccess(data) {
+				$scope.locationInfo = data;
+				$ionicLoading.hide();
+				console.log(data);
+			}
 
+			function getLocationFail(data) {
+				$ionicLoading.hide();
+				console.log(data);
+			}			
+		}
+
+		$scope.getEditInfomation();
 	}
 })()

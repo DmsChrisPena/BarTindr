@@ -21,6 +21,14 @@ namespace BarTindr.Controllers.Api
             return Ok(locations);
         }
 
+        [Route("api/Locations/{locationId}")]
+        public IHttpActionResult Get(int locationId)
+        {
+            var location = _repo.GetEditLocation(locationId);
+
+            return Ok(location);
+        }
+
         [Authorize]
         public IHttpActionResult Post(LocationViewModel location)
         {

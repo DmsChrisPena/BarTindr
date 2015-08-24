@@ -1,26 +1,32 @@
 (function() {
 	angular
 	.module('BarTindrApp')
-	.controller('EditCurrentController', ['getLocationService', '$scope', '$stateParams', EditCurrentController]);
+	.controller('EditCurrentController', ['editCurrentService', '$scope', '$stateParams', '$ionicLoading', EditCurrentController]);
 
-	function EditCurrentController(getLocationService, $scope, $stateParams) {
-		
-		$scope.renderLocationInfo = renderLocationInfo;
+	function EditCurrentController(editCurrentService, $scope, $stateParams, $ionicLoading) {
 
-		$scope.myId = $stateParams.currentId;
+		$scope.getEditInfomation = getEditInfomation;
+		$ionicLoading.show({
+			template: 'Loading location...<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>'
+		});
 
+		//Get Information by params to edit
+		function getEditInfomation() {
+			editCurrentService.getEditInfomation($stateParams.currentId).then(getLocationSuccess, getLocationFail);
 
-		function renderLocationInfo() {
+			function getLocationSuccess(data) {
+				$scope.locationInfo = data;
+				$ionicLoading.hide();
+				console.log(data);
+			}
 
-			$scope.editLocationInfo = getLocationService.getLocation();
-
-			$scope.editLocationInfo.miles = ($scope.editLocationInfo.radius / 1609.433).toFixed(0);
-
+			function getLocationFail(data) {
+				$ionicLoading.hide();
+				console.log(data);
+			}			
 		}
 
-		$scope.renderLocationInfo();
-
-
+		$scope.getEditInfomation();
 
 	}
 })()
