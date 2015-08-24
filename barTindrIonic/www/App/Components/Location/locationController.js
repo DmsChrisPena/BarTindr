@@ -19,46 +19,6 @@
 			template: 'Finding location...<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>'
 		});
 
-
-
-		// function editLocation() {
-		// 	var locInfo = getLocationService.getLocation();
-		// 	console.log();
-		// 	$ionicLoading.hide();
-
-		// 	$scope.locationName = locInfo.name
-
-		// 	//Define leaflet map center
-		// 	$scope.center = {
-		// 		lat: locInfo.latitude,
-		// 		lng: locInfo.longitude,
-		// 		zoom: 10
-		// 	};
-
-		// 	$scope.markers = {
-		// 		marker: {
-		// 			draggable: false,
-		// 			message: locInfo.name,
-		// 			lat: locInfo.latitude,
-		// 			lng: locInfo.longitude,
-		// 			icon: {}
-		// 		}
-		// 	};
-
-		// 	$scope.paths = {
-		// 		circle: {
-		// 			type: 'circle',
-		// 			radius: locInfo.radius,
-		// 			miles: (locInfo.radius / 1609.344),
-		// 			latlngs: $scope.markers.marker,
-		// 			clickable: false
-		// 		}
-		// 	};			
-		// }
-
-		// editLocation();
-
-
 		function findLocation() {
 			//Find current location
 			locationService.findGeolocation().then(geolocationSuccess, geolocationFail);

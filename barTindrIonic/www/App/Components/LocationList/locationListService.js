@@ -4,6 +4,7 @@
 		.factory('locationListService', ['$http', '$q', '$window', '$ionicPopup', '$state', locationListService])
 		.service('getLocationService', ['$ionicPopup', getLocationService]);
 
+
 		function getLocationService($ionicPopup) {
 			var locationInformation = '';
 
@@ -31,6 +32,7 @@
 			service.getUserInfo = getUserInfo;
 
 			function getUserInfo() {
+				$state.reload();
 				var deferred = $q.defer();
 
 				$http({

@@ -4,8 +4,6 @@
 		.config(['$stateProvider', '$routeProvider', '$urlRouterProvider', '$httpProvider', Config])
 		.run(['$rootScope', '$window', '$location', LoginCheck]);
 
-	var position = 0;
-	var currentUrl = [''];
 	//Checks if user is logged in and routes them to the right views
 	function LoginCheck($rootScope, $window, $location) {
 		$rootScope.$on('$stateChangeSuccess', function(event, next, current) {
@@ -25,12 +23,6 @@
 				}
 			}
 
-			if(next.url == '/location' && currentUrl[position] == '/locationList') {
-				console.log('something');
-			}
-
-			currentUrl.push(next.url);
-			position += 1;
 		});
 	};
 
@@ -63,6 +55,16 @@
 				url: '/locationAddress',
 				templateUrl: 'App/Components/LocationAddress/locationAddressView.html',
 				controller: 'LocationAddressController'
+			})
+			.state('editCurrent', {
+				url: '/editCurrent/:currentId',
+				templateUrl: 'App/Components/EditCurrent/editCurrentView.html',
+				controller: 'EditCurrentController'
+			})
+			.state('editAddress', {
+				url: '/editAddress/:addressId',
+				templateUrl: 'App/Components/EditAddress/editAddressView.html',
+				controller: 'EditAddressController'
 			})
 			.state('locationList', {
 				url: '/locationList',

@@ -5,13 +5,10 @@
 		
 	function LocationListController($scope, locationListService, $ionicLoading, getLocationService, $state) {
 		$scope.getUserInfo = getUserInfo;
-		$scope.editLocation = editLocation;
+		$scope.setLocation = setLocation;
 
-		function editLocation(location) {
-			getLocationService.setLocation(location);
-			var locationInfo = getLocationService.getLocation();
-			console.log(locationInfo);
-			$state.go('location');
+		function setLocation(loc) {
+			getLocationService.setLocation(loc);
 		}
 
 		function getUserInfo() {
