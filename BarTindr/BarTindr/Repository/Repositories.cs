@@ -32,7 +32,8 @@ namespace BarTindr.Repository
                     WebsiteUrl = place.WebsiteUrl,
                     ImageUrl = place.ImageUrl,
                     Category = place.Category,
-                    IsChosen = place.IsChosen
+                    IsLiked = place.IsLiked,
+                    IsDisliked = place.IsDisliked
                 });
             }
 
@@ -89,7 +90,8 @@ namespace BarTindr.Repository
                     WebsiteUrl = p.Place.WebsiteUrl,
                     ImageUrl = p.Place.ImageUrl,
                     Category = p.Place.Category,
-                    IsChosen = p.Place.IsChosen
+                    IsLiked = p.Place.IsLiked,
+                    IsDisliked = p.Place.IsDisliked
                 }).ToList(),
                 Locations = u.UserLocations.Select(l => new LocationViewModel
                 {

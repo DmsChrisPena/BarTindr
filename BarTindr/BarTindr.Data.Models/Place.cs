@@ -20,7 +20,10 @@ namespace BarTindr.Data.Models
         public string WebsiteUrl { get; set; }
         public string ImageUrl { get; set; }
         public string Category { get; set; }
-        public bool IsChosen { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+        public bool IsLiked { get; set; }
+        public bool IsDisliked { get; set; }
 
         public virtual ICollection<UserPlaces> UserPlaces { get; set; }
 

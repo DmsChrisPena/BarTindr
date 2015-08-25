@@ -128,7 +128,10 @@ namespace BarTindr.Data.Migrations
                         WebsiteUrl = c.String(),
                         ImageUrl = c.String(),
                         Category = c.String(),
-                        IsChosen = c.Boolean(nullable: false),
+                        Latitude = c.Double(nullable: false),
+                        Longitude = c.Double(nullable: false),
+                        IsLiked = c.Boolean(nullable: false),
+                        IsDisliked = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.PlaceId);
             
