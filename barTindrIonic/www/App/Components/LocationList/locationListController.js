@@ -28,6 +28,7 @@
 				$ionicLoading.hide();
 			}
 		}
+		
 		$scope.getUserInfo();
 	}
 

@@ -7,7 +7,7 @@
     </div>
     <h1 class="title">Edit Current</h1>
     <div class="buttons pull-right">
-      <button class="button button-icon icon ion-checkmark-round" ng-click='promptCreateName();'></button>
+      <button class="button button-icon icon ion-checkmark-round" ng-click='saveLocation();'></button>
     </div>
   </ion-header-bar>
   <ion-content class="has-header" scroll="false">
@@ -15,10 +15,11 @@
     <h6 class="text-center">{{locationInfo.isCurrentLocation ? 'Current Location' : 'Address Location'}}</h6>
       <div class="range range-positive" data-tap-disabled="true">
           <i style="color: #387EF5" class="icon ion-ionic"></i>
-          <input type="range" name="volume" min="1" max="10" ng-change="convertLocationRadius();" ng-model="locationInfo.miles">
+          <input type="range" name="volume" min="1" max="10" ng-change="toMeters();" ng-model="locationInfo.miles">
           {{ locationInfo.miles }} {{ locationInfo.miles == 1 ? "Mile" : "Miles"}}
       </div>
-    <div style="width: 100%; position: absolute; top: 300px; bottom: 0px;" data-tap-disabled="true">
+      <h4 class="text-center">Liked Places: <a href="#">48</a></h4>
+    <div style="width: 100%; position: absolute; top: 180px; bottom: 0px;" data-tap-disabled="true">
       <leaflet resizeable markers="markers" paths="paths" center="center"  width="100%" height="100%"></leaflet>
     </div>  
    </ion-content>

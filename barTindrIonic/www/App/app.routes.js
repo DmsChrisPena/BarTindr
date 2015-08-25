@@ -9,7 +9,6 @@
 		$rootScope.$on('$stateChangeSuccess', function(event, next, current) {
 			var userAuthed = $window.sessionStorage.getItem('token');
 
-
 			if(userAuthed) {
 				if(next.url =='/') {
 					$location.path('/home');
