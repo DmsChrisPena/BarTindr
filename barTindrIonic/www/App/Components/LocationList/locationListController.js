@@ -1,33 +1,47 @@
 (function() {
 	angular
 		.module('BarTindrApp')
-		.controller('LocationListController', ['$scope', 'locationListService', '$ionicLoading', 'getLocationService', '$state', 'userInfo', '$http', LocationListController]);
+		.controller('LocationListController', ['$scope', 'locationListService', '$ionicLoading', 'getLocationService', '$state', '$http', LocationListController]);
 		
-	function LocationListController($scope, locationListService, $ionicLoading, getLocationService, $state, userInfo, $http) {
-		// $scope.getUserInfo = getUserInfo;
-		// 	$ionicLoading.show({
-		// 		template: 'Loading your locations...<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>'
-		// 	})
-		$scope.setLocation = setLocation;
-		function setLocation(loc) {
-			getLocationService.setLocation(loc);
+	function LocationListController($scope, locationListService, $ionicLoading, getLocationService, $state, $http) {
+		
+		//Function
+		$scope.changeLocation = changeLocation;
+
+
+
+
+		function changeLocation(locationId) {
+			$http({
+				method: "POST",
+				url: "http://localhost:52355/api/Locations/" + locationId
+			}).success(function(data){
+				console.log(data);
+				loadLocationList();
+			}).error(function(data){
+
+			});
 		}
-		// function getUserInfo() {
-		// 	$ionicLoading.show({
-		// 		template: 'Loading your locations...<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>'
-		// 	})
-		// 	locationListService.getUserInfo().then(userInfoSuccess, userInfoFail);
-		// 	function userInfoSuccess(data) {
-		// 		$ionicLoading.hide();
-		// 		$scope.locations = data;
-		// 		console.log(data);
-		// 	}
-		// 	function userInfoFail(data) {
-		// 		$ionicLoading.hide();
-		// 	}
-		// }
-		$scope.locations = userInfo;
-		console.log(userInfo);
+
+		function loadLocationList() {
+			$ionicLoading.show({
+				template: 'Loading your locations...<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>',
+				duration: 1500
+			})
+			locationListService.getUserInfo().then(success, fail);
+
+			function success(data) {
+				$ionicLoading.hide();
+				$scope.locations = data;
+			}
+
+			function fail(data) {
+				$ionicLoading.hide();
+				console.log(data);
+			}			
+		}
+
+		loadLocationList();
 		
 	}
 })();

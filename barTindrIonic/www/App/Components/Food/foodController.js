@@ -16,7 +16,7 @@
 		}
 
 		$ionicLoading.show({
-			template: 'Finding grub... Stay hungry my friend<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>'
+			template: 'Finding grub... Stay hungry my friend<br /> <img src="img/test.gif" />'
 		});
 
 

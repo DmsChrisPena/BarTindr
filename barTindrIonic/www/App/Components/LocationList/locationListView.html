@@ -17,10 +17,12 @@
     </div>
   </div>
   <div class="list" ng-show='locations[0].locations'>
-      <a  nav-direction="forward" ui-sref="{{location.isCurrentLocation ? 'editCurrent({currentId: location.locationId })' : 'editAddress({addressId: location.locationId })'}}" ng-click="setLocation(location);"  class="item text-center" style="{{location.isActive ? 'background-color: #CCFFCC;' : ''}}" ng-repeat="location in locations[0].locations | orderBy: '-isActive'">
+      <div nav-direction="forward" class="item text-center" style="{{location.isActive ? 'background-color: #CCFFCC;' : ''}}" ng-repeat="location in locations[0].locations | orderBy: '-isActive'">
         <p>{{location.name}} -- {{location.city}}, {{location.state}}</p>
         <h6>{{location.isCurrentLocation ? 'Current Location' : 'Address Location'}} -- Radius: {{location.radius | toMiles }}</h6>
-    </a>
+        <button class="button button-positive button-small" ng-click="changeLocation(location.locationId);">Change Location</button>
+        <a class="button button-energized button-small" ui-sref="{{location.isCurrentLocation ? 'editCurrent({currentId: location.locationId })' : 'editAddress({addressId: location.locationId })'}}">Edit</a>
+    </div>
   </div>
    </ion-content>
 </ion-view>

@@ -46,5 +46,14 @@ namespace BarTindr.Controllers.Api
 
             return Ok();
         }
+
+        [Authorize]
+        [Route("api/Locations/{locationId}")]
+        public IHttpActionResult Post(int locationId)
+        {
+            _repo.ChangeActiveLocation(locationId);
+
+            return Ok();
+        }
     }
 }

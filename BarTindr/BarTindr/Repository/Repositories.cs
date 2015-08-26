@@ -172,7 +172,6 @@ namespace BarTindr.Repository
 
             _db.SaveChanges();
         }
-        
 
         public LocationViewModel GetEditLocation(int locationId)
         {
@@ -226,6 +225,22 @@ namespace BarTindr.Repository
             }).FirstOrDefault();
 
             return vm;
+        }
+
+        public void ChangeActiveLocation(int locationId)
+        {
+            var loc = _db.Locations;
+
+            var oldLoc = loc.Where(l => l.IsActive == true).FirstOrDefault();
+
+            oldLoc.IsActive = false;
+
+            var newLoc = loc.Where(l => l.LocationId == locationId).FirstOrDefault();
+
+            newLoc.IsActive = true;
+
+            _db.SaveChanges();
+
         }
 
     }

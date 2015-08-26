@@ -82,12 +82,7 @@
 			.state('locationList', {
 				url: '/locationList',
 				templateUrl: 'App/Components/LocationList/locationListView.html',
-				controller: 'LocationListController',
-				resolve: {
-					userInfo: function(locationListService) {
-						return locationListService.getUserInfo();
-					}
-				}
+				controller: 'LocationListController'
 			});
 		$httpProvider.interceptors.push('authService');
 
