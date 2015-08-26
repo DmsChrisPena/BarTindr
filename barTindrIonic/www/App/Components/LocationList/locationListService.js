@@ -3,11 +3,8 @@
 		.module('BarTindrApp')
 		.factory('locationListService', ['$http', '$q', '$window', '$ionicPopup', '$state', locationListService])
 		.service('getLocationService', ['$ionicPopup', getLocationService]);
-
-
 		function getLocationService($ionicPopup) {
 			var locationInformation = '';
-
 			return {
 				getLocation: function() {
 					if(locationInformation == '') {						
@@ -25,16 +22,11 @@
 				}
 			}
 		}
-
 		function locationListService($http, $q, $window, $ionicPopup, $state) {
 			var service = {};
-
 			service.getUserInfo = getUserInfo;
-
 			function getUserInfo() {
-				$state.reload();
 				var deferred = $q.defer();
-
 				$http({
 					url: 'http://localhost:52355/api/user',
 					method: 'GET',
@@ -50,12 +42,8 @@
 					});
 					$state.go('home');
 				});
-
 				return deferred.promise;
 			}
-
-
 			return service;
 		};
-
 })();

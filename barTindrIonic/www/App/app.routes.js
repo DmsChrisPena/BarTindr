@@ -3,13 +3,10 @@
 		.module('BarTindrApp')
 		.config(['$stateProvider', '$routeProvider', '$urlRouterProvider', '$httpProvider', Config])
 		.run(['$rootScope', '$window', '$location', '$state', LoginCheck]);
-
 	//Checks if user is logged in and routes them to the right views
-	function LoginCheck($rootScope, $window, $location, $state) {
+	function LoginCheck($rootScope, $window, $location, $state, $scope) {
 		$rootScope.$on('$stateChangeSuccess', function(event, next, current) {
 			var userAuthed = $window.sessionStorage.getItem('token');
-
-
 			if(userAuthed) {
 				if(next.url =='/') {
 					$location.path('/home');
@@ -22,14 +19,10 @@
 					$location.path('/')
 				}
 			}
-
 		});
 	};
-
-
 	function Config($stateProvider, $routeProvider, $urlRouterProvider, $httpProvider) {
 		$urlRouterProvider.otherwise('/');
-
 		$stateProvider
 			.state('login', {
 				url: '/',
@@ -69,11 +62,13 @@
 			.state('locationList', {
 				url: '/locationList',
 				templateUrl: 'App/Components/LocationList/locationListView.html',
-				controller: 'LocationListController'
+				controller: 'LocationListController',
+				resolve: {
+					userInfo: function(locationListService) {
+						return locationListService.getUserInfo();
+					}
+				}
 			});
-
-
 		$httpProvider.interceptors.push('authService');
 	}
-
 })();

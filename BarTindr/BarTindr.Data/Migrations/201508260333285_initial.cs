@@ -128,10 +128,20 @@ namespace BarTindr.Data.Migrations
                         Status = c.String(),
                         Phone = c.String(),
                         Address = c.String(),
+                        City = c.String(),
+                        State = c.String(),
+                        Zip = c.Int(nullable: false),
+                        CrossStreet = c.String(),
+                        FullAddress = c.String(),
+                        Distance = c.Int(nullable: false),
+                        Latitude = c.Double(nullable: false),
+                        Longitude = c.Double(nullable: false),
                         WebsiteUrl = c.String(),
-                        ImageUrl = c.String(),
                         Category = c.String(),
-                        IsChosen = c.Boolean(nullable: false),
+                        ImageUrl = c.String(),
+                        Tier = c.Int(nullable: false),
+                        IsLiked = c.Boolean(nullable: false),
+                        IsDisliked = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.PlaceId);
             
