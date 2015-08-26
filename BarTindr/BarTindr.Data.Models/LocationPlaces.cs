@@ -8,18 +8,17 @@ using System.Threading.Tasks;
 
 namespace BarTindr.Data.Models
 {
-    public class UserPlaces
+    public class LocationPlaces
     {
         [Key]
-        public int UserPlacesId { get; set; }
+        public int LocationPlacesId { get; set; }
 
-        public string ApplicationUserId { get; set; }
-        [ForeignKey("ApplicationUserId")]
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public int LocationId { get; set; }
+        [ForeignKey("LocationId")]
+        public virtual Location Location { get; set; }
 
         public int PlaceId { get; set; }
         [ForeignKey("PlaceId")]
         public virtual Place Place { get; set; }
-
     }
 }

@@ -29,10 +29,20 @@ namespace BarTindr.Repository
                     Status = place.Status,
                     Phone = place.Phone,
                     Address = place.Address,
+                    City = place.City,
+                    State = place.State,
+                    Zip = place.Zip,
+                    CrossStreet = place.CrossStreet,
+                    FullAddress = place.FullAddress,
+                    Distance = place.Distance,
+                    Latitude = place.Latitude,
+                    Longitude = place.Longitude,
                     WebsiteUrl = place.WebsiteUrl,
-                    ImageUrl = place.ImageUrl,
                     Category = place.Category,
-                    IsChosen = place.IsChosen
+                    ImageUrl = place.ImageUrl,
+                    Tier = place.Tier,
+                    IsLiked = place.IsLiked,
+                    IsDisliked = place.IsDisliked
                 });
             }
 
@@ -68,7 +78,7 @@ namespace BarTindr.Repository
             return vm;
         }
 
-        public List<UserViewModel> GetUserPlaces(string userId)
+        public List<UserViewModel> GetUserLocations(string userId)
         {
 
             var user = _db.Users;
@@ -77,20 +87,6 @@ namespace BarTindr.Repository
                 UserId = u.Id,
                 Email = u.Email,
                 IsActive = u.IsActive,
-                Places = u.UserPlaces.Select(p => new PlaceViewModel
-                {
-                    PlaceId = p.PlaceId,
-                    Name = p.Place.Name,
-                    Rating = p.Place.Rating,
-                    IsOpen = p.Place.IsOpen,
-                    Status = p.Place.Status,
-                    Phone = p.Place.Phone,
-                    Address = p.Place.Address,
-                    WebsiteUrl = p.Place.WebsiteUrl,
-                    ImageUrl = p.Place.ImageUrl,
-                    Category = p.Place.Category,
-                    IsChosen = p.Place.IsChosen
-                }).ToList(),
                 Locations = u.UserLocations.Select(l => new LocationViewModel
                 {
                     LocationId = l.LocationId,

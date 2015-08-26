@@ -18,7 +18,7 @@ namespace BarTindr.Controllers.Api
         {
             var userId = User.Identity.GetUserId();
 
-            var user = _repo.GetUserPlaces(userId);
+            var user = _repo.GetUserLocations(userId);
 
             return Ok(user);
         }

@@ -29,8 +29,8 @@ namespace BarTindr.Data.Migrations
 
             Place[] place =
             {
-                new Place { Name = "Chuy/'s", Rating = 5, IsOpen = false, Status = "Opens at 11 am", Phone = "725-555-2288", Address = "1714 Turkey Track Trail, Sugar Land, TX 77854", ImageUrl = "http://goo.gl/KX1sP4", WebsiteUrl = "https://www.chuys.com/", Category = "Tex-Mex", IsChosen = true },
-                new Place { Name = "Chimy/'s", Rating = 5, IsOpen = false, Status = "Closes at 12 am", Phone = "806-655-1584", Address = "2500 Broadway, Lubbock, TX 79015", ImageUrl = "http://goo.gl/KX1sP4", WebsiteUrl = "http://chimys.com/", Category = "Greatest Place Ever!!!", IsChosen = true }
+                new Place { Name = "Chuy/'s", Rating = 10, IsOpen = false, Status = "Opens at 11 am", Phone = "725-555-2288", Address = "1714 Turkey Track Trail", City = "Sugar Land", State = "TX", Zip = 77854, CrossStreet = "Lexington & Concord", FullAddress = "1714 Turkey Track Trail, Sugar Land, TX 77854", Distance = 2, Latitude = 27.555, Longitude = 97.888, WebsiteUrl = "https://www.chuys.com/", Category = "Tex-Mex", ImageUrl = "http://goo.gl/KX1sP4", Tier = 1, IsLiked = false, IsDisliked = false },
+                new Place { Name = "Chimy/'s", Rating = 10, IsOpen = false, Status = "Closes at 12 am", Phone = "806-555-1584", Address = "2500 Broadway", City = "Lubbock", State = "TX", Zip = 79015, CrossStreet = "University", FullAddress = "2500 Broadway, Lubbock, TX 79015", Distance = 1, Latitude = 25.555, Longitude = 92.888, WebsiteUrl = "https://www.chimys.com/", Category = "Tex-Mex", ImageUrl = "http://goo.gl/KX1sP4", Tier = 3, IsLiked = false, IsDisliked = false }
             };
 
             context.Places.AddOrUpdate(p => p.Name, place);

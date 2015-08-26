@@ -10,7 +10,6 @@ namespace BarTindr.Data.Models
 {
     public class UserLocations
     {
-
         [Key]
         public int UserLocationsId { get; set; }
 
@@ -21,6 +20,5 @@ namespace BarTindr.Data.Models
         public int LocationId { get; set; }
         [ForeignKey("LocationId")]
         public virtual Location Location { get; set; }
-
     }
 }
