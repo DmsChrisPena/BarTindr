@@ -1,9 +1,9 @@
 (function(){
 	angular
 		.module('BarTindrApp')
-		.controller('FoodController', ['$http', '$scope', '$q', '$ionicLoading', FoodController]);
+		.controller('DoController', ['$http', '$scope', '$q', '$ionicLoading', DoController]);
 
-	function FoodController($http, $scope, $q, $ionicLoading) {
+	function DoController($http, $scope, $q, $ionicLoading) {
 		$scope.everythingWeNeed = [];
 		$scope.getPlaces = getPlaces;
 	function getPlaces(lat, lng, radius, section) {
@@ -16,7 +16,7 @@
 		}
 
 		$ionicLoading.show({
-			template: 'Finding grub... Stay hungry my friend<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>'
+			template: 'Finding activities... Hang tight my friend<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>'
 		});
 
 
@@ -89,7 +89,10 @@
 			url: "http://localhost:52355/api/places"
 		}).success(function(data){
 			console.log(data);
-			getPlaces(data.locations[0].latitude, data.locations[0].longitude, data.locations[0].radius, 'food');
+			getPlaces(data.locations[0].latitude, data.locations[0].longitude, data.locations[0].radius, 'outdoors');
+			getPlaces(data.locations[0].latitude, data.locations[0].longitude, data.locations[0].radius, 'arts');
+			getPlaces(data.locations[0].latitude, data.locations[0].longitude, data.locations[0].radius, 'sights');
+
 		}).error(function(data){
 			console.log(data);
 		});	

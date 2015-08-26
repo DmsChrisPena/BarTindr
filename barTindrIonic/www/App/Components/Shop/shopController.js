@@ -1,9 +1,9 @@
 (function(){
 	angular
 		.module('BarTindrApp')
-		.controller('FoodController', ['$http', '$scope', '$q', '$ionicLoading', FoodController]);
+		.controller('ShopController', ['$http', '$scope', '$q', '$ionicLoading', ShopController]);
 
-	function FoodController($http, $scope, $q, $ionicLoading) {
+	function ShopController($http, $scope, $q, $ionicLoading) {
 		$scope.everythingWeNeed = [];
 		$scope.getPlaces = getPlaces;
 	function getPlaces(lat, lng, radius, section) {
@@ -16,7 +16,7 @@
 		}
 
 		$ionicLoading.show({
-			template: 'Finding grub... Stay hungry my friend<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>'
+			template: 'Get in the car loser we\'re going shopping...<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>'
 		});
 
 
@@ -89,7 +89,7 @@
 			url: "http://localhost:52355/api/places"
 		}).success(function(data){
 			console.log(data);
-			getPlaces(data.locations[0].latitude, data.locations[0].longitude, data.locations[0].radius, 'food');
+			getPlaces(data.locations[0].latitude, data.locations[0].longitude, data.locations[0].radius, 'shops');
 		}).error(function(data){
 			console.log(data);
 		});	

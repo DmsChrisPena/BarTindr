@@ -64,6 +64,21 @@
 				templateUrl: 'App/Components/Food/foodView.html',
 				controller: 'FoodController'
 			})
+			.state('do', {
+				url: '/do',
+				templateUrl: 'App/Components/Do/doView.html',
+				controller: 'DoController'
+			})
+			.state('drink', {
+				url: '/drink',
+				templateUrl: 'App/Components/Drink/drinkView.html',
+				controller: 'DrinkController'
+			})
+			.state('shop', {
+				url: '/shop',
+				templateUrl: 'App/Components/Shop/shopView.html',
+				controller: 'ShopController'
+			})
 			.state('locationList', {
 				url: '/locationList',
 				templateUrl: 'App/Components/LocationList/locationListView.html',

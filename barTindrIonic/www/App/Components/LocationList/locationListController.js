@@ -5,6 +5,9 @@
 		
 	function LocationListController($scope, locationListService, $ionicLoading, getLocationService, $state, userInfo, $http) {
 		// $scope.getUserInfo = getUserInfo;
+		// 	$ionicLoading.show({
+		// 		template: 'Loading your locations...<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>'
+		// 	})
 		$scope.setLocation = setLocation;
 		function setLocation(loc) {
 			getLocationService.setLocation(loc);
