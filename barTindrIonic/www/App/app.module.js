@@ -11,7 +11,7 @@
 
   function toMiles() {
     return function(input) {
-      var miles = input / 1609.344;
+      var miles = (input / 1609.344).toFixed(0);
 
       if(miles == 1) {
         return miles + ' Mile';

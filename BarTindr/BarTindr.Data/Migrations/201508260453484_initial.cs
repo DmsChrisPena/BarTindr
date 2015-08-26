@@ -142,6 +142,7 @@ namespace BarTindr.Data.Migrations
                         Tier = c.Int(nullable: false),
                         IsLiked = c.Boolean(nullable: false),
                         IsDisliked = c.Boolean(nullable: false),
+                        CanonicalName = c.String(),
                     })
                 .PrimaryKey(t => t.PlaceId);
             

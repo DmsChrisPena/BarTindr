@@ -28,5 +28,6 @@ namespace BarTindr.Models.ViewModel
         public int Tier { get; set; }
         public bool IsLiked { get; set; }
         public bool IsDisliked { get; set; }
+        public string CanonicalName { get; set; }
     }
 }

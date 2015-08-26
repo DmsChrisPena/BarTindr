@@ -1,4 +1,5 @@
 ﻿using BarTindr.Repository;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,8 @@ namespace BarTindr.Controllers.Api
 
         public IHttpActionResult Get()
         {
-            var places = _repo.GetPlaces();
+            var userId = User.Identity.GetUserId();
+            var places = _repo.GetActiveLocation(userId);
 
             return Ok(places);
         }

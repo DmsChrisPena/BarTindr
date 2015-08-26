@@ -1,9 +1,9 @@
 (function() {
 	angular
 		.module('BarTindrApp')
-		.controller('LocationListController', ['$scope', 'locationListService', '$ionicLoading', 'getLocationService', '$state', 'userInfo', LocationListController]);
+		.controller('LocationListController', ['$scope', 'locationListService', '$ionicLoading', 'getLocationService', '$state', 'userInfo', '$http', LocationListController]);
 		
-	function LocationListController($scope, locationListService, $ionicLoading, getLocationService, $state, userInfo) {
+	function LocationListController($scope, locationListService, $ionicLoading, getLocationService, $state, userInfo, $http) {
 		// $scope.getUserInfo = getUserInfo;
 		$scope.setLocation = setLocation;
 		function setLocation(loc) {

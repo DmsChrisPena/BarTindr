@@ -59,6 +59,11 @@
 				templateUrl: 'App/Components/EditAddress/editAddressView.html',
 				controller: 'EditAddressController'
 			})
+			.state('food', {
+				url: '/food',
+				templateUrl: 'App/Components/Food/foodView.html',
+				controller: 'FoodController'
+			})
 			.state('locationList', {
 				url: '/locationList',
 				templateUrl: 'App/Components/LocationList/locationListView.html',

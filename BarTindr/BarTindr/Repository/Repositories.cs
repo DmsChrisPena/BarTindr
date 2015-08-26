@@ -42,7 +42,8 @@ namespace BarTindr.Repository
                     ImageUrl = place.ImageUrl,
                     Tier = place.Tier,
                     IsLiked = place.IsLiked,
-                    IsDisliked = place.IsDisliked
+                    IsDisliked = place.IsDisliked,
+                    CanonicalName = place.CanonicalName
                 });
             }
 
@@ -195,6 +196,36 @@ namespace BarTindr.Repository
             }).FirstOrDefault();
 
             return location;
+        }
+
+        public UserViewModel GetActiveLocation(string userId)
+        {
+            var user = _db.Users;
+
+            var vm = user.Where(i => i.Id == userId).Select(u => new UserViewModel
+            {
+                UserId = u.Id,
+                Email = u.Email,
+                IsActive = u.IsActive,
+                Locations = u.UserLocations.Select(l => new LocationViewModel
+                {
+                    LocationId = l.LocationId,
+                    Name = l.Location.Name,
+                    Address = l.Location.Address,
+                    State = l.Location.State,
+                    City = l.Location.City,
+                    ZipCode = l.Location.ZipCode,
+                    Country = l.Location.Country,
+                    FullAddress = l.Location.FullAddress,
+                    Longitude = l.Location.Longitude,
+                    Latitude = l.Location.Latitude,
+                    Radius = l.Location.Radius,
+                    IsActive = l.Location.IsActive,
+                    IsCurrentLocation = l.Location.IsCurrentLocation
+                }).Where(t => t.IsActive == true).ToList()
+            }).FirstOrDefault();
+
+            return vm;
         }
 
     }
