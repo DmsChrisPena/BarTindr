@@ -12,15 +12,15 @@ namespace BarTindr.Repository
     {
         ApplicationDbContext _db = new ApplicationDbContext();
 
-        public List<PlaceViewModel> GetPlaces()
+        public List<SendPlacesViewModel> GetPlaces()
         {
-            List<PlaceViewModel> vm = new List<PlaceViewModel>();
+            List<SendPlacesViewModel> vm = new List<SendPlacesViewModel>();
 
             var places = _db.Places;
 
             foreach (var place in places)
             {
-                vm.Add(new PlaceViewModel
+                vm.Add(new SendPlacesViewModel
                 {
                     PlaceId = place.PlaceId,
                     Name = place.Name,
@@ -39,7 +39,10 @@ namespace BarTindr.Repository
                     Longitude = place.Longitude,
                     WebsiteUrl = place.WebsiteUrl,
                     Category = place.Category,
-                    ImageUrl = place.ImageUrl,
+                    Prefix = place.Prefix,
+                    Suffix = place.Suffix,
+                    Height = place.Height,
+                    Width = place.Width,
                     Tier = place.Tier,
                     IsLiked = place.IsLiked,
                     IsDisliked = place.IsDisliked,
@@ -87,31 +90,31 @@ namespace BarTindr.Repository
             var vm = user.Where(i => i.Id == userId).Select(u => new UserViewModel {
                 UserId = u.Id,
                 Email = u.Email,
-                IsActive = u.IsActive,
-                Locations = u.UserLocations.Select(l => new LocationViewModel
+                IsDeleted = u.IsDeleted,
+                Locations = u.Locations.Select(l => new LocationViewModel
                 {
                     LocationId = l.LocationId,
-                    Name = l.Location.Name,
-                    Address = l.Location.Address,
-                    State = l.Location.State,
-                    City = l.Location.City,
-                    ZipCode = l.Location.ZipCode,
-                    Country = l.Location.Country,
-                    FullAddress = l.Location.FullAddress,
-                    Longitude = l.Location.Longitude,
-                    Latitude = l.Location.Latitude,
-                    Radius = l.Location.Radius,
-                    IsActive = l.Location.IsActive,
-                    IsCurrentLocation = l.Location.IsCurrentLocation
+                    Name = l.Name,
+                    Address = l.Address,
+                    State = l.State,
+                    City = l.City,
+                    ZipCode = l.ZipCode,
+                    Country = l.Country,
+                    FullAddress = l.FullAddress,
+                    Longitude = l.Longitude,
+                    Latitude = l.Latitude,
+                    Radius = l.Radius,
+                    IsActive = l.IsActive,
+                    IsCurrentLocation = l.IsCurrentLocation
                 }).ToList()
             }).ToList();
 
             return vm;
         }
 
-        public void SetNewLocation(LocationViewModel location, string user)
+        public void SetNewLocation(LocationViewModel location, string userId)
         {
-            var oldLoc = _db.Locations.Where(l => l.UserLocations.FirstOrDefault().ApplicationUserId == user && l.IsActive).FirstOrDefault();
+            var oldLoc = _db.Locations.Where(l => l.UserId == userId && l.IsActive).FirstOrDefault();
 
             if(oldLoc != null)
             {
@@ -132,21 +135,11 @@ namespace BarTindr.Repository
                 FullAddress = location.FullAddress,
                 Radius = location.Radius,
                 IsActive = true,
-                IsCurrentLocation = location.IsCurrentLocation
+                IsCurrentLocation = location.IsCurrentLocation,
+                UserId = userId
             };
 
             _db.Locations.Add(loc);
-
-            _db.SaveChanges();
-
-
-            var userLocation = new UserLocations
-            {
-                LocationId = loc.LocationId,
-                ApplicationUserId = user
-            };
-
-            _db.UserLocations.Add(userLocation);
 
             _db.SaveChanges();
 
@@ -205,37 +198,40 @@ namespace BarTindr.Repository
             {
                 UserId = u.Id,
                 Email = u.Email,
-                IsActive = u.IsActive,
-                Locations = u.UserLocations.Select(l => new LocationViewModel
+                IsDeleted = u.IsDeleted,
+                Locations = u.Locations.Select(l => new LocationViewModel
                 {
                     LocationId = l.LocationId,
-                    Name = l.Location.Name,
-                    Address = l.Location.Address,
-                    State = l.Location.State,
-                    City = l.Location.City,
-                    ZipCode = l.Location.ZipCode,
-                    Country = l.Location.Country,
-                    FullAddress = l.Location.FullAddress,
-                    Longitude = l.Location.Longitude,
-                    Latitude = l.Location.Latitude,
-                    Radius = l.Location.Radius,
-                    IsActive = l.Location.IsActive,
-                    IsCurrentLocation = l.Location.IsCurrentLocation
+                    Name = l.Name,
+                    Address = l.Address,
+                    State = l.State,
+                    City = l.City,
+                    ZipCode = l.ZipCode,
+                    Country = l.Country,
+                    FullAddress = l.FullAddress,
+                    Longitude = l.Longitude,
+                    Latitude = l.Latitude,
+                    Radius = l.Radius,
+                    IsActive = l.IsActive,
+                    IsCurrentLocation = l.IsCurrentLocation
                 }).Where(t => t.IsActive == true).ToList()
             }).FirstOrDefault();
 
             return vm;
         }
 
-        public void ChangeActiveLocation(int locationId)
+        public void ChangeActiveLocation(int locationId, string userId)
         {
             var loc = _db.Locations;
 
-            var oldLoc = loc.Where(l => l.IsActive == true).FirstOrDefault();
+            var oldLoc = loc.Where(l => l.IsActive == true && l.UserId == userId).FirstOrDefault();
 
-            oldLoc.IsActive = false;
+            if(oldLoc != null)
+            {
+                oldLoc.IsActive = false;
+            }
 
-            var newLoc = loc.Where(l => l.LocationId == locationId).FirstOrDefault();
+            var newLoc = loc.Where(l => l.LocationId == locationId && l.UserId == userId).FirstOrDefault();
 
             newLoc.IsActive = true;
 
@@ -243,5 +239,50 @@ namespace BarTindr.Repository
 
         }
 
+        public void DeleteLocation(int locationId)
+        {
+            var loc = _db.Locations.Where(l => l.LocationId == locationId).FirstOrDefault();
+
+            _db.Locations.Remove(loc);
+
+            _db.SaveChanges();
+        }
+
+        public void LikePlaceSave(PlaceViewModel place, string userId)
+        {
+            var location = _db.Locations;
+
+            var pla = new Place
+            {
+                Name = place.Name,
+                Rating = place.Rating,
+                IsOpen = place.Hours.IsOpen,
+                Status = place.Hours.Status,
+                Phone = place.Phone,
+                Address = place.Address,
+                City = place.City,
+                State = place.State,
+                Zip = place.Zip,
+                CrossStreet = place.CrossStreet,
+                FullAddress = place.FullAddress,
+                Distance = place.Distance,
+                Latitude = place.Latitude,
+                Longitude = place.Longitude,
+                WebsiteUrl = place.WebsiteUrl,
+                Category = place.Category,
+                Prefix = place.ImageUrl.Items.FirstOrDefault().Prefix,
+                Suffix = place.ImageUrl.Items.FirstOrDefault().Suffix,
+                Height = place.ImageUrl.Items.FirstOrDefault().Height,
+                Width = place.ImageUrl.Items.FirstOrDefault().Width,
+                Tier = place.Tier.Tier,
+                IsLiked = place.IsLiked,
+                IsDisliked = place.IsDisliked,
+                CanonicalName = place.CanonicalName,
+                LocationId = location.Where(l => l.IsActive == true && l.UserId == userId).FirstOrDefault().LocationId
+            };
+
+            _db.Places.Add(pla);
+            _db.SaveChanges();
+        }
     }
 }

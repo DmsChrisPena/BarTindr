@@ -50,7 +50,7 @@ namespace BarTindr.Models
         public string ConfirmPassword { get; set; }
 
         public int Radius { get; set; }
-        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
     }
 
     public class RegisterExternalBindingModel

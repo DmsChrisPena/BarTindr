@@ -8,23 +8,6 @@ namespace BarTindr.Data.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.LocationPlaces",
-                c => new
-                    {
-                        LocationPlacesId = c.Int(nullable: false, identity: true),
-                        LocationId = c.Int(nullable: false),
-                        PlaceId = c.Int(nullable: false),
-                        ApplicationUser_Id = c.String(maxLength: 128),
-                    })
-                .PrimaryKey(t => t.LocationPlacesId)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUser_Id)
-                .ForeignKey("dbo.Locations", t => t.LocationId, cascadeDelete: true)
-                .ForeignKey("dbo.Places", t => t.PlaceId, cascadeDelete: true)
-                .Index(t => t.LocationId)
-                .Index(t => t.PlaceId)
-                .Index(t => t.ApplicationUser_Id);
-            
-            CreateTable(
                 "dbo.Locations",
                 c => new
                     {
@@ -41,21 +24,45 @@ namespace BarTindr.Data.Migrations
                         Radius = c.Double(nullable: false),
                         IsActive = c.Boolean(nullable: false),
                         IsCurrentLocation = c.Boolean(nullable: false),
+                        UserId = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.LocationId);
+                .PrimaryKey(t => t.LocationId)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .Index(t => t.UserId);
             
             CreateTable(
-                "dbo.UserLocations",
+                "dbo.Places",
                 c => new
                     {
-                        UserLocationsId = c.Int(nullable: false, identity: true),
-                        ApplicationUserId = c.String(maxLength: 128),
+                        PlaceId = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Rating = c.Single(),
+                        IsOpen = c.Boolean(),
+                        Status = c.String(),
+                        Phone = c.String(),
+                        Address = c.String(),
+                        City = c.String(),
+                        State = c.String(),
+                        Zip = c.Int(),
+                        CrossStreet = c.String(),
+                        FullAddress = c.String(),
+                        Distance = c.Int(),
+                        Latitude = c.Double(nullable: false),
+                        Longitude = c.Double(nullable: false),
+                        WebsiteUrl = c.String(),
+                        Category = c.String(),
+                        Prefix = c.String(),
+                        Suffix = c.String(),
+                        Height = c.Int(),
+                        Width = c.Int(),
+                        Tier = c.Int(),
+                        IsLiked = c.Boolean(nullable: false),
+                        IsDisliked = c.Boolean(nullable: false),
+                        CanonicalName = c.String(),
                         LocationId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.UserLocationsId)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
+                .PrimaryKey(t => t.PlaceId)
                 .ForeignKey("dbo.Locations", t => t.LocationId, cascadeDelete: true)
-                .Index(t => t.ApplicationUserId)
                 .Index(t => t.LocationId);
             
             CreateTable(
@@ -63,7 +70,7 @@ namespace BarTindr.Data.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
-                        IsActive = c.Boolean(nullable: false),
+                        IsDeleted = c.Boolean(nullable: false),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -118,41 +125,11 @@ namespace BarTindr.Data.Migrations
                 .Index(t => t.RoleId);
             
             CreateTable(
-                "dbo.Places",
-                c => new
-                    {
-                        PlaceId = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Rating = c.Int(nullable: false),
-                        IsOpen = c.Boolean(nullable: false),
-                        Status = c.String(),
-                        Phone = c.String(),
-                        Address = c.String(),
-                        City = c.String(),
-                        State = c.String(),
-                        Zip = c.Int(nullable: false),
-                        CrossStreet = c.String(),
-                        FullAddress = c.String(),
-                        Distance = c.Int(nullable: false),
-                        Latitude = c.Double(nullable: false),
-                        Longitude = c.Double(nullable: false),
-                        WebsiteUrl = c.String(),
-                        Category = c.String(),
-                        ImageUrl = c.String(),
-                        Tier = c.Int(nullable: false),
-                        IsLiked = c.Boolean(nullable: false),
-                        IsDisliked = c.Boolean(nullable: false),
-                        CanonicalName = c.String(),
-                    })
-                .PrimaryKey(t => t.PlaceId);
-            
-            CreateTable(
                 "dbo.AspNetRoles",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         Name = c.String(nullable: false, maxLength: 256),
-                        Discriminator = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
@@ -162,34 +139,26 @@ namespace BarTindr.Data.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.LocationPlaces", "PlaceId", "dbo.Places");
-            DropForeignKey("dbo.LocationPlaces", "LocationId", "dbo.Locations");
-            DropForeignKey("dbo.UserLocations", "LocationId", "dbo.Locations");
-            DropForeignKey("dbo.UserLocations", "ApplicationUserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Locations", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.LocationPlaces", "ApplicationUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Places", "LocationId", "dbo.Locations");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
-            DropIndex("dbo.UserLocations", new[] { "LocationId" });
-            DropIndex("dbo.UserLocations", new[] { "ApplicationUserId" });
-            DropIndex("dbo.LocationPlaces", new[] { "ApplicationUser_Id" });
-            DropIndex("dbo.LocationPlaces", new[] { "PlaceId" });
-            DropIndex("dbo.LocationPlaces", new[] { "LocationId" });
+            DropIndex("dbo.Places", new[] { "LocationId" });
+            DropIndex("dbo.Locations", new[] { "UserId" });
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.Places");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
-            DropTable("dbo.UserLocations");
+            DropTable("dbo.Places");
             DropTable("dbo.Locations");
-            DropTable("dbo.LocationPlaces");
         }
     }
 }

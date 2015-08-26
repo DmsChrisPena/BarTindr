@@ -51,9 +51,20 @@ namespace BarTindr.Controllers.Api
         [Route("api/Locations/{locationId}")]
         public IHttpActionResult Post(int locationId)
         {
-            _repo.ChangeActiveLocation(locationId);
+            var userId = User.Identity.GetUserId();
+            _repo.ChangeActiveLocation(locationId, userId);
 
             return Ok();
         }
+
+        [Authorize]
+        [Route("api/Locations/{locationId}")]
+        public IHttpActionResult Delete(int locationId)
+        {
+            _repo.DeleteLocation(locationId);
+
+            return Ok("Delete was successful");
+        }
+
     }
 }

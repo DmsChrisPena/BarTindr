@@ -13,8 +13,6 @@ namespace BarTindr.Data
     {
         public IDbSet<Place> Places { get; set; }
         public IDbSet<Location> Locations { get; set; }
-        public IDbSet<UserLocations> UserLocations { get; set; }
-        public IDbSet<LocationPlaces> LocationPlaces { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

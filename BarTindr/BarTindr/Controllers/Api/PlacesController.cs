@@ -1,4 +1,5 @@
-﻿using BarTindr.Repository;
+﻿using BarTindr.Models.ViewModel;
+using BarTindr.Repository;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,14 @@ namespace BarTindr.Controllers.Api
             var places = _repo.GetActiveLocation(userId);
 
             return Ok(places);
+        }
+
+        public IHttpActionResult Post(PlaceViewModel vm)
+        {
+            var userId = User.Identity.GetUserId();
+            _repo.LikePlaceSave(vm, userId);
+
+            return Ok("It worked");
         }
 
     }

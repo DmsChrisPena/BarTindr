@@ -59,11 +59,8 @@
   <ItemGroup>
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="Location.cs" />
-    <Compile Include="LocationPlaces.cs" />
     <Compile Include="Place.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Role.cs" />
-    <Compile Include="UserLocations.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

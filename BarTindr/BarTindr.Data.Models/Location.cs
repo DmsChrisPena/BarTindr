@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,10 @@ namespace BarTindr.Data.Models
         public bool IsActive { get; set; }
         public bool IsCurrentLocation { get; set; }
 
-        public virtual ICollection<UserLocations> UserLocations { get; set; }
+        [ForeignKey("User")]
+        public string UserId { get; set; }
+        public virtual ApplicationUser User { get; set; }
+
+        public virtual ICollection<Place> Places { get; set; }
     }
 }

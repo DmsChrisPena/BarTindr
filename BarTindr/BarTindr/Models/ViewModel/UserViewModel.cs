@@ -10,7 +10,7 @@ namespace BarTindr.Models.ViewModel
     {
         public string UserId { get; set; }
         public string Email { get; set; }
-        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
 
         public List<PlaceViewModel> Places { get; set; }
         public List<LocationViewModel> Locations { get; set; }

@@ -7,7 +7,7 @@
 		
 		//Function
 		$scope.changeLocation = changeLocation;
-
+		$scope.deleteLocation = deleteLocation;
 
 
 
@@ -39,6 +39,23 @@
 				$ionicLoading.hide();
 				console.log(data);
 			}			
+		}
+
+		function deleteLocation(locationId) {
+			$ionicLoading.show({
+				template: 'Deleting location...<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>',
+				duration: 1500
+			})
+			$http({
+				method: "DELETE",
+				url: "http://localhost:52355/api/Locations/" + locationId
+			}).success(function(data){
+				loadLocationList();
+				$ionicLoading.hide();
+			}).error(function(data){
+				$ionicLoading.hide();
+				console.log(data);
+			});
 		}
 
 		loadLocationList();

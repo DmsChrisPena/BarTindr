@@ -12,10 +12,9 @@ namespace BarTindr.Data.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
 
-        public virtual ICollection<UserLocations> UserLocations { get; set; }
-        public virtual ICollection<LocationPlaces> LocationPlaces { get; set; }
+        public virtual ICollection<Location> Locations { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {

@@ -12,6 +12,8 @@
       <div class="item" ng-repeat="everything in everythingWeNeed | limitTo: 50">
           <h4 class="text-center">{{everything.name}}</h4>
           <img ng-src="{{everything.imageUrl ? everything.imageUrl.items[0].prefix + '150x150' + everything.imageUrl.items[0].suffix : 'http://extrawallpaper.com/wp-content/uploads/2014/11/Best-top-desktop-food-wallpapers-hd-food-wallpaper-food-pictures-image-photo-31.jpg'}}" style="height: 150px; width: 150px;" class="img-responsive center-block" alt="Not working">
+          <button ng-click="likePlace(everything, false, true, 'food')">Dislike</button>
+          <button ng-click="likePlace(everything, true, false, 'food')">Like</button>
       </div>      
     </ul>
    </ion-content>
