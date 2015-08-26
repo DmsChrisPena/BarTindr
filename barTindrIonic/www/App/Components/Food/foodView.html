@@ -5,12 +5,14 @@
         <i class="ion-chevron-left"></i>
       </button>
     </div>
-    <h1 class="title">Create Location</h1>
-    <div class="buttons pull-right">
-      <button class="button button-icon icon ion-checkmark-round" ng-click='saveLocation();'></button>
-    </div>
+    <h1 class="title">Eat</h1>
   </ion-header-bar>
-  <ion-content class="has-header" scroll="false">
-    <p>Food</p>
+  <ion-content class="has-header" scroll="true">
+    <ul class="list">
+      <div class="item" ng-repeat="everything in everythingWeNeed">
+          <h4 class="text-center">{{everything.name}}</h4>
+          <img ng-src="{{everything.imageUrl.items[0].prefix + '150x150' + everything.imageUrl.items[0].suffix }}" class="img-responsive center-block" alt="Not working">
+      </div>      
+    </ul>
    </ion-content>
 </ion-view>

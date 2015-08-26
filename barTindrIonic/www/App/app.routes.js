@@ -75,5 +75,6 @@
 				}
 			});
 		$httpProvider.interceptors.push('authService');
+
 	}
 })();

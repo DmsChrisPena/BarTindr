@@ -1,10 +1,10 @@
 (function(){
 	angular
 		.module('BarTindrApp')
-		.controller('FoodController', ['$http', '$scope', FoodController]);
+		.controller('FoodController', ['$http', '$scope', '$q', FoodController]);
 
-	function FoodController($http, $scope) {
-		$scope.everythingWeNeed = {};
+	function FoodController($http, $scope, $q) {
+		$scope.everythingWeNeed = [];
 		$scope.getPlaces = getPlaces
 	function getPlaces(lat, lng, radius, section) {
 		var promises = [];
@@ -16,7 +16,7 @@
 		}
 
 
-		$http({
+		$.ajax({
 			method: "GET",
 			url: 'https://api.foursquare.com/v2/venues/explore?ll=' 
 				+ lat + ',' 
@@ -25,9 +25,10 @@
 				+ '&venuePhotos=1&radius=' + radius 
 				+ '&offset=0&limit=50&client_id=QVSPFCY2CMP0LWO1NDRQIBN523IOX22IYTQGG02RSIJTJTOE&client_secret=3MKDIXJAHAVOPV2YLIROCEQG1WXBWUXVYUIFCOGSOISHA1GD&v=20150822'
 		}).success(function(data){
+			console.log(data);
 			var totalResults = Math.trunc(parseInt((data.response.totalResults/50)) + 1);
 			for(i = 0; i < totalResults; i++){
-				promises.push($http({
+				promises.push($.ajax({
 					method: 'GET', 
 					url: 'https://api.foursquare.com/v2/venues/explore?ll=' 
 					+ lat + ',' 
@@ -42,8 +43,9 @@
 
 			var placeInfo = {};
 			function success(data) {
+				console.log(data);
 				data.forEach(function(dat) {
-					dat.data.response.groups[0].items.forEach(function(da) {
+					dat.response.groups[0].items.forEach(function(da) {
 						placeInfo = {
 							name: da.venue.name,
 							rating: da.venue.rating,
@@ -81,8 +83,8 @@
 			method: 'GET',
 			url: "http://localhost:52355/api/places"
 		}).success(function(data){
-			getPlaces(data.locations[0].latitude, data.locations[0].longitude, data.locations[0].radius, 'food');
 			console.log(data);
+			getPlaces(data.locations[0].latitude, data.locations[0].longitude, data.locations[0].radius, 'food');
 		}).error(function(data){
 			console.log(data);
 		});	
