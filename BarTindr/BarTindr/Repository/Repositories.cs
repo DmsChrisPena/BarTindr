@@ -433,5 +433,14 @@ namespace BarTindr.Repository
 
         }
 
+        public void DeleteSpot(int placeId)
+        {
+            var spot = _db.Places.Where(p => p.PlaceId == placeId).FirstOrDefault();
+
+            _db.Places.Remove(spot);
+
+            _db.SaveChanges();
+        }
+
     }
 }

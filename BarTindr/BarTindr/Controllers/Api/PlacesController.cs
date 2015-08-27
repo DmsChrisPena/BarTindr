@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace BarTindr.Controllers.Api
 {
+    [Authorize]
     public class PlacesController : ApiController
     {
         private new Repositories _repo = new Repositories();
@@ -30,5 +31,12 @@ namespace BarTindr.Controllers.Api
             return Ok("It worked");
         }
 
+        [Route("api/Places/{placeId}")]
+        public IHttpActionResult Delete(int placeId)
+        {
+            _repo.DeleteSpot(placeId);
+
+            return Ok();
+        }
     }
 }
