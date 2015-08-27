@@ -339,24 +339,24 @@ namespace BarTindr.Controllers
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
             #region SendWelcomeEmail
-                var welcomeEmail = new SendGridMessage();
-                welcomeEmail.From = new MailAddress("Bartindr.Welcome@gmail.com");
+            var welcomeEmail = new SendGridMessage();
+            welcomeEmail.From = new MailAddress("TurnHere.Welcome@gmail.com");
 
-                string recipients = user.Email;
+            string recipients = user.Email;
 
-                welcomeEmail.AddTo(recipients);
+            welcomeEmail.AddTo(recipients);
 
-                welcomeEmail.Subject = "Welcome To BarTindr";
+            welcomeEmail.Subject = "Welcome To TurnHere";
 
-                welcomeEmail.Html = File.ReadAllText(HttpContext.Current.Server.MapPath("~/App_Data/Templates/WelcomeEmail.txt"));
-                welcomeEmail.Text = "Hello World plain text!";
+            welcomeEmail.Html = File.ReadAllText(HttpContext.Current.Server.MapPath("~/App_Data/Templates/WelcomeEmail.txt"));
+            welcomeEmail.Text = "Hello World plain text!";
 
-                var credentials = new NetworkCredential("cadeawinter", "TeamBartindr69");
+            var credentials = new NetworkCredential("cadeawinter", "TeamBartindr69");
 
-                var transportWeb = new Web("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");
+            var transportWeb = new Web("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");
 
-                // Send the email.
-                transportWeb.DeliverAsync(welcomeEmail);
+            // Send the email.
+            transportWeb.DeliverAsync(welcomeEmail);
             #endregion
 
 

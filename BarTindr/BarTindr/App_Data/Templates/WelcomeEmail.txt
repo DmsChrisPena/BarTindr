@@ -791,7 +791,7 @@ body.outlook p {
                         <tr>
                           <td>
                             <img height="400" src="https://snap-photos.s3.amazonaws.com/img-thumbs/960w/8HLGPQMINL.jpg">
-                            <h1 style="text-align: center;">Welcome To BarTindr</h1>
+                            <h1 style="text-align: center;">Welcome To TurnHere</h1>
 
                           </td>
                           <td class="expander"></td>
@@ -811,7 +811,7 @@ body.outlook p {
                           <td>
 
 
-                            <p>Bartindr is an app that takes the struggle out of planning your night out. Our team has self-defined themselves as party animals, so we know the frustration that comes with finding the happening spots in the area. Bartindr aims to provide you with all the avaiable options so you can't say you have nothing to do (I'm looking at you Matt).</p>
+                            <p>TurnHere is an app that takes the struggle out of planning your night out. Our team has self-defined themselves as party animals, so we know the frustration that comes with finding the happening spots in the area. TurnHere aims to provide you with all the avaiable options so you can't say you have nothing to do (I'm looking at you Matt).</p>
                             <p>We need your help with making this app even better! If you think there is something we missed or a feature that would enhance your experience, click the link below and you won't regret it (like that last shot of Teqilla)</p>
 
                           </td>
@@ -901,7 +901,7 @@ body.outlook p {
                           <td class="last right-text-pad">
                             <h5>Contact Info:</h5>
                             <p></p>
-                            <p>Email: <a href="mailto:Bartindr.Welcome@gmail.com">Bartindr.Welcome@gmail.com</a></p>
+                            <p>Email: <a href="mailto:TurnHere.Welcome@gmail.com">TurnHere.Welcome@gmail.com</a></p>
                             <p>Social Security #: 594-39-4059</p>
                             <span>List of Fears:</span>
                             <ul style="margin-top: 4px;">

@@ -16,14 +16,14 @@
         <p class="text-center">Add a location by clicking <a ui-sref="location">HERE!</a></p>
     </div>
   </div>
-  <div class="list" ng-show='locations[0].locations'>
-      <div nav-direction="forward" class="item text-center" style="{{location.isActive ? 'background-color: #CCFFCC;' : ''}}" ng-repeat="location in locations[0].locations | orderBy: '-isActive'">
-        <p>{{location.name}} -- {{location.city}}, {{location.state}}</p>
+  <ion-list ng-show='locations[0].locations' show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
+      <ion-item nav-direction="forward" class="item text-center" ng-repeat="location in locations[0].locations | orderBy: '-isActive'">
+        <p style="{{location.isActive ? 'color: red;' : ''}}">{{location.name}} -- {{location.city}}, {{location.state}}</p>
         <h6>{{location.isCurrentLocation ? 'Current Location' : 'Address Location'}} -- Radius: {{location.radius | toMiles }}</h6>
         <button class="button button-positive button-small" ng-click="changeLocation(location.locationId);">Change Location</button>
-        <a class="button button-energized button-small" ui-sref="{{location.isCurrentLocation ? 'editCurrent({currentId: location.locationId })' : 'editAddress({addressId: location.locationId })'}}">Edit</a>
-        <button class="button button-assertive button-small" ng-click="deleteLocation(location.locationId);">Delete</button>
-    </div>
-  </div>
+        <ion-option-button class="button-positive" ui-sref="{{location.isCurrentLocation ? 'editCurrent({currentId: location.locationId })' : 'editAddress({addressId: location.locationId })'}}">Edit</ion-option-button>
+        <ion-option-button class="button button-assertive" ng-click="deleteLocation(location.locationId);">Delete</ion-option-button>
+      </ion-item>
+    </ion-list>
    </ion-content>
 </ion-view>

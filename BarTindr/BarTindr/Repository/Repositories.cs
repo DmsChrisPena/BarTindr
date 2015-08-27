@@ -250,39 +250,188 @@ namespace BarTindr.Repository
 
         public void LikePlaceSave(PlaceViewModel place, string userId)
         {
+            var pla = new Place();
             var location = _db.Locations;
-
-            var pla = new Place
+            if(place.ImageUrl != null && place.Tier != null && place.Hours != null)
             {
-                Name = place.Name,
-                Rating = place.Rating,
-                IsOpen = place.Hours.IsOpen,
-                Status = place.Hours.Status,
-                Phone = place.Phone,
-                Address = place.Address,
-                City = place.City,
-                State = place.State,
-                Zip = place.Zip,
-                CrossStreet = place.CrossStreet,
-                FullAddress = place.FullAddress,
-                Distance = place.Distance,
-                Latitude = place.Latitude,
-                Longitude = place.Longitude,
-                WebsiteUrl = place.WebsiteUrl,
-                Category = place.Category,
-                Prefix = place.ImageUrl.Items.FirstOrDefault().Prefix,
-                Suffix = place.ImageUrl.Items.FirstOrDefault().Suffix,
-                Height = place.ImageUrl.Items.FirstOrDefault().Height,
-                Width = place.ImageUrl.Items.FirstOrDefault().Width,
-                Tier = place.Tier.Tier,
-                IsLiked = place.IsLiked,
-                IsDisliked = place.IsDisliked,
-                CanonicalName = place.CanonicalName,
-                LocationId = location.Where(l => l.IsActive == true && l.UserId == userId).FirstOrDefault().LocationId
-            };
+                pla = new Place
+                {
+                    Name = place.Name,
+                    Rating = place.Rating,
+                    IsOpen = place.Hours.IsOpen,
+                    Status = place.Hours.Status,
+                    Phone = place.Phone,
+                    Address = place.Address,
+                    City = place.City,
+                    State = place.State,
+                    Zip = place.Zip,
+                    CrossStreet = place.CrossStreet,
+                    FullAddress = place.FullAddress,
+                    Distance = place.Distance,
+                    Latitude = place.Latitude,
+                    Longitude = place.Longitude,
+                    WebsiteUrl = place.WebsiteUrl,
+                    Category = place.Category,
+                    Prefix = place.ImageUrl.Items.FirstOrDefault().Prefix,
+                    Suffix = place.ImageUrl.Items.FirstOrDefault().Suffix,
+                    Height = place.ImageUrl.Items.FirstOrDefault().Height,
+                    Width = place.ImageUrl.Items.FirstOrDefault().Width,
+                    Tier = place.Tier.Tier,
+                    IsLiked = place.IsLiked,
+                    IsDisliked = place.IsDisliked,
+                    CanonicalName = place.CanonicalName,
+                    LocationId = location.Where(l => l.IsActive == true && l.UserId == userId).FirstOrDefault().LocationId
+                };
+            } else if(place.ImageUrl != null && place.Tier != null)
+            {
+                pla = new Place
+                {
+                    Name = place.Name,
+                    Rating = place.Rating,
+                    IsOpen = false,
+                    Status = "Call to Check",
+                    Phone = place.Phone,
+                    Address = place.Address,
+                    City = place.City,
+                    State = place.State,
+                    Zip = place.Zip,
+                    CrossStreet = place.CrossStreet,
+                    FullAddress = place.FullAddress,
+                    Distance = place.Distance,
+                    Latitude = place.Latitude,
+                    Longitude = place.Longitude,
+                    WebsiteUrl = place.WebsiteUrl,
+                    Category = place.Category,
+                    Prefix = place.ImageUrl.Items.FirstOrDefault().Prefix,
+                    Suffix = place.ImageUrl.Items.FirstOrDefault().Suffix,
+                    Height = place.ImageUrl.Items.FirstOrDefault().Height,
+                    Width = place.ImageUrl.Items.FirstOrDefault().Width,
+                    Tier = place.Tier.Tier,
+                    IsLiked = place.IsLiked,
+                    IsDisliked = place.IsDisliked,
+                    CanonicalName = place.CanonicalName,
+                    LocationId = location.Where(l => l.IsActive == true && l.UserId == userId).FirstOrDefault().LocationId
+                };
+            } else if(place.ImageUrl != null)
+            {
+                pla = new Place
+                {
+                    Name = place.Name,
+                    Rating = place.Rating,
+                    IsOpen = false,
+                    Status = "Call to Check",
+                    Phone = place.Phone,
+                    Address = place.Address,
+                    City = place.City,
+                    State = place.State,
+                    Zip = place.Zip,
+                    CrossStreet = place.CrossStreet,
+                    FullAddress = place.FullAddress,
+                    Distance = place.Distance,
+                    Latitude = place.Latitude,
+                    Longitude = place.Longitude,
+                    WebsiteUrl = place.WebsiteUrl,
+                    Category = place.Category,
+                    Prefix = place.ImageUrl.Items.FirstOrDefault().Prefix,
+                    Suffix = place.ImageUrl.Items.FirstOrDefault().Suffix,
+                    Height = place.ImageUrl.Items.FirstOrDefault().Height,
+                    Width = place.ImageUrl.Items.FirstOrDefault().Width,
+                    Tier = 1,
+                    IsLiked = place.IsLiked,
+                    IsDisliked = place.IsDisliked,
+                    CanonicalName = place.CanonicalName,
+                    LocationId = location.Where(l => l.IsActive == true && l.UserId == userId).FirstOrDefault().LocationId
+                };
+            }
+            else
+            {
+                pla = new Place
+                {
+                    Name = place.Name,
+                    Rating = place.Rating,
+                    IsOpen = false,
+                    Status = "Call to Check",
+                    Phone = place.Phone,
+                    Address = place.Address,
+                    City = place.City,
+                    State = place.State,
+                    Zip = place.Zip,
+                    CrossStreet = place.CrossStreet,
+                    FullAddress = place.FullAddress,
+                    Distance = place.Distance,
+                    Latitude = place.Latitude,
+                    Longitude = place.Longitude,
+                    WebsiteUrl = place.WebsiteUrl,
+                    Category = place.Category,
+                    Prefix = "",
+                    Suffix = "",
+                    Height = 0,
+                    Width = 0,
+                    Tier = 1,
+                    IsLiked = place.IsLiked,
+                    IsDisliked = place.IsDisliked,
+                    CanonicalName = place.CanonicalName,
+                    LocationId = location.Where(l => l.IsActive == true && l.UserId == userId).FirstOrDefault().LocationId
+                };
+            }
+
 
             _db.Places.Add(pla);
             _db.SaveChanges();
         }
+
+        public LocationViewModel GetPlaces(string userId)
+        {
+            var loc = _db.Locations;
+
+            var activePlace = loc.Where(l => l.UserId == userId && l.IsActive == true).Select(u => new LocationViewModel
+            {
+                Name = u.Name,
+                Address = u.Address,
+                State = u.State,
+                City = u.City,
+                ZipCode = u.ZipCode,
+                Country = u.Country,
+                FullAddress = u.FullAddress,
+                Longitude = u.Longitude,
+                Latitude = u.Latitude,
+                Radius = u.Radius,
+                IsActive = u.IsActive,
+                IsCurrentLocation = u.IsCurrentLocation,
+                Places = u.Places.Select(p => new SendPlacesViewModel
+                {
+                    PlaceId = p.PlaceId,
+                    Name = p.Name,
+                    Rating = p.Rating,
+                    IsOpen = p.IsOpen,
+                    Status = p.Status,
+                    Phone = p.Phone,
+                    Address = p.Address,
+                    City = p.City,
+                    State = p.State,
+                    Zip = p.Zip,
+                    CrossStreet = p.CrossStreet,
+                    FullAddress = p.FullAddress,
+                    Distance = p.Distance,
+                    Latitude = p.Latitude,
+                    Longitude = p.Longitude,
+                    WebsiteUrl = p.WebsiteUrl,
+                    Category = p.Category,
+                    Prefix = p.Prefix,
+                    Suffix = p.Suffix,
+                    Height = p.Height,
+                    Width = p.Width,
+                    Tier = p.Tier,
+                    IsLiked = p.IsLiked,
+                    IsDisliked = p.IsDisliked,
+                    CanonicalName = p.CanonicalName
+                }).ToList()
+            }
+            ).FirstOrDefault();
+
+            return activePlace;
+
+        }
+
     }
 }

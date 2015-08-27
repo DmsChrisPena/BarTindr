@@ -20,5 +20,8 @@ namespace BarTindr.Models.ViewModel
         public double Radius { get; set; }
         public bool IsActive { get; set; }
         public bool IsCurrentLocation { get; set; }
+
+        public List<SendPlacesViewModel> Places { get; set; }
+
     }
 }

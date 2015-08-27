@@ -8,6 +8,9 @@
 		//Function
 		$scope.changeLocation = changeLocation;
 		$scope.deleteLocation = deleteLocation;
+		$scope.shouldShowDelete = false;
+		$scope.shouldShowReorder = false;
+		$scope.listCanSwipe = true;
 
 
 

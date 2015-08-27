@@ -79,6 +79,11 @@
 				templateUrl: 'App/Components/Shop/shopView.html',
 				controller: 'ShopController'
 			})
+			.state('spots', {
+				url: '/spots',
+				templateUrl: 'App/Components/Spots/spotsView.html',
+				controller: 'SpotsController'
+			})
 			.state('locationList', {
 				url: '/locationList',
 				templateUrl: 'App/Components/LocationList/locationListView.html',

@@ -49,7 +49,6 @@ namespace BarTindr.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        public int Radius { get; set; }
         public bool IsDeleted { get; set; }
     }
 

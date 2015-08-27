@@ -8,7 +8,7 @@
 
 		service.register = register
 
-		function register(email, password, confirmPassword, userName, radius, isActive) {
+		function register(email, password, confirmPassword, userName, isActive) {
 			var deferred = $q.defer();
 
 			$http({
@@ -19,7 +19,6 @@
 					'password': password, 
 					'confirmPassword': confirmPassword, 
 					'username': userName,
-					'radius': radius,
 					'isActive': isActive
 				}
 			}).success(function(data) {

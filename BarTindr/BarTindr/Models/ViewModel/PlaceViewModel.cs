@@ -48,8 +48,8 @@ namespace BarTindr.Models.ViewModel
 
     public class ImageListViewModel
     {
-        public int Height { get; set; }
-        public int Width { get; set; }
+        public int? Height { get; set; }
+        public int? Width { get; set; }
         public string Prefix { get; set; }
         public string Suffix { get; set; }
     }
