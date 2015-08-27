@@ -1,3 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,100);
+
+html,body {
+	font-family: 'Lato', sans-serif !important;
+}
+
 .has-header {
 	top: 40px; 
 }
@@ -20,4 +26,95 @@
   display: block;
   margin-right: auto;
   margin-left: auto;
+}
+
+/* Login Screen */
+
+.login-header {
+	min-height: 350px;
+	min-width: 100%;
+	background-image: url("../img/home-bk.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; 
+    padding: 0px;
+}
+
+.login-register-overlay {
+	background: linear-gradient(rgba(18, 18, 82,0.60), rgba(10, 10, 10, 1)); 
+	min-height: 330px;
+	min-width: 100%;
+}
+
+.white-overlay {
+	background: rgba(255, 255, 255, .20);
+	height: 40px; 
+	text-decoration: none;
+}
+
+.active-sign {
+	border-bottom: 3px solid #FF1744;
+}
+
+.sign-in {
+	color: white !important;
+	font-size: 14px;
+	font-weight: 400;
+	text-align: center !important;
+	line-height: 24px;
+}
+
+.form-bg {
+	background-image: url("https://snap-photos.s3.amazonaws.com/img-thumbs/960w/ZYL4GRHL4F.jpg");
+	background-repeat: no-repeat;
+    background-size: cover;
+	min-height: 40vh;
+}
+
+.button-sign-in {
+	background-color: #FF1744;
+	color: white;
+	border-color: #FF1744;
+	min-width: 90% !important;
+	border-radius: 10em;
+	margin-left: 4px;
+}
+
+.forgot-password {
+	line-height: 56px;
+	color: #B8B8B8;
+	text-decoration: none;
+}
+
+.input-login {
+	width: 100%;
+	border-bottom: 1px solid rgba(255, 255, 255, .20);
+	color: white !important;
+}
+
+body > ion-nav-view > ion-view > ion-content > div.scroll > div.form-bg > div > div.row.row-bottom.text-center > div > button.activated {
+	border-color: #CC1B3D;
+	background-color: #CC1B3D;
+	color: white;
+}
+
+body > ion-nav-view > ion-view > ion-content > div.scroll > div.form-bg > div > div.row.row-bottom.text-center > div > button:visited {
+	border-color: #CC1B3D;
+	background-color: #CC1B3D;
+	color: white;
+}
+body > ion-nav-view > ion-view > ion-content > div.scroll > div.form-bg > div > div.row.row-bottom.text-center > div > button:hover {
+	border-color: #CC1B3D;
+	background-color: #CC1B3D;
+	color: white !important;
+}
+body > ion-nav-view > ion-view > ion-content > div.scroll > div.form-bg > div > div.row.row-bottom.text-center > div > button:active {
+	border-color: #CC1B3D;
+	background-color: #CC1B3D;
+	color: white;
+}
+body > ion-nav-view > ion-view > ion-content > div.scroll > div.form-bg > div > div.row.row-bottom.text-center > div > button:focus {
+	border-color: #CC1B3D;
+	background-color: #CC1B3D;
+	color: white;
 }
