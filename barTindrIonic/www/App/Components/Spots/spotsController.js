@@ -6,9 +6,12 @@
 	function SpotsController($scope, $http, $ionicLoading) {
 		//Functions
 		$scope.getPlaces = getPlaces;
-
+		
 		//Variables
 		$scope.spotsData = {};
+		$scope.shouldShowDelete = false;
+		$scope.shouldShowReorder = false;
+		$scope.listCanSwipe = true;
 
 		$ionicLoading.show({
 			template: 'Finding spots...<br /> <img src="img/test.gif" />'

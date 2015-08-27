@@ -873,7 +873,7 @@ body.outlook p {
                             <table class="tiny-button twitter">
                               <tr>
                                 <td>
-                                  <a href="#">Twitter</a>
+                                  <a href="https://twitter.com/TurnHereApp">Twitter</a>
                                 </td>
                               </tr>
                             </table>

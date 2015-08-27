@@ -8,11 +8,12 @@
     <h1 class="title">Spots</h1>
   </ion-header-bar>
   <ion-content class="has-header" scroll="true">
-    <ul class="list">
-        <li class="item" ng-repeat="spots in spotsData.places"> 
-          <h4 class="text-center">{{spots.name}}</h4>
-          <img ng-src="{{spots.prefix ? spots.prefix + '150x150' + spots.suffix : 'http://extrawallpaper.com/wp-content/uploads/2014/11/Best-top-desktop-food-wallpapers-hd-food-wallpaper-food-pictures-image-photo-31.jpg'}}" style="height: 150px; width: 150px;" class="img-responsive center-block" alt="Not working">
-        </li>
-    </ul>
+    <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
+      <ion-item ng-repeat="spots in spotsData.places">
+        <h4 class="text-center">{{spots.name}}</h4>
+        <img ng-src="{{spots.prefix ? spots.prefix + '150x150' + spots.suffix : 'http://extrawallpaper.com/wp-content/uploads/2014/11/Best-top-desktop-food-wallpapers-hd-food-wallpaper-food-pictures-image-photo-31.jpg'}}" style="height: 150px; width: 150px;" class="img-responsive center-block" alt="Not working">
+        <ion-option-button class="button-assertive" ng-click="#">Delete</ion-option-button>
+      </ion-item>
+    </ion-list>
    </ion-content>
 </ion-view>
