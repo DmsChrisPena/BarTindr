@@ -4,8 +4,13 @@
 		.controller('RegisterController', ['$scope', 'registerService', '$ionicPopup', 'loginService', '$ionicLoading', RegisterController]);
 
 	function RegisterController($scope, registerService, $ionicPopup, loginService, $ionicLoading) {
-
+		//Functoins
 		$scope.registerUser = registerUser;
+		$scope.showPassword = showPassword;
+
+		//Variables
+		$scope.passwordHidden = true;
+		$scope.passwordField = "password";
 
 		function registerUser() {
             $ionicLoading.show({
@@ -14,21 +19,27 @@
 			registerService.register(
 				$scope.regEmail,
 				$scope.regPassword, 
-				$scope.regConfirmPassword, 
-				$scope.regEmail, 
-				15, 
 				true).then(success, fail);
 
 			function success(data) {
 				$ionicLoading.hide();
 				$scope.regEmail = '';
 				$scope.regPassword = '';
-				$scope.regConfirmPassword = '';
-				$scope.regEmail	= '';
 			}
 
 			function fail(data) {
 				$ionicLoading.hide();
+			}
+		}
+
+
+		function showPassword() {
+			$scope.passwordHidden = !$scope.passwordHidden;
+
+			if($scope.passwordHidden == true) {
+				$scope.passwordField = "password";
+			} else {
+				$scope.passwordField = "text";
 			}
 		}
 

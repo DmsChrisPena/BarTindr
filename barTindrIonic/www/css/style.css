@@ -65,7 +65,7 @@ html,body {
 }
 
 .form-bg {
-	background-image: url("https://snap-photos.s3.amazonaws.com/img-thumbs/960w/ZYL4GRHL4F.jpg");
+	background-image: url("../img/form-bg.jpg");
 	background-repeat: no-repeat;
     background-size: cover;
 	min-height: 40vh;
@@ -116,5 +116,60 @@ body > ion-nav-view > ion-view > ion-content > div.scroll > div.form-bg > div > 
 body > ion-nav-view > ion-view > ion-content > div.scroll > div.form-bg > div > div.row.row-bottom.text-center > div > button:focus {
 	border-color: #CC1B3D;
 	background-color: #CC1B3D;
+	color: white;
+}
+
+ /* Register Screen */
+
+ .register-overlay {
+	background: linear-gradient(rgba(119, 12, 59, 0.70), rgba(10, 10, 10, 1)) !important; 
+	min-height: 330px;
+	min-width: 100%;
+ }
+
+ .register-button {
+ 	background-color: #0D47A1;
+	color: white;
+	border-color: #0D47A1;
+	min-width: 90% !important;
+	border-radius: 10em;
+	margin-left: 4px;
+ }
+
+ .active-sign-register {
+	border-bottom: 3px solid #0D47A1;
+}
+
+.register-form-bg {
+	background-image: url("../img/register-bg.jpg");
+	background-repeat: no-repeat;
+    background-size: cover;
+	min-height: 40vh;
+}
+
+body > ion-nav-view > ion-view > ion-content > div.scroll > div.register-form-bg > div > div.row.row-bottom.text-center > div > button.activated {
+	border-color: #0B377B;
+	background-color: #0B377B;
+	color: white;
+}
+
+body > ion-nav-view > ion-view > ion-content > div.scroll > div.register-form-bg > div > div.row.row-bottom.text-center > div > button:visited {
+	border-color: #0B377B;
+	background-color: #0B377B;
+	color: white;
+}
+body > ion-nav-view > ion-view > ion-content > div.scroll > div.register-form-bg > div > div.row.row-bottom.text-center > div > button:hover {
+	border-color: #0B377B;
+	background-color: #0B377B;
+	color: white !important;
+}
+body > ion-nav-view > ion-view > ion-content > div.scroll > div.register-form-bg > div > div.row.row-bottom.text-center > div > button:active {
+	border-color: #0B377B;
+	background-color: #0B377B;
+	color: white;
+}
+body > ion-nav-view > ion-view > ion-content > div.scroll > div.register-form-bg > div > div.row.row-bottom.text-center > div > button:focus {
+	border-color: #0B377B;
+	background-color: #0B377B;
 	color: white;
 }
