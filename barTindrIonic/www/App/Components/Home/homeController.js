@@ -7,12 +7,21 @@
 
 		//Functions
 		$scope.logoutUser = logoutUser;
+		$scope.footerExpand = footerExpand;
+		$scope.footerCollapse = footerCollapse;
 
 		function logoutUser() {
 			loginService.logout();
 			$state.go('login');
 		}
 
+		function footerExpand() {
+			console.log("Footer Expanded");
+		}
+
+		function footerCollapse() {
+			console.log("Footer Collapsed");
+		}
 	}
 
 })();
