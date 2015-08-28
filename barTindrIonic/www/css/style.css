@@ -146,3 +146,30 @@ body > ion-nav-view > ion-view > ion-content > div.scroll > div.form-bg > div > 
     background-size: cover;
 	min-height: 40vh;
 }
+
+body > ion-nav-view > ion-view > ion-content > div.scroll > div.register-form-bg > div > div.row.row-bottom.text-center > div > button.activated {
+	border-color: #0B377B;
+	background-color: #0B377B;
+	color: white;
+}
+
+body > ion-nav-view > ion-view > ion-content > div.scroll > div.register-form-bg > div > div.row.row-bottom.text-center > div > button:visited {
+	border-color: #0B377B;
+	background-color: #0B377B;
+	color: white;
+}
+body > ion-nav-view > ion-view > ion-content > div.scroll > div.register-form-bg > div > div.row.row-bottom.text-center > div > button:hover {
+	border-color: #0B377B;
+	background-color: #0B377B;
+	color: white !important;
+}
+body > ion-nav-view > ion-view > ion-content > div.scroll > div.register-form-bg > div > div.row.row-bottom.text-center > div > button:active {
+	border-color: #0B377B;
+	background-color: #0B377B;
+	color: white;
+}
+body > ion-nav-view > ion-view > ion-content > div.scroll > div.register-form-bg > div > div.row.row-bottom.text-center > div > button:focus {
+	border-color: #0B377B;
+	background-color: #0B377B;
+	color: white;
+}
