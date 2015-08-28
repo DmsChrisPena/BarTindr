@@ -43,7 +43,7 @@
 
 					$ionicPopup.alert({
 						title: '<h4>Registration Error</h4>',
-						template: '<h5 class="text-center">Geez, Our registration isnt working. Try again!</h5>'
+						template: '<h5 class="text-center">Geez, Our registration isn\'t working. Try again!</h5>'
 					});
 					deferred.reject();
 				}
