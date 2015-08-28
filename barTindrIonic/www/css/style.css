@@ -118,3 +118,31 @@ body > ion-nav-view > ion-view > ion-content > div.scroll > div.form-bg > div > 
 	background-color: #CC1B3D;
 	color: white;
 }
+
+ /* Register Screen */
+
+ .register-overlay {
+	background: linear-gradient(rgba(119, 12, 59, 0.70), rgba(10, 10, 10, 1)) !important; 
+	min-height: 330px;
+	min-width: 100%;
+ }
+
+ .register-button {
+ 	background-color: #0D47A1;
+	color: white;
+	border-color: #0D47A1;
+	min-width: 90% !important;
+	border-radius: 10em;
+	margin-left: 4px;
+ }
+
+ .active-sign-register {
+	border-bottom: 3px solid #0D47A1;
+}
+
+.register-form-bg {
+	background-image: url("../img/register-bg.jpg");
+	background-repeat: no-repeat;
+    background-size: cover;
+	min-height: 40vh;
+}
