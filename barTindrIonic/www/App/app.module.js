@@ -4,7 +4,8 @@
     'ngRoute',
     'leaflet-directive',
     'angularReverseGeocode',
-    'ngAutocomplete'
+    'ngAutocomplete',
+    'ionic-pullup'
     ])
   .run(['$ionicPlatform', IonicPlatform])
   .filter('toMiles', toMiles);
