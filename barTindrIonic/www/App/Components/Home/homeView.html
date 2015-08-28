@@ -43,10 +43,12 @@
 	  Spots
 	</button>
   </ion-content>
-  	<ion-pull-up-footer class="bar-positive" on-expand="footerExpand()" on-collapse="footerCollapse()">
-        <ion-pull-up-handle width="100" height="15" toggle="ion-chevron-up ion-chevron-down" style="border-radius: 5px 5px 0 0">
-            <i class="icon ion-chevron-up"></i>
-        </ion-pull-up-handle>
+  	<ion-pull-up-footer on-expand="footerExpand()" on-collapse="footerCollapse()">
+	    <ion-pull-up-footer class="bar-calm">
+	      <div class="title" ion-pull-up-trigger>Your Spots</div>
+	      <ion-pull-up-handle width="80" height="15" toggle="ion-chevron-down ion-chevron-up" style="border-radius: 5px 5px 0 0">
+	        <i class="icon ion-ios-arrow-up"></i>
+	      </ion-pull-up-handle>
         <ion-pull-up-content scroll="true">
             <div class="list card">
                 <div class="item item-divider">Your Spots</div>
