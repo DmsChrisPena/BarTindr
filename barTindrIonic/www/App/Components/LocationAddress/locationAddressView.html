@@ -7,29 +7,38 @@
     </div>
     <h1 class="title">Create Location</h1>
     <div class="buttons pull-right">
-      <button class="button button-icon icon ion-checkmark-round" ng-click='promptCreateName();'></button>
+      <button class="button button-icon icon ion-android-add" ng-click='promptCreateName();'></button>
     </div>
   </ion-header-bar>
   <ion-content class="has-header" scroll="false">
-    <label class="item item-input item-floating-label">
-      <span class="input-label">Location Name</span>
-      <input ng-focus="disableTap();" type="text" id="locationSearch" ng-autocomplete ng-model="$parent.locationResult"  type="text" placeholder="Enter Location...">
-    </label>
-    <div class="row" style="height: 50px;">
-      <div class="col col-50">
-        <button ng-click="clearLocation();" class="button button-assertive button-block icon-left ion-backspace button-positive">Clear</button>
+    <div class="row address-input-form row-address-style">
+      <div class="col col-10" style="padding-top: 12px; padding-left: 8px;">
+        <i style="font-size: 36px; color: rgba(255, 255, 255, 0.6); " class="icon ion-ios-navigate-outline"></i>
       </div>
-      <div class="col col-50">
-        <button ng-click="findLocation();" class="button button-balanced button-block icon-right ion-ios-location button-positive">Set</button>
+      <div class="col col-90" style="padding: 0px;">
+       <label class="item item-input item-stacked-label" style="border: none;">
+        <span class="input-label" style="color: white; font-size: 14px;">Location</span>
+        <input ng-focus="disableTap();" type="text" id="locationSearch" ng-autocomplete ng-model="$parent.locationResult" type="text" class="address-input" placeholder="Enter location...">
+      </label>        
       </div>
     </div>
-    <div style="margin-top: 20px;" class="range range-positive" data-tap-disabled="true">
-      	<i style="color: #387EF5" class="icon ion-ionic"></i>          
-      	<input type="range" name="volume" min="1" max="10" ng-change="toMeters();" ng-model="miles.value">
-      	{{ miles.value }} {{ miles.value == 1 ? "Mile" : "Miles"}}
+    <div style="width: 100%; position: absolute; top: 70px; bottom: 126px;" data-tap-disabled="true">
+      <leaflet id="addressLocationMap" defaults="defaults" resizeable markers="markers" paths="paths" center="center"  width="100%" height="100%"></leaflet>
+    </div>  
+    <div class="address-controls">
+      <div style="background-color: #387ef5; height: 50px;" class="range range-assertive" data-tap-disabled="true">
+          <i style="color: #fff" class="icon ion-ionic"></i>          
+          <input type="range" name="volume" min="1" max="10" ng-change="toMeters();" ng-model="miles.value">
+          <p style="color: white;">{{ miles.value }} {{ miles.value == 1 ? "Mile" : "Miles"}}</p>
+      </div>
+      <div class="row" style="background-color: #387ef5; padding-top: 0px;">
+        <div class="col col-50">
+          <button ng-click="clearLocation();" class="button button-assertive button-block icon-left ion-ios-close-outline button-positive address-clear">CLEAR</button>
+        </div>
+        <div class="col col-50">
+          <button ng-click="findLocation();" class="button button-balanced button-block icon-right ion-ios-location-outline button-positive address-set">SET</button>
+        </div>
+      </div>      
     </div>
-		<div style="width: 100%; position: absolute; top: 200px; bottom: 0px;" data-tap-disabled="true">
-		  <leaflet id="addressLocationMap" defaults="defaults" resizeable markers="markers" paths="paths" center="center"  width="100%" height="100%"></leaflet>
-		</div>  
    </ion-content>
 </ion-view>

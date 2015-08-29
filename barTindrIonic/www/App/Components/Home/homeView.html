@@ -6,11 +6,7 @@
     </div>
     <h1 class="title">Home</h1>
   </ion-header-bar>
-  <ion-content class="has-header">
-	<button class="button button-block button-positive" nav-direction="forward" ui-sref="location">
-	Set Location
-	</button>
-
+  <ion-content class="has-header home-bg">
 	<button class="button button-block button-assertive" nav-direction="back" ng-click="logoutUser()">
 	  Logout
 	</button>
@@ -19,8 +15,8 @@
 	  Your Locations
 	</button>
 
-	<button class="button button-block button-royal" nav-direction="forward" ui-sref="locationAddress">
-	  Location Address
+	<button class="button button-block button-royal" nav-direction="forward" ng-click="showlocationOptions();">
+	  Create Location
 	</button>
 
 	<button class="button button-block button-balanced" nav-direction="forward" ui-sref="food">
@@ -42,8 +38,9 @@
 	<button class="button button-block button-royal" nav-direction="forward" ui-sref="spots">
 	  Spots
 	</button>
+
   </ion-content>
-  	<ion-pull-up-footer on-expand="footerExpand()" on-collapse="footerCollapse()">
+<!--   	<ion-pull-up-footer on-expand="footerExpand()" on-collapse="footerCollapse()">
 	    <ion-pull-up-footer class="bar-calm">
 	      <div class="title" ion-pull-up-trigger>Your Spots</div>
 	      <ion-pull-up-handle width="80" height="15" toggle="ion-chevron-down ion-chevron-up" style="border-radius: 5px 5px 0 0">
@@ -59,7 +56,7 @@
                 </div>
             </div>
         </ion-pull-up-content>
-    </ion-pull-up-footer>
+    </ion-pull-up-footer> -->
 </ion-view>
 
 

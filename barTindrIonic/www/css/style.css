@@ -173,3 +173,163 @@ body > ion-nav-view > ion-view > ion-content > div.scroll > div.register-form-bg
 	background-color: #0B377B;
 	color: white;
 }
+
+  /* Set Current Location */
+
+  .range.range-assertive input::-webkit-slider-thumb:before {
+    background: #fff; 
+	}
+  .range.range-assertive input::-ms-fill-lower {
+    background: #fff; 
+	}
+
+  /* Set Address Location */
+	.address-clear {
+		background-color: #FF5722 !important;
+		color: white !important;
+		border: 2px solid #FF5722 !important;
+		border-radius: 10em !important;
+		font-weight: 400;
+		font-size: 18px;
+	}
+
+	.address-set {
+		background-color: #4DB6AC !important;
+		color: white !important;
+		border: 2px solid #4DB6AC !important;
+		border-radius: 10em !important;
+		font-weight: 400;
+		font-size: 18px;
+	}
+
+	.address-input-form {
+		background-color: #387ef5 !important;
+	}
+
+	.address-input {
+		background-color: transparent !important;
+		color: white !important;
+	}
+
+	.row-address-style {
+		padding: 0px;
+		border-bottom: 2px solid rgba(255, 255, 255, .20);
+	}
+
+	.address-input::-webkit-input-placeholder {
+	   color: rgba(255, 255, 255, 0.5);
+	}
+
+	.address-controls {
+		margin-top: 430px;
+	}
+
+  /* Home */
+  .home-bg {
+	min-height: 100%;
+	min-width: 100%;
+	background-image: url("../img/home-bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; 
+    padding: 0px;
+	}
+
+	/* Location List */
+
+	.list-bg {
+	background-image: url("https://snap-photos.s3.amazonaws.com/img-thumbs/280h/YZ39UP63MI.jpg");
+	background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+	}
+
+ .location-list-overlay {
+	background: linear-gradient(rgba(10, 10, 10, 0.60), rgba(10, 10, 10, .8)); 
+	min-height: 100%;
+	min-width: 100%;
+ }
+
+ .change-location-list {
+ 	background-color: transparent;
+ 	color: #00ACC1;
+ 	border: 2px solid #00ACC1;
+ 	border-radius: 10em;
+	font-size: 12px;
+	padding-right: 10px;
+	padding-left: 10px;
+	font-weight: bold;
+ }
+body > ion-nav-view > ion-view:nth-child(1) > ion-content > div.scroll > ion-list > div > ion-item > div.item-content > div > div > div > button.activated  {
+ 	background-color: #00ACC1;
+ 	color: white;
+ 	border: 2px solid #00ACC1;
+ 	border-radius: 10em;
+	font-size: 12px;
+	padding-right: 10px;
+	padding-left: 10px;
+	font-weight: bold;
+}
+
+body > ion-nav-view > ion-view:nth-child(1) > ion-content > div.scroll > ion-list > div > ion-item > div.item-content > div > div > div > button:hover  {
+ 	background-color: transparent;
+ 	color: #00ACC1;
+ 	border: 2px solid #00ACC1;
+ 	border-radius: 10em;
+	font-size: 12px;
+	padding-right: 10px;
+	padding-left: 10px;
+	font-weight: bold;
+}
+body > ion-nav-view > ion-view:nth-child(1) > ion-content > div.scroll > ion-list > div > ion-item > div.item-content > div > div > div > button:focus  {
+ 	background-color: transparent;
+ 	color: #00ACC1;
+ 	border: 2px solid #00ACC1;
+ 	border-radius: 10em;
+	font-size: 12px;
+	padding-right: 10px;
+	padding-left: 10px;
+	font-weight: bold;
+}
+body > ion-nav-view > ion-view:nth-child(1) > ion-content > div.scroll > ion-list > div > ion-item > div.item-content > div > div > div > button:active  {
+ 	background-color: transparent;
+ 	color: #00ACC1;
+ 	border: 2px solid #00ACC1;
+ 	border-radius: 10em;
+	font-size: 12px;
+	padding-right: 10px;
+	padding-left: 10px;
+	font-weight: bold;
+}
+body > ion-nav-view > ion-view:nth-child(1) > ion-content > div.scroll > ion-list > div > ion-item > div.item-content > div > div > div > button:visited  {
+ 	background-color: transparent;
+ 	color: #00ACC1;
+ 	border: 2px solid #00ACC1;
+ 	border-radius: 10em;
+	font-size: 12px;
+	padding-right: 10px;
+	padding-left: 10px;
+	font-weight: bold;
+}
+
+ .location-header {
+ 	color: rgba(255, 255, 255, .60) !important;
+	font-size: 12px !important;
+ }
+
+ .location-title {
+ 	text-align: center !important;
+ 	color: white;
+ 	font-weight: 400;
+ 	font-size: 24px !important;
+ }
+
+ .location-title-subheader {
+ 	color: rgba(255, 255, 255, .60) !important;
+ }
+
+ div.item-content {
+ 	padding: 0px !important;
+ 	background-color: transparent !important;
+ 	height: 100% !important;
+ }

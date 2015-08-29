@@ -42,7 +42,6 @@
 			$scope.locationResult = "";
 		}
 
-
 		function findLocation() {
 			if($scope.locationResult != "") {
 				$ionicLoading.show({
