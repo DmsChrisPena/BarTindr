@@ -21,5 +21,14 @@ namespace BarTindr.Controllers.Api
 
             return Ok(vm);
         }
+
+        [Authorize]
+        [Route("api/ActivePlaces/{locationId}")]
+        public IHttpActionResult Delete(int locationId)
+        {
+            _repo.DeleteSpots(locationId);
+
+            return Ok();
+        }
     }
 }

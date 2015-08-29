@@ -1,13 +1,12 @@
 (function() {
 	angular
 	.module('BarTindrApp')
-	.controller('EditCurrentController', ['editCurrentService', '$scope', '$stateParams', '$ionicLoading', 'locationService', '$http', '$state', '$ionicPopup', EditCurrentController]);
-	function EditCurrentController(editCurrentService, $scope, $stateParams, $ionicLoading, locationService, $http, $stat, $ionicPopup) {
+	.controller('EditCurrentController', ['editCurrentService', '$scope', '$stateParams', '$ionicLoading', 'locationService', '$http', '$state', EditCurrentController]);
+	function EditCurrentController(editCurrentService, $scope, $stateParams, $ionicLoading, locationService, $http, $state) {
 		//Functions
 		$scope.getEditInfomation = getEditInfomation;
 		$scope.toMeters = toMeters;
 		$scope.saveLocation = saveLocation;
-		$scope.resetSpots = resetSpots;
 		//Variables
 		$scope.center = {};
 		$scope.markers = {};
@@ -71,26 +70,6 @@
 				$scope.locationInfo.radius = locationService.convertToMeters($scope.locationInfo.miles);
 				$scope.paths.circle.radius = locationService.convertToMeters($scope.locationInfo.miles);
 		}
-		function resetSpots(locationId) {
-			var confirmPopup = $ionicPopup.confirm({
-		     title: '<h4>Reset Spots</h4>',
-		     template: '<p class="text-center">Are you sure you want to reset your spots?</p>' 
-		   });
-		   confirmPopup.then(function(res) {
-		     if(res) {
-				$http({
-					method: 'DELETE',
-					url: 'http://localhost:52355/api/activePlaces/' + locationId
-				}).success(function(data){
-					console.log('it worked', data);
-					$scope.getEditInfomation();
-				}).error(function(data){
-					console.log('it didn\'t work', data);
-				});
-		     }
-		 })
-		}
-
 		$scope.getEditInfomation();
 	}
 })();

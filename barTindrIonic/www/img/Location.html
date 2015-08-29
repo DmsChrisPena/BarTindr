@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)http://localhost:8100/#/editAddress/50 -->
+<html ng-app="BarTindrApp"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    <meta charset="utf-8">
+    <script>
+      // Injected Ionic Go To URL Live Reload Plugin
+      window.LiveReloadPlugin_IonicGoToUrl = (function() {
+        var GOTO_KEY = "__ionic_goto_url__";
+        var HISTORY_GO_KEY = "__ionic_history_go__";
+        var GoToUrlPlugin = function(window, host) {
+          this.window = window;
+          this.host = host;
+        }
+        GoToUrlPlugin.identifier = "__ionic_goto_url__";
+        GoToUrlPlugin.version = "1.0";
+        GoToUrlPlugin.prototype.reload = function(path) {
+          try {
+            if(path) {
+              if(path.indexOf(GOTO_KEY) === 0) {
+                this.window.document.location = path.replace(GOTO_KEY, "");
+                return true;
+              }
+              if(path.indexOf(HISTORY_GO_KEY) === 0) {
+                this.window.document.history.go( parseInt(path.replace(HISTORY_GO_KEY, ""), 10));
+                return true;
+              }
+            }
+          } catch(e) {
+            console.log(e);
+          }
+          return false;
+        };
+        return GoToUrlPlugin;
+      })();
+    </script>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Location</title>
+
+    <!-- Tinder Cards Css -->
+    <link href="http://localhost:8100/lib/ionic/js/Scripts/ionic.tdcards.css" rel="stylesheet">
+
+    <!-- Ionic Css -->
+    <link href="http://localhost:8100/lib/ionic/css/ionic.css" rel="stylesheet">
+
+    <!-- Custom Css -->
+    <link href="http://localhost:8100/css/style.css" rel="stylesheet">
+
+    <!-- Animate.css -->
+    <link href="http://localhost:8100/lib/ionic/js/Scripts/animate.css" rel="stylesheet">
+
+    <!-- Collide Js -->
+    <script src="./Location_files/collide.js"></script>
+
+    <!-- ionic/angularjs js -->
+    <script src="./Location_files/ionic.bundle.js"></script>
+
+    <!-- Tinder Cards Js -->
+    <script src="./Location_files/ionic.tdcards.js"></script>
+
+    <!-- Pull up Menu -->
+    <script src="./Location_files/ion-pullup.js"></script>
+    
+    <!-- NgAutoComplete File -->
+    <script src="./Location_files/ngautocomplete.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="./Location_files/cordova.js"></script>
+
+    <!-- Custom JS File -->
+    <script src="./Location_files/app.js"></script>
+
+    <!-- Auto Complete Google Places API -->
+    <script type="text/javascript" src="./Location_files/lodash.js"></script>
+
+    <!-- ngRoute File -->
+    <script src="./Location_files/angular-route.min.js"></script>
+
+    <!-- Jquery File -->
+    <script src="./Location_files/jquery-1.11.3.js"></script>
+    <script src="./Location_files/angular-reverse-geocode.js"></script>
+    <script type="text/javascript" src="./Location_files/js"></script><script src="./Location_files/main.js"></script><script src="./Location_files/places.js"></script>
+
+
+  <script type="text/javascript" charset="UTF-8" src="./Location_files/common.js"></script><script type="text/javascript" charset="UTF-8" src="./Location_files/util.js"></script><script type="text/javascript" charset="UTF-8" src="./Location_files/stats.js"></script></head>
+  <body class="grade-a platform-browser platform-ios platform-ios8 platform-ios8_0 platform-ready">
+    
+    
+    <ion-nav-view class="view-container" nav-view-transition="ios" nav-view-direction="none" nav-swipe=""><ion-view view-title="Location" name="Location" class="pane" nav-view="active" style="opacity: 1; transform: translate3d(0%, 0px, 0px);">
+  <ion-header-bar class="bar-positive bar bar-header disable-user-behavior" align-title="center">
+    <div class="buttons pull-left">
+      <button class="button button-icon" nav-direction="back" ui-sref="locationList" href="#/locationList">
+        <i class="ion-chevron-left"></i>
+      </button>
+    </div>
+    <h1 class="title" style="left: 56px; right: 56px;">Edit Address</h1>
+    <div class="buttons pull-right">
+      <button class="button button-icon icon ion-android-add" ng-click="saveLocation();"></button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="scroll-content ionic-scroll scroll-content-false  has-header" scroll="false">
+      <div class="row">
+        <div class="col">
+          <h4 class="text-center ng-binding">Airport Layover</h4>
+        </div>
+      </div>
+   </ion-content>
+</ion-view></ion-nav-view>
+
+
+
+    <!-- LeafLet Css -->
+    <link href="http://localhost:8100/lib/ionic/js/Scripts/leaflet.css" rel="stylesheet">
+    <!-- LeafLet Angular -->
+    <script src="./Location_files/leaflet.js"></script>
+    <script src="./Location_files/angular-leaflet-directive.js"></script>
+
+
+    <!-- Angular module and routing files -->
+        <script src="./Location_files/app.module.js"></script>
+        <script src="./Location_files/app.routes.js"></script>
+
+    <!-- Components Angular Files -->
+        <!-- Login -->
+        <script src="./Location_files/loginController.js"></script>
+        <script src="./Location_files/loginService.js"></script>
+        <script src="./Location_files/authService.js"></script>
+        <!-- Register -->
+        <script src="./Location_files/registerController.js"></script>
+        <script src="./Location_files/registerService.js"></script>
+        <!-- Home -->
+        <script src="./Location_files/homeController.js"></script>
+        <script src="./Location_files/homeService.js"></script>
+        <!-- Location -->
+        <script src="./Location_files/locationController.js"></script>
+        <script src="./Location_files/locationService.js"></script>
+        <!-- Edit Current Location -->
+        <script src="./Location_files/editCurrentController.js"></script>
+        <script src="./Location_files/editCurrentService.js"></script>       
+        <!-- Location Address -->
+        <script src="./Location_files/locationAddressController.js"></script>
+        <script src="./Location_files/locationAddressService.js"></script>
+        <!-- Edit Address Location -->
+        <script src="./Location_files/editAddressController.js"></script>
+        <script src="./Location_files/editAddressService.js"></script>
+        <!-- Location List -->
+        <script src="./Location_files/locationListController.js"></script>
+        <script src="./Location_files/locationListService.js"></script>
+        <!-- Food -->
+        <script src="./Location_files/foodController.js"></script>
+        <script src="./Location_files/foodService.js"></script>
+        <!-- Do -->
+        <script src="./Location_files/doController.js"></script>
+        <script src="./Location_files/doService.js"></script>
+        <!-- Drink -->
+        <script src="./Location_files/drinkController.js"></script>
+        <script src="./Location_files/drinkService.js"></script>
+        <!-- Shop -->
+        <script src="./Location_files/shopController.js"></script>
+        <script src="./Location_files/shopService.js"></script>
+        <!-- Spots -->
+        <script src="./Location_files/spotsController.js"></script>
+        <script src="./Location_files/spotsService.js"></script>
+
+
+    <!-- Shared Angular Files -->
+        <!-- Navbar -->
+        <script src="./Location_files/navbarController.js"></script>
+        <!-- Footer -->
+        <script src="./Location_files/footerController.js"></script>
+
+
+  
+<script>//<![CDATA[
+document.write('<script src="//' + (location.hostname || 'localhost') + ':35729/livereload.js?snipver=1"><\/script>')
+//]]></script><script src="./Location_files/livereload.js"></script>
+
+
+<div class="backdrop"></div><div class="loading-container"><div class="loading"><span>Loading location...</span><br> <ion-spinner icon="ripple" style="stroke: white;" class="spinner spinner-ripple"><svg viewBox="0 0 64 64"><g fill="none" fill-rule="evenodd" stroke-width="3"><circle cx="32" cy="32" r="23.3715"><animate attributeName="r" begin="0s" dur="2s" values="0;24" keyTimes="0;1" keySplines="0.1,0.2,0.3,1" calcMode="spline" repeatCount="indefinite"></animate><animate attributeName="stroke-opacity" begin="0s" dur="2s" values=".2;1;.2;0" repeatCount="indefinite"></animate></circle><circle cx="32" cy="32" r="14.3382"><animate attributeName="r" begin="-1s" dur="2s" values="0;24" keyTimes="0;1" keySplines="0.1,0.2,0.3,1" calcMode="spline" repeatCount="indefinite"></animate><animate attributeName="stroke-opacity" begin="-1s" dur="2s" values=".2;1;.2;0" repeatCount="indefinite"></animate></circle></g></svg></ion-spinner></div></div><div id="window-resizer-tooltip"><a href="http://localhost:8100/#" title="Edit settings"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth"></span> x <span class="tooltipHeight" id="winHeight"></span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth"></span> x <span class="tooltipHeight" id="vpHeight"></span></div></body></html>

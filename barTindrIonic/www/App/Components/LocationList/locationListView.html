@@ -1,25 +1,35 @@
 <ion-view view-title="Location" name="Location">
-  <ion-header-bar class="bar-positive" align-title="center">
-    <div class="buttons pull-left">
-      <button class="button button-icon" nav-direction="back" ui-sref="home">
-        <i class="ion-chevron-left"></i>
-      </button>
+  <ion-header-bar class="list-background-other" align-title="center">
+    <div class="list-navbar-overlay row">
+      <div class="buttons pull-left">
+        <button class="button button-icon" nav-direction="back" ui-sref="home">
+          <i style="color: white;" class="ion-chevron-left"></i>
+        </button>
+      </div>
+      <div class="col col-80" style="padding: 0px; padding-left: 20px;">
+        <h4 class="text-center" style="color: white;">Location List</h4>
+      </div>
+      <div class="buttons pull-right">
+        <button style="color: white;" class="button button-icon ion-ios-navigate-outline" nav-direction="back" ui-sref="location"></button>
+      </div>      
     </div>
-    <h1 class="title">Locations</h1>
-    <div class="buttons pull-right">
-      <button class="button button-icon ion-ios-navigate-outline" nav-direction="back" ui-sref="location"></button>
-    </div>
+
   </ion-header-bar>
     <ion-content class="has-header" scroll="true">
       <ion-refresher
       pulling-text="Pull to refresh..."
       on-refresh="doRefresh()">
      </ion-refresher>
+      <div class="card" ng-cloak ng-hide='locations[0].locations.length != 0'>
+        <div class="item item-text-wrap">
+            <p class="text-center">No locations. Go set one you goon!</a></p>
+        </div>
+      </div>
       <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
-        <div ng-if="currentLocations.length != 0" style="background-color: #00ACC1; color: white; border: none;" class="item item-divider text-center">
+        <div ng-if="addressLocations.length != 0" style="background-color: rgb(8, 73, 123); color: white; border: none;" class="item item-divider text-center">
             Your Locations
           </div>
-        <ion-item nav-direction="forward" ng-repeat="location in addressLocations | orderBy: '-isActive'" class="item text-center list-bg" style="height: 136px; padding: 0px; {{ location.image ? 'background-image: url(' + location.image + ');' : 'something' }}">
+        <ion-item nav-direction="forward" ng-repeat="location in addressLocations" class="item text-center list-bg" style="height: 136px; padding: 0px; {{ location.image ? 'background-image: url(' + location.image + ');' : 'something' }}">
           <div class="location-list-overlay" style="{{ location.isActive ? 'background: linear-gradient(rgba(38, 166, 154, 0.60), rgba(10, 10, 10, .8)); ' : '' }}">
             <div class="row" style="padding-bottom: 0px;">
               <div class="col col-20" style="padding-bottom: 0px;">
@@ -50,10 +60,10 @@
         <ion-option-button class="button-positive" style="background-color: rgba(255, 143, 0, .7)" ui-sref="{{location.isCurrentLocation ? 'editCurrent({currentId: location.locationId })' : 'editAddress({addressId: location.locationId })'}}">Edit</ion-option-button>
         <ion-option-button class="button button-assertive" style="background-color: rgba(198, 40, 40, .7)" ng-click="deleteLocation(location.locationId, location.name);">Delete</ion-option-button>
         </ion-item>
-          <div ng-if="currentLocations.length != 0"  style="background-color: #00ACC1; color: white; border: none;" class="item item-divider text-center">
+          <div ng-if="currentLocations.length != 0"  style="background-color: rgb(8, 73, 123); color: white; border: none;" class="item item-divider text-center">
             Current Locations
           </div>
-        <ion-item nav-direction="forward" ng-repeat="location in currentLocations | orderBy: '-isActive'" class="item text-center list-bg" style="height: 136px; padding: 0px; {{ location.image ? 'background-image: url(' + location.image + ');' : 'something' }}">
+        <ion-item nav-direction="forward" ng-repeat="location in currentLocations" class="item text-center list-bg" style="height: 136px; padding: 0px; {{ location.image ? 'background-image: url(' + location.image + ');' : 'something' }}">
           <div class="location-list-overlay" style="{{ location.isActive ? 'background: linear-gradient(rgba(38, 166, 154, 0.60), rgba(10, 10, 10, .8)); ' : '' }}">
             <div class="row" style="padding-bottom: 0px;">
               <div class="col col-20" style="padding-bottom: 0px;">
@@ -89,11 +99,6 @@
 </ion-view>
 
 <!--   <ion-content class="has-header" scroll="true">
-  <div class="card" ng-cloak ng-hide='locations[0].locations.length != 0'>
-    <div class="item item-text-wrap">
-        <p class="text-center">Add a location by clicking <a ui-sref="location">HERE!</a></p>
-    </div>
-  </div>
   <ion-list ng-show='locations[0].locations' show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
       <ion-item nav-direction="forward" class="item text-center" ng-repeat="location in locations[0].locations | orderBy: '-isActive'">
         <p style="{{location.isActive ? 'color: red;' : ''}}">{{location.name}} -- {{location.city}}, {{location.state}}</p>

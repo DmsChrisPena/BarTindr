@@ -176,7 +176,7 @@ namespace BarTindr.Repository
                 LocationId = u.LocationId,
                 Name = u.Name,
                 Address = u.Address,
-                State =  u.State,
+                State = u.State,
                 City = u.City,
                 ZipCode = u.ZipCode,
                 Country = u.Country,
@@ -184,6 +184,7 @@ namespace BarTindr.Repository
                 Longitude = u.Longitude,
                 Latitude = u.Latitude,
                 Radius = u.Radius,
+                PlacesNumber = u.Places.Count(),
                 IsActive = u.IsActive,
                 IsCurrentLocation = u.IsCurrentLocation
             }).FirstOrDefault();
@@ -441,6 +442,25 @@ namespace BarTindr.Repository
             _db.Places.Remove(spot);
 
             _db.SaveChanges();
+        }
+
+        public void DeleteSpots(int locationId)
+        {
+            var spots = _db.Locations.Where(l => l.LocationId == locationId).FirstOrDefault().Places.ToList();
+
+            if(spots.Count() != 0)
+            {
+                foreach (var spot in spots)
+                {
+                    _db.Places.Remove(spot);
+                }
+
+
+                _db.SaveChanges();
+            }
+
+
+
         }
 
     }

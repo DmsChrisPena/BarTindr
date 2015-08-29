@@ -185,25 +185,23 @@ body > ion-nav-view > ion-view > ion-content > div.scroll > div.register-form-bg
 
   /* Set Address Location */
 	.address-clear {
-		background-color: #FF5722 !important;
-		color: white !important;
+		background-color: transparent !important;
+		color: #FF5722 !important;
 		border: 2px solid #FF5722 !important;
 		border-radius: 10em !important;
-		font-weight: 400;
 		font-size: 18px;
 	}
 
 	.address-set {
-		background-color: #4DB6AC !important;
-		color: white !important;
-		border: 2px solid #4DB6AC !important;
+		background-color: transparent  !important;
+		color: #4CAF50 !important;
+		border: 2px solid #4CAF50 !important;
 		border-radius: 10em !important;
-		font-weight: 400;
 		font-size: 18px;
 	}
 
 	.address-input-form {
-		background-color: #387ef5 !important;
+		background-color: rgb(1, 87, 155) !important;
 	}
 
 	.address-input {
@@ -222,13 +220,16 @@ body > ion-nav-view > ion-view > ion-content > div.scroll > div.register-form-bg
 
 	.address-controls {
 		margin-top: 430px;
+		background-image: url(https://snap-photos.s3.amazonaws.com/img-thumbs/280h/4RTCOR63JG.jpg);
+		background-repeat: no-repeat;
+    	background-size: cover;
 	}
 
   /* Home */
   .home-bg {
 	min-height: 100%;
 	min-width: 100%;
-	background-image: url("../img/home-bg.png");
+	background-image: url("../img/home.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center; 
@@ -333,3 +334,230 @@ body > ion-nav-view > ion-view:nth-child(1) > ion-content > div.scroll > ion-lis
  	background-color: transparent !important;
  	height: 100% !important;
  }
+
+
+
+
+ 	/* Tinder Card Css */
+ 	td-cards {
+  display: block;
+}
+
+td-card {
+  position: absolute;
+  left: 50%;
+  margin-top: 80px;
+  margin-bottom: 40px;
+  margin-left: -150px;
+  width: 300px;
+  height: 300px;
+
+  border: 1px solid #999;
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 6px;
+}
+
+td-card.card-0 {
+  -webkit-transform: translate3d(0, 0px, 0);
+  transform: translate3d(0, 0px, 0);
+  top: 0px;
+  z-index: 10;
+}
+td-card.card-1 {
+  -webkit-transform: translate3d(0, 4px, 0);
+  transform: translate3d(0, 4px, 0);
+  z-index: 9;
+}
+td-card.card-2 {
+  -webkit-transform: translate3d(0, 8px, 0);
+  transform: translate3d(0, 8px, 0);
+  z-index: 8;
+}
+
+td-card .image {
+  position: relative;
+}
+
+td-card img {
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+.yes-text {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 30px;
+  color: rgb(111, 250, 111);
+  opacity: 0;
+}
+.no-text {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  color: rgb(255, 115, 115);
+  opacity: 0;
+}
+
+.fade {
+  -webkit-transition: 0.2s opacity linear;
+  transition: 0.2s opacity linear;
+  opacity: 0;
+}
+
+
+	/* Edit Current */
+	.current-edit-header {
+		background-color: #387ef5 !important;
+	}
+
+	.current-edit-header h4 {
+		color: white !important;
+	}
+
+	.current-edit-header h6 {
+		color: rgba(255, 255, 255, .6) !important;
+	}
+
+
+	/* Navbar */
+	.navbar-background {
+		/*background-image: url(../img/navbar-turnhere.png);*/
+		background: transparent;
+		background-repeat: no-repeat;
+    	background-size: cover;
+    	border: none;
+    	color: white !important;
+    	padding: 0px;
+	}
+
+	.navbar-background-other {
+		background-image: url(../img/navbar-turnhere.png);
+		background-repeat: no-repeat;
+    	background-size: cover;
+    	border: none;
+    	color: white !important;
+    	padding: 0px;
+	}
+
+	.navbar-background-other h1 {
+    	color: white !important;
+	}
+	.navbar-background-other button {
+    	color: white !important;
+	}
+
+	.navbar-background-other {
+    	color: white !important;
+	}
+
+	.navbar-background button {
+    	color: white !important;
+	}
+
+	.navbar-overlay {
+		background: linear-gradient(rgba(0, 44, 78, 0.80), rgba(1, 87, 155, .8)); 
+		min-height: 100%;
+		min-width: 100%;
+	}
+
+
+	.navbar-overlay-bottom {
+		background: linear-gradient(rgba(1, 87, 155, .9), rgba(0, 44, 78, 0.80)); 
+		min-height: 100%;
+		min-width: 100%;
+	}
+
+	.navbar-overlay-address {
+		background: linear-gradient(rgba(0, 44, 78, 0.80), rgba(1, 87, 155, .9)); 
+		min-height: 100%;
+		min-width: 100%;
+	}
+
+	.navbar-overlay-address-other {
+		background: linear-gradient(rgba(1, 87, 155, .9), rgba(0, 44, 78, 0.80)); 
+		min-height: 100%;
+		min-width: 100%;
+	}
+
+	.navbar-background-address {
+		background-image: url(../img/navbar-turnhere.png);
+		background-repeat: no-repeat;
+    	background-size: cover;
+    	border: none;
+    	color: white !important;
+    	padding: 0px;
+	}
+
+
+	.edit-background-other {
+		background-image: url(../img/navbar-turnhere.png);
+		background-repeat: no-repeat;
+    	background-size: cover;
+    	border: none;
+    	color: white !important;
+    	padding: 0px;
+	}
+
+	.edit-navbar-overlay {
+		background: linear-gradient(rgba(0, 44, 78, .9), rgba(0, 44, 78, .9)); 
+		min-height: 100%;
+		min-width: 100%;		
+	}
+
+	.edit-address-top{
+		background-image: url(https://snap-photos.s3.amazonaws.com/img-thumbs/280h/RE54D4GOX0.jpg);
+		background-repeat: no-repeat;
+    	background-size: cover;
+    	border: none;
+    	color: white !important;
+    	padding: 0px;
+	}
+
+	.edit-address-bottom {
+		background-image: url(https://snap-photos.s3.amazonaws.com/img-thumbs/280h/SJTHV6RIVB.jpg);
+		background-repeat: no-repeat;
+    	background-size: cover;
+    	border: none;
+    	color: white !important;
+    	padding: 0px;
+	}
+
+	.edit-top-overlay {
+		background: linear-gradient(rgba(0, 44, 78, .9),  rgba(1, 87, 155, .9)); 
+		min-height: 100%;
+		min-width: 100%;		
+	}
+
+	.edit-bottom-overlay {
+		background: linear-gradient( rgba(1, 87, 155, .9),  rgba(1, 87, 155, .7)); 
+		min-height: 100%;
+		min-width: 100%;		
+	}
+
+	 .change-location-list-edit {
+	 	background-color: transparent;
+	 	color: #F9A825;
+	 	border: 2px solid #F9A825;
+	 	border-radius: 10em;
+		font-size: 12px;
+		padding-right: 10px;
+		padding-left: 10px;
+		font-weight: bold;
+	 }
+
+	.list-background-other {
+		background-image: url(../img/navbar-turnhere.png);
+		background-repeat: no-repeat;
+    	background-size: cover;
+    	border: none;
+    	color: white !important;
+    	padding: 0px;
+	}
+
+	.list-navbar-overlay {
+		background: linear-gradient(rgba(0, 44, 78, .9), rgba(0, 44, 78, .9)); 
+		min-height: 100%;
+		min-width: 100%;		
+	}

@@ -1,18 +1,12 @@
 (function(){
 	angular
 		.module('BarTindrApp')
-		.controller('FoodController', ['$http', '$scope', '$q', '$ionicLoading', FoodController]);
+		.controller('DoController', ['$http', '$scope', '$q', '$ionicLoading', DoController]);
 
-	function FoodController($http, $scope, $q, $ionicLoading) {
-		
-		//Functions
+	function DoController($http, $scope, $q, $ionicLoading) {
+		$scope.everythingWeNeed = [];
 		$scope.getPlaces = getPlaces;
 		$scope.likePlace = likePlace;
-		$scope.getSpots = getSpots;
-
-		//Variables
-		$scope.everythingWeNeed = [];
-
 		function getPlaces(lat, lng, radius, section) {
 			var promises = [];
 			
@@ -23,7 +17,7 @@
 			}
 
 			$ionicLoading.show({
-				template: 'Finding grub... Stay hungry my friend<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>'
+				template: 'Finding activities... Hang tight my friend<br /> <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>'
 			});
 
 
@@ -36,7 +30,6 @@
 					+ '&venuePhotos=1&radius=' + radius 
 					+ '&offset=0&limit=50&client_id=QVSPFCY2CMP0LWO1NDRQIBN523IOX22IYTQGG02RSIJTJTOE&client_secret=3MKDIXJAHAVOPV2YLIROCEQG1WXBWUXVYUIFCOGSOISHA1GD&v=20150822'
 			}).success(function(data){
-				$scope.getSpots();
 				console.log(data);
 				var totalResults = Math.trunc(parseInt((data.response.totalResults/50)) + 1);
 				for(i = 0; i < totalResults; i++){
@@ -90,7 +83,6 @@
 				} 	
 			})
 		}
-
 		function likePlace(vm, isLiked, isDisliked, canonicalName) {
 			vm.isLiked = isLiked;
 			vm.isDisliked = isDisliked;
@@ -100,12 +92,9 @@
 				url: "http://localhost:52355/api/Places/",
 				data: vm
 			}).success(function(data){
-				$scope.getSpots();
 				console.log(data);
 			}).error(function(data){
 				console.log(data);
-				$scope.getSpots();
-
 			});
 		}
 
@@ -114,45 +103,13 @@
 			url: "http://localhost:52355/api/places"
 		}).success(function(data){
 			console.log(data);
-			getPlaces(data.locations[0].latitude, data.locations[0].longitude, data.locations[0].radius, 'food');
+			getPlaces(data.locations[0].latitude, data.locations[0].longitude, data.locations[0].radius, 'outdoors');
+			getPlaces(data.locations[0].latitude, data.locations[0].longitude, data.locations[0].radius, 'arts');
+			getPlaces(data.locations[0].latitude, data.locations[0].longitude, data.locations[0].radius, 'sights');
+
 		}).error(function(data){
 			console.log(data);
 		});	
-
-		function getSpots() {
-			$http({
-				method: 'GET',
-				url: 'http://localhost:52355/api/activePlaces/'
-			}).success(function(data){
-				$scope.spotsData = data;
-				console.log(data);
-			}).error(function(data){
-				console.log(data);
-			});			
-		}
-
-
-
-
-    $scope.cardDestroyed = function(index) {
-      $scope.everythingWeNeed.splice(index, 1);
-    };
-
-    $scope.cardSwiped = function(index) {
-      var newCard = { name: "Tommy"};
-      $scope.everythingWeNeed.push(newCard);
-    }; 
-
-    $scope.cardSwipedLeft = function(card) {
-    	console.log('swipe left', card);
-    	likePlace(card, false, true, 'food');
-    }
-
-    $scope.cardSwipedRight = function(card) {
-    	console.log('swipe right', card);
-    	likePlace(card, true, false, 'food');
-    }
-
 
 	}
 

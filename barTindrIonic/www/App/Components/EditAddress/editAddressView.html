@@ -1,17 +1,74 @@
 <ion-view view-title="Location" name="Location">
-  <ion-header-bar class="bar-positive" align-title="center">
-    <div class="buttons pull-left">
-      <button class="button button-icon" nav-direction="back" ui-sref="locationList">
-        <i class="ion-chevron-left"></i>
-      </button>
-    </div>
-    <h1 class="title">Edit Address</h1>
-    <div class="buttons pull-right">
-      <button class="button button-icon icon ion-checkmark-round" ng-click='saveLocation();'></button>
+  <ion-header-bar class="edit-background-other" align-title="center">
+    <div class="edit-navbar-overlay row">
+      <div class="buttons pull-left">
+        <button style="color: white;" class="button button-icon" nav-direction="back" ui-sref="locationList">
+          <i class="ion-chevron-left"></i>
+        </button>
+      </div>
+      <div class="col col-80" style="padding: 0px; padding-left: 20px;">
+        <h4 class="text-center" style="color: white;">Edit Location</h4>
+      </div>
+      <div class="buttons pull-right">
+        <button style="color: white;" class="button button-icon icon ion-android-add" ng-click='saveLocation();'></button>
+      </div>      
     </div>
   </ion-header-bar>
   <ion-content class="has-header" scroll="false">
-    <h4 style="margin-bottom: 4px;" class="text-center">{{addressLocationName}}</h4>
+      <div class="edit-address-top">
+        <div class="edit-top-overlay">
+          <div class="row">
+            <div class="col">
+              <h4 class="text-center" style="margin-bottom: 0px; color: white;">{{addressLocationName}}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+               <button class="change-location-list-edit button button-primary button-small center-block" ng-click="promptNameChange();">Edit Name</button>
+            </div>
+          </div>        
+          <div class="row">
+            <div class="col">
+              <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input style="font-size: 12px;" type="text" ng-focus="disableTap();" type="text" id="locationSearch" ng-autocomplete ng-model="$parent.locationInfo.fullAddress"  type="text" placeholder="Enter Location..." >
+              </label>
+            </div>
+          </div>          
+        </div>
+      </div>
+
+      <div class="row" style="height: 54%; padding: 0px;">
+        <div style="width: 100%; height: 100%;" data-tap-disabled="true">
+          <leaflet resizeable markers="markers" paths="paths" center="center"  width="100%" height="100%"></leaflet>
+        </div>
+      </div>
+
+      <div class="edit-address-bottom">
+        <div class="edit-bottom-overlay">
+            <div class="row" style="padding: 0px;">
+              <div class="col">
+                <div class="range range-assertive" data-tap-disabled="true">
+                    <i style="color: #fff" class="icon ion-ionic"></i>
+                    <input type="range" name="volume" min="1" max="10" ng-change="toMeters();" ng-model="locationMiles.miles">
+                    {{ locationMiles.miles }} {{ locationMiles.miles == 1 ? "Mile" : "Miles"}}
+                </div> 
+              </div>
+            </div>
+            <div class="row">
+              <div class="col col-50">
+                <button ng-click="clearLocation();" class="button button-assertive button-block icon-left ion-ios-close-outline button-positive address-clear">Clear</button>
+              </div>
+              <div class="col col-50">
+                <button ng-click="findLocation();" class="button button-assertive button-block icon-left ion-ios-close-outline button-positive address-set">Set</button>
+              </div>
+            </div>
+          </div>
+      </div>
+   </ion-content>
+</ion-view>
+
+<!--     <h4 style="margin-bottom: 4px;" class="text-center">{{addressLocationName}}</h4>
     <div style="padding-top: 0px;" class="row">
       <div class="col text-center">
         <button style="line-height: 5px; min-height: 20px;" class="button button-small button-assertive" ng-click="promptNameChange();">Edit Name</button>
@@ -55,6 +112,4 @@
 
     <div style="width: 100%; position: absolute; top: 370px; bottom: 0px;" data-tap-disabled="true">
       <leaflet resizeable markers="markers" paths="paths" center="center"  width="100%" height="100%"></leaflet>
-    </div>  
-   </ion-content>
-</ion-view>
+    </div>   -->
