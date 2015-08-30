@@ -1,44 +1,58 @@
 <ion-view view-title="Location" name="Location">
-  <ion-header-bar class="bar-positive" align-title="center">
-    <div class="buttons pull-left">
-      <button class="button button-icon" nav-direction="back" ui-sref="locationList">
-        <i class="ion-chevron-left"></i>
-      </button>
-    </div>
-    <h1 class="title">Edit Current</h1>
-    <div class="buttons pull-right">
-      <button class="button button-icon icon ion-android-add" ng-click='saveLocation();'></button>
+  <ion-header-bar class="edit-background-other" align-title="center">
+    <div class="current-navbar-overlay row">
+      <div class="buttons pull-left">
+        <button style="color: white;" class="button button-icon" nav-direction="back" ui-sref="locationList">
+          <i class="ion-chevron-left"></i>
+        </button>
+      </div>
+        <div class="col col-80" style="padding: 0px; padding-left: 20px;">
+          <h4 class="text-center" style="color: white;">Edit Current</h4>
+        </div>
+      <div class="buttons pull-right">
+        <button  style="color: white;" class="button button-icon icon ion-android-add" ng-click='saveLocation();'></button>
+      </div>      
     </div>
   </ion-header-bar>
   <ion-content class="has-header" scroll="false">
-    <div class="row text-center current-edit-header" style="padding: 0px; height: 6%;">
-      <div class="col">
-        <h4>{{locationInfo.name}}</h4>
-      </div>
+    <div class="current-edit-background-top">
+      <div class="current-navbar-overlay-top">
+        <div class="row text-center" style="padding: 0px; height: 6%;">
+          <div class="col">
+            <h4 style="color: white;">{{locationInfo.name}}</h4>
+          </div>
+        </div>
+        <div class="row text-center" style="padding: 0px; height: 7%;">
+          <div class="col">
+            <h6 style="color: rgba(255, 255, 255, .6)">{{locationInfo.isCurrentLocation ? 'Current Location' : 'Address Location'}}</h6>
+          </div>
+        </div>      
+      </div>      
     </div>
-    <div class="row text-center current-edit-header" style="padding: 0px; height: 7%;">
-      <div class="col">
-        <h6>{{locationInfo.isCurrentLocation ? 'Current Location' : 'Address Location'}}</h6>
-      </div>
-    </div>
+
     <div class="row" style="height: 67% !important; padding: 0px;">
       <div style="width: 100%; height: 100%;" data-tap-disabled="true">
         <leaflet resizeable markers="markers" paths="paths" center="center"  width="100%" height="100%"></leaflet>
       </div> 
     </div>
-    <div class="row" style="height: 11%; padding: 0px; background-color: #387ef5;">
-      <div style="margin-top: 5%" class="col">
-          <button ng-click="resetSpots(locationInfo.locationId);" class="button button-assertive center-block" style="border-radius: 10em; font-size: 14px; min-height: 36px; height: 36px; line-height: 15px;">Reset Spots {{ '(' + locationInfo.placesNumber + ')' }}</button>
-      </div>
-    </div>
-    <div class="row" style="height: 19%; padding: 0px; background-color: #387ef5;">
-        <div class="col">
-          <div class="range range-assertive" data-tap-disabled="true">
-              <i style="color: #fff" class="icon ion-ionic"></i>
-              <input type="range" name="volume" min="1" max="10" ng-change="toMeters();" ng-model="locationInfo.miles">
-              <p style="color: white">{{ locationInfo.miles }} {{ locationInfo.miles == 1 ? "Mile" : "Miles"}}</p>
+    <div class="current-edit-background-bottom">
+      <div class="current-navbar-overlay-bottom">
+        <div class="row" style="height: 11%; padding: 0px;">
+          <div style="margin-top: 5%" class="col">
+              <button ng-click="resetSpots(locationInfo.locationId);" class="change-location-list-edit button button-primary button-small center-block" style="border-radius: 10em; font-size: 14px; min-height: 36px; height: 36px; line-height: 15px;">Reset Spots {{ '(' + locationInfo.placesNumber + ')' }}</button>
           </div>
         </div>
+        <div class="row" style="height: 19%; padding: 0px;">
+            <div class="col">
+              <div class="range range-assertive" data-tap-disabled="true">
+                  <i style="color: #fff" class="icon ion-ionic"></i>
+                  <input type="range" name="volume" min="1" max="10" ng-change="toMeters();" ng-model="locationInfo.miles">
+                  <p style="color: white">{{ locationInfo.miles }} {{ locationInfo.miles == 1 ? "Mile" : "Miles"}}</p>
+              </div>
+            </div>
+        </div>      
+      </div>
+
     </div>
    </ion-content>
 </ion-view>

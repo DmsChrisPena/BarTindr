@@ -10,11 +10,26 @@
     'ngAnimate'
     ])
   .run(['$ionicPlatform', IonicPlatform])
-  .filter('toMiles', toMiles);
+  .filter('toMiles', toMiles)
+  .filter('toMiles1', toMiles1);
+
+
 
   function toMiles() {
     return function(input) {
       var miles = (input / 1609.344).toFixed(0);
+
+      if(miles == 1) {
+        return miles + ' Mile';
+      } else {
+        return miles + ' Miles';
+      }
+    }
+  }
+
+  function toMiles1() {
+    return function(input) {
+      var miles = (input / 1609.344).toFixed(1);
 
       if(miles == 1) {
         return miles + ' Mile';
