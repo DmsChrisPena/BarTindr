@@ -10,10 +10,35 @@
   <ion-content class="has-header" scroll="false">
        <td-cards>
           <td-card ng-repeat="card in everythingWeNeed | limitTo: 50" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft(card)" on-swipe-right="cardSwipedRight(card)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{$index}}">
-            <div class="image">
+            <div class="image" style="background-image: url({{card.imageUrl.items[0].prefix + '300x300' + card.imageUrl.items[0].suffix}}) !important">
+              <div class="card-overlay">
+                <div class="row">
+                  <div class="col">
+                    <h3 class="text-center" style="color: white; background-color: rgba(0, 44, 78, .2); border-radius: 10em; padding: 4px; margin-top: 30px; ;margin-bottom: 0px;">{{card.name | limitTo: 30}}</h3> <br />
+                    <p class="text-center" style="color: white; margin-bottom: 0px;">{{card.category}}</p>
+                  </div>
+                </div>
+              </div>
               <div class="no-text">NOPE</div>
-              <img ng-src="{{card.imageUrl.items[0].prefix + '300x300' + card.imageUrl.items[0].suffix}}">
+              <!-- <img ng-src="{{card.imageUrl.items[0].prefix + '300x220' + card.imageUrl.items[0].suffix}}"> -->
               <div class="yes-text">LIKE</div>
+
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="text-center">{{card.rating}}</p> <br />
+                <p class="text-center" style="color: white; argin-bottom: 0px; color: rgba(255, 255, 255, .75);">{{card.distance | toMiles1}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="text-center">{{card.hours.status}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="text-center">{{card.address}}</p>
+              </div>
             </div>
           </td-card>
         </td-cards>

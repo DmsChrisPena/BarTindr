@@ -2,7 +2,7 @@
 	angular
 	.module('BarTindrApp')
 	.controller('EditCurrentController', ['editCurrentService', '$scope', '$stateParams', '$ionicLoading', 'locationService', '$http', '$state', '$ionicPopup', EditCurrentController]);
-	function EditCurrentController(editCurrentService, $scope, $stateParams, $ionicLoading, locationService, $http, $stat, $ionicPopup) {
+	function EditCurrentController(editCurrentService, $scope, $stateParams, $ionicLoading, locationService, $http, $state, $ionicPopup) {
 		//Functions
 		$scope.getEditInfomation = getEditInfomation;
 		$scope.toMeters = toMeters;
