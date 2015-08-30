@@ -24,7 +24,7 @@
 			}).success(function(data) {
 				//Need to login them in and set session token but can't because I hate CORS
 
-				$location.path('/');
+				$location.path('/intro');
 				deferred.resolve(data);
 			}).error(function(data) {
 				if(data != null) {
