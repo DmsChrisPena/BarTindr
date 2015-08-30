@@ -15,7 +15,7 @@
 					$location.path('/home');
 				}
 			} else {
-				if(next.url != '/register' && '/') {
+				if(next.url != '/intro' && '/') {
 					$location.path('/')
 				}
 			}
@@ -33,6 +33,11 @@
 				url: '/register',
 				templateUrl: 'App/Components/Register/registerView.html',
 				controller: 'RegisterController'
+			})
+			.state('intro', {
+				url: '/intro',
+				templateUrl: 'App/Components/Intro/introView.html',
+				controller: 'IntroController'
 			})
 			.state('home', {
 				url: '/home',
@@ -88,6 +93,10 @@
 				url: '/locationList',
 				templateUrl: 'App/Components/LocationList/locationListView.html',
 				controller: 'LocationListController'
+			})
+			.state('privacyPolicy', {
+				url: '/privacyPolicy',
+				templateUrl: 'App/Components/Home/privacyPolicy.html'
 			});
 		$httpProvider.interceptors.push('authService');
 

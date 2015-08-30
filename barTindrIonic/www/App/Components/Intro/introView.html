@@ -1,0 +1,94 @@
+<ion-view>
+	<ion-header-bar class="navbar-background-other">
+		<div class="list-navbar-overlay row">
+			<div class="buttons pull-left">
+				<button class="button button-positive button-clear no-animation"
+				ng-click="startApp()" ng-show="slideIndex == 0">
+				Skip Intro
+				</button>
+				<button class="button button-positive button-clear no-animation"
+				ng-click="previousIntro()" ng-show="slideIndex > 0">
+				Previous
+				</button>
+				<!-- <button class="button button-positive button-clear no-animation"
+				ng-click="previousIntro()" ng-show="slideIndex == 2">
+				Previous
+				</button> -->
+				
+			</div>
+			<div class="buttons pull-right">
+				<button class="button button-positive button-clear no-animation"
+				ng-click="nextIntro()" ng-show="slideIndex == 0">
+				Next
+				</button>
+				<button class="button button-positive button-clear no-animation"
+				ng-click="nextIntro()" ng-show="slideIndex == 1">
+				Next
+				</button>
+				<button class="button button-positive button-clear no-animation"
+				ng-click="nextIntro()" ng-show="slideIndex == 2">
+				Next
+				</button>
+				<button class="button button-positive button-clear no-animation"
+				ng-click="nextIntro()" ng-show="slideIndex == 3">
+				Next
+				</button>
+				<button class="button button-positive button-clear no-animation"
+				ng-click="startApp()" ng-show="slideIndex == 4">
+				Start using TurnHere
+				</button>
+			</div>
+			<div style="padding: 0px; padding-left: 90px;">
+        <h4 class="text-center" style="color: white;"></h4>
+      </div>				
+		</div>
+	</ion-header-bar>
+	<ion-content>
+
+
+        <ion-slide-box on-slide-changed="slideChanged(index)">
+          <ion-slide>
+          <div style="height:625px">
+          <h5 style="text-align:center">Slide 1</h5>
+          <img style="padding-left:65px" src="https://goo.gl/bPl8HX">
+          </div>
+          </ion-slide>
+
+          <ion-slide>
+          <div style="height:625px">
+          <h5 style="text-align:center">Slide 2</h5>
+          <img style="padding-left:65px" src="https://goo.gl/SXRRwz">
+          </div>
+          </ion-slide>
+
+          <ion-slide>
+          <div style="height:625px">
+          <h5 style="text-align:center">Slide 3</h5>
+          <img style="padding-left:65px" src="https://goo.gl/EK8K3o">
+          </div>
+          </ion-slide>
+
+          <ion-slide>
+          <div style="height:625px">
+          <h5 style="text-align:center">Slide 4</h5>
+          <img style="padding-left:65px" src="https://goo.gl/J5xp2W">
+          </div>
+          </ion-slide>
+
+          <ion-slide>
+          <div style="height:625px, padding-top:5px">
+          	<h5 style="text-align:center">Slide 5</h5>
+          	<img style="padding-left:65px" src="https://goo.gl/BmGHE1">
+          	<button class="button button-block button-positive" nav-direction="forward" ng-click="startApp()">
+		  Start using TurnHere
+		  </button>
+          </div>
+		  
+          </ion-slide>
+
+        </ion-slide-box>
+
+	</ion-content>
+</ion-view>
+
+
