@@ -259,6 +259,24 @@ body > ion-nav-view > ion-view > ion-content > div.scroll > div.register-form-bg
 		border: 3px solid rgba(238, 238, 238, .3);
 	}
 
+	body > ion-nav-view > ion-view > ion-content > div.scroll > div.row.row-center > div > a:hover {
+		background-color: rgba(238, 238, 238, .3);
+		border: 3px solid rgba(238, 238, 238, .3);
+		color: transparent !important;
+	}
+
+	body > ion-nav-view > ion-view > ion-content > div.scroll > div:nth-child(2) > div > a:hover {
+		background-color: rgba(238, 238, 238, .3);
+		border: 3px solid rgba(238, 238, 238, .3);
+		color: transparent !important;		
+	}
+
+	body > ion-nav-view > ion-view > ion-content > div.scroll > a:hover {
+		background-color: rgba(238, 238, 238, .3);
+		border: 3px solid rgba(238, 238, 238, .3);
+		color: transparent !important;			
+	}
+
 	body > ion-nav-view > ion-view > ion-content > div.scroll > div:nth-child(2) > div > a.activated {
 		background-color: rgba(238, 238, 238, .3);
 		border: 3px solid rgba(238, 238, 238, .3);
@@ -700,27 +718,27 @@ td-card img {
 		color: white;
 	}
 
-	body > ion-nav-view > div > ion-view > div > ion-content > td-cards > div > td-card.card-0 > div > div:nth-child(5) > div > button.activated {
+	body > ion-nav-view > div > ion-view > div > ion-content > td-cards > div > td-card.card-0 > div > div:nth-child(5) > div > a.activated {
 		background-color: rgb(171, 46, 46);
 		border-color: rgb(171, 46, 46);
 		color: white !important;
 	}
-	body > ion-nav-view > div > ion-view > div > ion-content > td-cards > div > td-card.card-0 > div > div:nth-child(5) > div > button:focus {
+	body > ion-nav-view > div > ion-view > div > ion-content > td-cards > div > td-card.card-0 > div > div:nth-child(5) > div > a:focus {
 		background-color: rgb(171, 46, 46);
 		border-color: rgb(171, 46, 46);
 		color: white !important;
 	}
-	body > ion-nav-view > div > ion-view > div > ion-content > td-cards > div > td-card.card-0 > div > div:nth-child(5) > div > button:hover {
+	body > ion-nav-view > div > ion-view > div > ion-content > td-cards > div > td-card.card-0 > div > div:nth-child(5) > div > a:hover {
 		background-color: rgb(211, 47, 47);
 		border: 1px solid rgb(211, 47, 47);
 		color: white !important;
 	}
-	body > ion-nav-view > div > ion-view > div > ion-content > td-cards > div > td-card.card-0 > div > div:nth-child(5) > div > button:active {
+	body > ion-nav-view > div > ion-view > div > ion-content > td-cards > div > td-card.card-0 > div > div:nth-child(5) > div > a:active {
 		background-color: rgb(211, 47, 47);
 		border: 1px solid rgb(211, 47, 47);
 		color: white !important;
 	}
-	body > ion-nav-view > div > ion-view > div > ion-content > td-cards > div > td-card.card-0 > div > div:nth-child(5) > div > button:visited {
+	body > ion-nav-view > div > ion-view > div > ion-content > td-cards > div > td-card.card-0 > div > div:nth-child(5) > div > a:visited {
 		background-color: rgb(171, 46, 46);
 		border-color: rgb(171, 46, 46);
 		color: white !important;
