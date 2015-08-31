@@ -712,3 +712,46 @@ td-card img {
 	.active-rating {
 		color: #F9A825;
 	}
+
+	/* Spots */
+
+	.list-background-spots {
+		background-image: url(../img/navbar-turnhere.png);
+		background-repeat: no-repeat;
+    	background-size: cover;
+    	border: none;
+    	color: white !important;
+    	padding: 0px;
+	}
+
+	.spots-navbar-overlay {
+		background: linear-gradient(rgba(0, 44, 78, .9), rgba(0, 44, 78, .9)); 
+		min-height: 100%;
+		min-width: 100%;		
+	}
+
+	.spots-background {
+		background-image: url(https://snap-photos.s3.amazonaws.com/img-thumbs/280h/F40CE2375D.jpg);
+		background-repeat: no-repeat;
+    	background-size: cover;
+    	border: none;
+    	color: white !important;
+    	padding: 0px;		
+	}
+
+	.spots-bg-overlay {
+		background: linear-gradient(rgba(10, 10, 10, 0.60), rgba(10, 10, 10, .8));
+		min-height: 100%;
+		min-width: 100%;
+	}
+
+	.spots-controls {
+		border-radius: 10em;
+		background-color: transparent;
+		border: 3px solid #00ACC1;
+		color: #00ACC1;
+	}
+
+	.background-spots {
+		background: linear-gradient(rgba(0, 44, 78, 1), rgba(0, 44, 78, 1)) !important;
+	}
