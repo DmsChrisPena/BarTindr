@@ -37,15 +37,15 @@
               <p style="font-size: 12px; color: white;" class="text-center"><i class="icon ion-clock" style="font-size: 20px;"></i><br/>{{spots.status}}</p>
             </div>
           </div>
-          <div class="row">
+          <div class="row text-center">
             <div class="col">
-              <button class="button icon ion-ios-telephone center-block spots-controls"></button>
+              <a class="button icon ion-ios-telephone spots-controls" href="tel:{{card.phone}}"></a>
             </div>
             <div class="col">
-              <button class="button icon ion-map center-block spots-controls"></button>
+              <a class="button icon ion-map spots-controls" ng-click="routeMe();"></a>
             </div>
             <div class="col">
-              <button class="button icon ion-ios-world-outline center-block spots-controls"></button>
+              <a class="button icon ion-ios-world-outline spots-controls" href="{{spots.websiteUrl}}" target="_blank"></a>
             </div>
           </div>
           <ion-option-button class="button-assertive" ng-click="deleteSpot(spots.placeId);">Delete</ion-option-button>          

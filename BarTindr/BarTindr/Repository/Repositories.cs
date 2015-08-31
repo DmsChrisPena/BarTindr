@@ -103,7 +103,7 @@ namespace BarTindr.Repository
                     FullAddress = l.FullAddress,
                     Longitude = l.Longitude,
                     Latitude = l.Latitude,
-                    PlacesNumber = l.Places.Count(),
+                    PlacesNumber = l.Places.Where(p => p.IsLiked == true).Count(),
                     Radius = l.Radius,
                     IsActive = l.IsActive,
                     IsCurrentLocation = l.IsCurrentLocation

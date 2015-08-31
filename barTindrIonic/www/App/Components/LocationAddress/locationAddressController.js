@@ -168,6 +168,7 @@
 					template: '<h5 class="text-center">Please enter a location.</h5>'
 				});
 			} else {
+			  $scope.promptLocation.name = "";
 			  $ionicPopup.show({
 			    template: '<input type="text" placeholder="'+ $scope.locationResult +'" ng-model="promptLocation.name">',
 			    title: 'Create a location name',

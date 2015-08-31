@@ -1,13 +1,14 @@
 (function(){
 	angular
 		.module('BarTindrApp')
-		.controller("SpotsController", ['$scope', '$http', '$ionicLoading', SpotsController]);
+		.controller("SpotsController", ['$scope', '$http', '$ionicLoading', '$ionicActionSheet', SpotsController]);
 
-	function SpotsController($scope, $http, $ionicLoading) {
+	function SpotsController($scope, $http, $ionicLoading, $ionicActionSheet) {
 		//Functions
 		$scope.getPlaces = getPlaces
 		$scope.deleteSpot = deleteSpot;
-		$scope.doRefresh = doRefresh();
+		$scope.doRefresh = doRefresh;
+		$scope.routeMe = routeMe;
 		//Variables
 		$scope.spotsData = {};
 		$scope.shouldShowDelete = false;
@@ -54,6 +55,34 @@
 			$scope.$broadcast('scroll.refreshComplete');
 			});			
 		}
+
+		 function routeMe(lat, lng) {
+				// Show the action sheet
+			   var hideSheet = $ionicActionSheet.show({
+			     buttons: [
+			       { text: 'Route Me' },
+			       { text: 'Uber Me' }
+			     ],
+			     titleText: 'Route',
+			     cancelText: 'Cancel',
+			     cancel: function() {
+			          // add cancel code..
+			        },
+			     buttonClicked: function(index) {
+			     	if(index === 1) {
+			     		window.location = "http://maps.apple.com/?daddr=" + $scope.everythingWeNeed[0].fullAddress;
+			     		window.location = "comgooglemaps://?saddr=" + $scope.everythingWeNeed[0].fullAddr 
+			       		return true;
+			     	}
+			     	if(index === 0) {
+			     		window.location = "https://m.uber.com/sign-up?client_id=b32fu5Np2wwoGBN5goMySgxP6A36BOCw&dropoff_latitude=" + $scope.everythingWeNeed[0].latitude + "&dropoff_longitude=" + $scope.everythingWeNeed[0].longitude + "&dropoff_nickname=" + $scope.everythingWeNeed[0].name + "&dropoff_address=" + $scope.everythingWeNeed[0].fullAddress
+			     		return true;
+			     	}
+			       return true;
+
+			     }
+			   });    	
+		    }
 
 		$scope.getPlaces();
 

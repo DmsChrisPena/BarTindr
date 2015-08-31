@@ -60,10 +60,10 @@
             </div>
             <div class="row actived-button-thing" style="padding-bottom: 0px;">
               <div class="col col-33" style="padding-bottom: 0px;">
-                <button class="button icon ion-ios-telephone bottom-buttoms-cards center-block" style="background-color: rgb(66, 66, 66); border-color: rgb(66, 66, 66);"></button> <br />
+                <button class="button icon ion-ios-telephone bottom-buttoms-cards center-block" href="tel:{{card.phone}}" style="background-color: rgb(66, 66, 66); border-color: rgb(66, 66, 66);"></button> <br />
               </div>
               <div class="col col-33" style="padding-bottom: 0px;">
-                <button class="button icon ion-map bottom-buttoms-cards center-block" style="background-color: rgb(66, 66, 66); border-color: rgb(66, 66, 66);"></button>
+                <button class="button icon ion-map bottom-buttoms-cards center-block" ng-click="routeMe();" style="background-color: rgb(66, 66, 66); border-color: rgb(66, 66, 66);"></button>
               </div>
               <div class="col col-33" style="padding-bottom: 0px;">
                 <a class="button icon ion-ios-world-outline bottom-buttoms-cards center-block" style="background-color: rgb(66, 66, 66); border-color: rgb(66, 66, 66);" href="{{card.websiteUrl}}" target="_blank"></a>
@@ -71,12 +71,12 @@
             </div>
             <div class="row row-bottom" style="border-top: 1px solid rgba(10, 10, 10, .1);">
               <div class="col" style="border-right: 1px solid rgba(10, 10, 10, .1); padding-bottom: 0px;">
-                <button class="button button-clear button-positive center-block dislike-button">
+                <button class="button button-clear button-positive center-block dislike-button" ng-click="cardSwipedLeft(card); cardDestroyed($index)">
                   Dislike
                 </button>
               </div>
               <div class="col" style="padding-bottom: 0px;">
-                <button class="button button-clear button-positive center-block like-button">
+                <button class="button button-clear button-positive center-block like-button" ng-click="cardSwipedRight(card); cardDestroyed($index)">
                   Like
                 </button>
               </div>
