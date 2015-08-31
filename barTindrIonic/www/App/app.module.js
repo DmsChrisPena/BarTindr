@@ -11,8 +11,56 @@
     ])
   .run(['$ionicPlatform', IonicPlatform])
   .filter('toMiles', toMiles)
-  .filter('toMiles1', toMiles1);
+  .filter('toMiles1', toMiles1)
+  .filter('cardRating', cardRating)
+  .filter('tierFilter', tierFilter);
 
+  function tierFilter() {
+    return function(input) {
+      if(input == undefined || input == null || input == "") {
+        return "$"
+      }
+      if(input == 1) {
+        return "$"
+      }
+      if(input == 2) {
+        return "$ $"
+      }
+      if(input == 3) {
+        return "$ $ $"
+      }
+    }
+  }
+
+  function cardRating() {
+    return function(input) {
+      var dividedRating = (input / 2).toFixed(0);
+      if(input == undefined || input == null || input == "") {
+        return "<i class='icon ion-fork fork-inactive'></i> <i class='icon ion-fork fork-inactive'></i> <i class='icon ion-fork fork-inactive'></i> <i class='icon ion-fork fork-inactive'></i> <i class='icon ion-fork fork-inactive'></i>"
+      }
+      if(dividedRating == 5) {
+        return "<i class='icon ion-fork active-rating'></i> <i class='icon ion-fork active-rating'></i> <i class='icon ion-fork active-rating'></i> <i class='icon ion-fork active-rating'></i> <i class='icon ion-fork active-rating'></i>"
+      }
+      if(dividedRating == 4) {
+        return "<i class='icon ion-fork active-rating'></i> <i class='icon ion-fork active-rating'></i> <i class='icon ion-fork active-rating'></i> <i class='icon ion-fork active-rating'></i> <i class='icon ion-fork fork-inactive'></i>"
+      }
+      if(dividedRating == 3) {
+        return "<i class='icon ion-fork active-rating'></i> <i class='icon ion-fork active-rating'></i> <i class='icon ion-fork active-rating'></i> <i class='icon ion-fork fork-inactive'></i> <i class='icon ion-fork fork-inactive'></i>"
+      }
+      if(dividedRating == 2) {
+        return "<i class='icon ion-fork active-rating'></i> <i class='icon ion-fork active-rating'></i> <i class='icon ion-fork fork-inactive'></i> <i class='icon ion-fork fork-inactive'></i> <i class='icon ion-fork fork-inactive'></i>"
+      }
+      if(dividedRating == 1) {
+        return "<i class='icon ion-fork active-rating'></i> <i class='icon ion-fork fork-inactive'></i> <i class='icon ion-fork fork-inactive'></i> <i class='icon ion-fork fork-inactive'></i> <i class='icon ion-fork fork-inactive'></i>"
+      }
+      if(dividedRating == 0) {
+        return "<i class='icon ion-fork fork-inactive'></i> <i class='icon ion-fork fork-inactive'></i> <i class='icon ion-fork fork-inactive'></i> <i class='icon ion-fork fork-inactive'></i> <i class='icon ion-fork fork-inactive'></i>"
+      }
+
+
+      return dividedRating;
+    }
+  }
 
 
   function toMiles() {
