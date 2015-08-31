@@ -60,13 +60,13 @@
             </div>
             <div class="row actived-button-thing" style="padding-bottom: 0px;">
               <div class="col col-33" style="padding-bottom: 0px;">
-                <button class="button icon ion-ios-telephone bottom-buttoms-cards center-block"></button> <br />
+                <button class="button icon ion-ios-telephone bottom-buttoms-cards center-block" style="background-color: rgb(66, 66, 66); border-color: rgb(66, 66, 66);"></button> <br />
               </div>
               <div class="col col-33" style="padding-bottom: 0px;">
-                <button class="button icon ion-map bottom-buttoms-cards center-block"></button>
+                <button class="button icon ion-map bottom-buttoms-cards center-block" style="background-color: rgb(66, 66, 66); border-color: rgb(66, 66, 66);"></button>
               </div>
               <div class="col col-33" style="padding-bottom: 0px;">
-                <a class="button icon ion-ios-world-outline bottom-buttoms-cards center-block" href="{{card.websiteUrl}}" target="_blank"></a>
+                <a class="button icon ion-ios-world-outline bottom-buttoms-cards center-block" style="background-color: rgb(66, 66, 66); border-color: rgb(66, 66, 66);" href="{{card.websiteUrl}}" target="_blank"></a>
               </div>
             </div>
             <div class="row row-bottom" style="border-top: 1px solid rgba(10, 10, 10, .1);">
@@ -103,7 +103,7 @@
                         <div class="col" style="padding-bottom: 0px;">
                           <h4 class="text-center" style="color: white; font-size: 18px; margin-bottom: 0px;">{{spots.name}}</h4>
                           <div class="row">
-                            <div class="col col-20"><p style="text-align: pull-left" ng-bind-html="spots.rating | cardRating"></p></div>
+                            <div class="col col-20"><p style="text-align: pull-left" ng-bind-html="spots.rating | cardRatingDrink"></p></div>
                             <div class="col col-60"><p class="text-center" style="color: rgba(255,255,255, .6); 12px;">{{spots.category}}</p></div>
                             <div class="col col-20"><p style="color: rgba(255,255,255, .6); 12px; text-align: pull-right">{{spots.distance | toMiles1}}</p></div>
                           </div>
