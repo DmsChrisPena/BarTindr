@@ -109,7 +109,26 @@
 
 		}).error(function(data){
 			console.log(data);
-		});	
+		});
+
+	$scope.cardDestroyed = function(index) {
+    $scope.everythingWeNeed.splice(index, 1);
+    };
+
+    $scope.cardSwiped = function(index) {
+      var newCard = { name: "Tommy"};
+      $scope.everythingWeNeed.push(newCard);
+    }; 
+
+    $scope.cardSwipedLeft = function(card) {
+    	console.log('swipe left', card);
+    	likePlace(card, false, true, 'outdoors', 'arts', 'sights');
+    }
+
+    $scope.cardSwipedRight = function(card) {
+    	console.log('swipe right', card);
+    	likePlace(card, true, false, 'outdoors', 'arts', 'sights');
+    }	
 
 	}
 

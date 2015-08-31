@@ -12,7 +12,10 @@
   .run(['$ionicPlatform', IonicPlatform])
   .filter('toMiles', toMiles)
   .filter('toMiles1', toMiles1)
-  .filter('cardRating', cardRating)
+  .filter('cardRatingFood', cardRatingFood)
+  .filter('cardRatingDrink', cardRatingDrink)
+  .filter('cardRatingDo', cardRatingDo)
+  .filter('cardRatingShop', cardRatingShop)
   .filter('tierFilter', tierFilter);
 
   function tierFilter() {
@@ -32,7 +35,7 @@
     }
   }
 
-  function cardRating() {
+  function cardRatingFood() {
     return function(input) {
       var dividedRating = (input / 2).toFixed(0);
       if(input == undefined || input == null || input == "") {
@@ -57,6 +60,92 @@
         return "<i class='icon ion-fork fork-inactive'></i> <i class='icon ion-fork fork-inactive'></i> <i class='icon ion-fork fork-inactive'></i> <i class='icon ion-fork fork-inactive'></i> <i class='icon ion-fork fork-inactive'></i>"
       }
 
+      return dividedRating;
+    }
+  }
+
+  function cardRatingDrink() {
+    return function(input) {
+      var dividedRating = (input / 2).toFixed(0);
+      if(input == undefined || input == null || input == "") {
+        return "<i class='icon ion-beer fork-inactive'></i> <i class='icon ion-beer fork-inactive'></i> <i class='icon ion-beer fork-inactive'></i> <i class='icon ion-beer fork-inactive'></i> <i class='icon ion-beer fork-inactive'></i>"
+      }
+      if(dividedRating == 5) {
+        return "<i class='icon ion-beer active-rating'></i> <i class='icon ion-beer active-rating'></i> <i class='icon ion-beer active-rating'></i> <i class='icon ion-beer active-rating'></i> <i class='icon ion-beer active-rating'></i>"
+      }
+      if(dividedRating == 4) {
+        return "<i class='icon ion-beer active-rating'></i> <i class='icon ion-beer active-rating'></i> <i class='icon ion-beer active-rating'></i> <i class='icon ion-beer active-rating'></i> <i class='icon ion-beer fork-inactive'></i>"
+      }
+      if(dividedRating == 3) {
+        return "<i class='icon ion-beer active-rating'></i> <i class='icon ion-beer active-rating'></i> <i class='icon ion-beer active-rating'></i> <i class='icon ion-beer fork-inactive'></i> <i class='icon ion-beer fork-inactive'></i>"
+      }
+      if(dividedRating == 2) {
+        return "<i class='icon ion-beer active-rating'></i> <i class='icon ion-beer active-rating'></i> <i class='icon ion-beer fork-inactive'></i> <i class='icon ion-beer fork-inactive'></i> <i class='icon ion-beer fork-inactive'></i>"
+      }
+      if(dividedRating == 1) {
+        return "<i class='icon ion-beer active-rating'></i> <i class='icon ion-beer fork-inactive'></i> <i class='icon ion-beer fork-inactive'></i> <i class='icon ion-beer fork-inactive'></i> <i class='icon ion-beer fork-inactive'></i>"
+      }
+      if(dividedRating == 0) {
+        return "<i class='icon ion-beer fork-inactive'></i> <i class='icon ion-beer fork-inactive'></i> <i class='icon ion-beer fork-inactive'></i> <i class='icon ion-beer fork-inactive'></i> <i class='icon ion-beer fork-inactive'></i>"
+      }
+
+      return dividedRating;
+    }
+  }
+
+  function cardRatingDo() {
+    return function(input) {
+      var dividedRating = (input / 2).toFixed(0);
+      if(input == undefined || input == null || input == "") {
+        return "<i class='icon ion-android-walk fork-inactive'></i> <i class='icon ion-android-walk fork-inactive'></i> <i class='icon ion-android-walk fork-inactive'></i> <i class='icon ion-android-walk fork-inactive'></i> <i class='icon ion-android-walk fork-inactive'></i>"
+      }
+      if(dividedRating == 5) {
+        return "<i class='icon ion-android-walk active-rating'></i> <i class='icon ion-android-walk active-rating'></i> <i class='icon ion-android-walk active-rating'></i> <i class='icon ion-android-walk active-rating'></i> <i class='icon ion-android-walk active-rating'></i>"
+      }
+      if(dividedRating == 4) {
+        return "<i class='icon ion-android-walk active-rating'></i> <i class='icon ion-android-walk active-rating'></i> <i class='icon ion-android-walk active-rating'></i> <i class='icon ion-android-walk active-rating'></i> <i class='icon ion-android-walk fork-inactive'></i>"
+      }
+      if(dividedRating == 3) {
+        return "<i class='icon ion-android-walk active-rating'></i> <i class='icon ion-android-walk active-rating'></i> <i class='icon ion-android-walk active-rating'></i> <i class='icon ion-android-walk fork-inactive'></i> <i class='icon ion-android-walk fork-inactive'></i>"
+      }
+      if(dividedRating == 2) {
+        return "<i class='icon ion-android-walk active-rating'></i> <i class='icon ion-android-walk active-rating'></i> <i class='icon ion-android-walk fork-inactive'></i> <i class='icon ion-android-walk fork-inactive'></i> <i class='icon ion-android-walk fork-inactive'></i>"
+      }
+      if(dividedRating == 1) {
+        return "<i class='icon ion-android-walk active-rating'></i> <i class='icon ion-android-walk fork-inactive'></i> <i class='icon ion-android-walk fork-inactive'></i> <i class='icon ion-android-walk fork-inactive'></i> <i class='icon ion-android-walk fork-inactive'></i>"
+      }
+      if(dividedRating == 0) {
+        return "<i class='icon ion-android-walk fork-inactive'></i> <i class='icon ion-android-walk fork-inactive'></i> <i class='icon ion-android-walk fork-inactive'></i> <i class='icon ion-android-walk fork-inactive'></i> <i class='icon ion-android-walk fork-inactive'></i>"
+      }
+
+      return dividedRating;
+    }
+  }
+
+  function cardRatingShop() {
+    return function(input) {
+      var dividedRating = (input / 2).toFixed(0);
+      if(input == undefined || input == null || input == "") {
+        return "<i class='icon ion-bag fork-inactive'></i> <i class='icon ion-bag fork-inactive'></i> <i class='icon ion-bag fork-inactive'></i> <i class='icon ion-bag fork-inactive'></i> <i class='icon ion-bag fork-inactive'></i>"
+      }
+      if(dividedRating == 5) {
+        return "<i class='icon ion-bag active-rating'></i> <i class='icon ion-bag active-rating'></i> <i class='icon ion-bag active-rating'></i> <i class='icon ion-bag active-rating'></i> <i class='icon ion-bag active-rating'></i>"
+      }
+      if(dividedRating == 4) {
+        return "<i class='icon ion-bag active-rating'></i> <i class='icon ion-bag active-rating'></i> <i class='icon ion-bag active-rating'></i> <i class='icon ion-bag active-rating'></i> <i class='icon ion-bag fork-inactive'></i>"
+      }
+      if(dividedRating == 3) {
+        return "<i class='icon ion-bag active-rating'></i> <i class='icon ion-bag active-rating'></i> <i class='icon ion-bag active-rating'></i> <i class='icon ion-bag fork-inactive'></i> <i class='icon ion-bag fork-inactive'></i>"
+      }
+      if(dividedRating == 2) {
+        return "<i class='icon ion-bag active-rating'></i> <i class='icon ion-bag active-rating'></i> <i class='icon ion-bag fork-inactive'></i> <i class='icon ion-bag fork-inactive'></i> <i class='icon ion-bag fork-inactive'></i>"
+      }
+      if(dividedRating == 1) {
+        return "<i class='icon ion-bag active-rating'></i> <i class='icon ion-bag fork-inactive'></i> <i class='icon ion-bag fork-inactive'></i> <i class='icon ion-bag fork-inactive'></i> <i class='icon ion-bag fork-inactive'></i>"
+      }
+      if(dividedRating == 0) {
+        return "<i class='icon ion-bag fork-inactive'></i> <i class='icon ion-bag fork-inactive'></i> <i class='icon ion-bag fork-inactive'></i> <i class='icon ion-bag fork-inactive'></i> <i class='icon ion-bag fork-inactive'></i>"
+      }
 
       return dividedRating;
     }
