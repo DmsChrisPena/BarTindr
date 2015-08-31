@@ -755,3 +755,23 @@ td-card img {
 	.background-spots {
 		background: linear-gradient(rgba(0, 44, 78, 1), rgba(0, 44, 78, 1)) !important;
 	}
+
+	/* Food */
+	.card-drink-overlay {
+		background: linear-gradient(rgba(66, 66, 66, .85), rgba(66, 66, 66, .55)); 
+		min-height: 100%;
+		min-width: 100%;			
+	}
+
+	.card-drink-overlay-body {
+		background: linear-gradient(rgba(66, 66, 66, .65), rgba(66, 66, 66, .65)); 
+		min-height: 100%;
+		min-width: 100%;			
+	}
+
+	.bar-spots-overlay-food {
+		background: linear-gradient(rgba(66, 66, 66, .85), rgba(66, 66, 66, .55));
+		color: white !important;
+		min-height: 100%;
+		min-width: 100%;
+	}
