@@ -863,7 +863,7 @@ body.outlook p {
                             <table class="tiny-button facebook">
                               <tr>
                                 <td>
-                                  <a href="#">Facebook</a>
+                                  <a href="https://www.facebook.com/welcometurnhere?skip_nax_wizard=true&ref_type=bookmark">Facebook</a>
                                 </td>
                               </tr>
                             </table>
@@ -883,7 +883,7 @@ body.outlook p {
                             <table class="tiny-button google-plus">
                               <tr>
                                 <td>
-                                  <a href="#">Google +</a>
+                                  <a href="https://plus.google.com/u/0/108592339086679186311/posts">Google +</a>
                                 </td>
                               </tr>
                             </table>
