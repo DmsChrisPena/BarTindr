@@ -1,18 +1,55 @@
-<ion-view view-title="Location" name="Location">
-  <ion-header-bar class="bar-positive" align-title="center">
-    <div class="buttons pull-left">
-      <button class="button button-icon" nav-direction="back" ui-sref="home">
-        <i class="ion-chevron-left"></i>
-      </button>
+<ion-view view-title="Spots" name="Spots" class="background-spots">
+  <ion-header-bar class="list-background-spots" align-title="center">
+    <div class="spots-navbar-overlay row">
+      <div class="buttons pull-left">
+        <button class="button button-icon" nav-direction="back" ui-sref="home" style="color: white;">
+          <i class="ion-chevron-left"></i>
+        </button>
+      </div>
+      <div class="col col-80" style="padding: 0px; padding-left: 20px;">
+        <h4 class="text-center" style="color: white;">Your Spots</h4>
+      </div> 
     </div>
-    <h1 class="title">Spots</h1>
   </ion-header-bar>
   <ion-content class="has-header" scroll="true">
+  <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="getPlaces()" style="color: white !important;">
+    </ion-refresher>
     <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
-      <ion-item ng-repeat="spots in spotsData.places">
-        <h4 class="text-center">{{spots.name}}</h4>
-        <img ng-src="{{spots.prefix ? spots.prefix + '150x150' + spots.suffix : 'http://extrawallpaper.com/wp-content/uploads/2014/11/Best-top-desktop-food-wallpapers-hd-food-wallpaper-food-pictures-image-photo-31.jpg'}}" style="height: 150px; width: 150px;" class="img-responsive center-block" alt="Not working">
-        <ion-option-button class="button-assertive" ng-click="deleteSpot(spots.placeId);">Delete</ion-option-button>
+      <ion-item ng-repeat="spots in spotsData.places" class="spots-background" style="background-image: url({{spots.prefix + '400x400' + spots.suffix}}) !important;">
+        <div class="spots-bg-overlay">
+          <div class="row" style="padding-bottom: 0px;">
+            <div class="col" style="padding-bottom: 0px;">
+              <h4 class="text-center" style="color: white; font-size: 18px; margin-bottom: 0px;">{{spots.name}}</h4>
+              <div class="row">
+                <div class="col col-20"><p style="text-align: pull-left" ng-bind-html="spots.rating | cardRating"></p></div>
+                <div class="col col-60"><p class="text-center" style="color: rgba(255,255,255, .6); 12px;">{{spots.category}}</p></div>
+                <div class="col col-20"><p style="color: rgba(255,255,255, .6); 12px; text-align: pull-right">{{spots.distance | toMiles1}}</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-50">
+              <p class="text-center" style="font-size: 12px; color: white;">{{spots.address}} <br /> {{spots.city}}, {{spots.state}}</p>
+            </div>
+            <div class="col col-50">
+              <p style="font-size: 12px; color: white;" class="text-center"><i class="icon ion-clock" style="font-size: 20px;"></i><br/>{{spots.status}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <button class="button icon ion-ios-telephone center-block spots-controls"></button>
+            </div>
+            <div class="col">
+              <button class="button icon ion-map center-block spots-controls"></button>
+            </div>
+            <div class="col">
+              <button class="button icon ion-ios-world-outline center-block spots-controls"></button>
+            </div>
+          </div>
+          <ion-option-button class="button-assertive" ng-click="deleteSpot(spots.placeId);">Delete</ion-option-button>          
+        </div>
       </ion-item>
     </ion-list>
    </ion-content>

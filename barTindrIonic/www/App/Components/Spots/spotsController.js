@@ -7,7 +7,7 @@
 		//Functions
 		$scope.getPlaces = getPlaces
 		$scope.deleteSpot = deleteSpot;
-		
+		$scope.doRefresh = doRefresh();
 		//Variables
 		$scope.spotsData = {};
 		$scope.shouldShowDelete = false;
@@ -15,12 +15,15 @@
 		$scope.listCanSwipe = true;
 
 		$ionicLoading.show({
-			template: 'Finding spots...<br /> <img src="img/test.gif" />'
+			template: 'Finding spots...<br />  <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>'
 		});
+		function doRefresh() {
+			getPlaces();
+		}
 
 		function deleteSpot(spotId) {
 			$ionicLoading.show({
-				template: 'Deleting spot...<br /> <img src="img/test.gif" />'
+				template: 'Deleting spot...<br />  <ion-spinner icon="ripple" style="stroke: white;"></ion-spinner>'
 			});			
 			$http({
 				method: 'DELETE',
@@ -42,9 +45,13 @@
 			}).success(function(data){
 				$ionicLoading.hide();
 				$scope.spotsData = data;
+				console.log(data);
+			$scope.$broadcast('scroll.refreshComplete');
+
 			}).error(function(data){
 				$ionicLoading.hide();
 				console.log(data);
+			$scope.$broadcast('scroll.refreshComplete');
 			});			
 		}
 
