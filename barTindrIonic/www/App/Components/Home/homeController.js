@@ -61,7 +61,7 @@
 		   var hideSheet = $ionicActionSheet.show({
 		     buttons: [
 		       { text: 'Current Location' },
-		       { text: 'Address Location' }
+		       { text: 'Set Location' }
 		     ],
 		     titleText: 'Create Location',
 		     cancelText: 'Cancel',

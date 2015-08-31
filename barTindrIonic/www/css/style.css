@@ -346,12 +346,12 @@ body > ion-nav-view > ion-view:nth-child(1) > ion-content > div.scroll > ion-lis
 td-card {
   position: absolute;
   left: 50%;
-  margin-top: 30px;
+  margin-top: 34px;
   margin-bottom: 25px;
   margin-left: -150px;
   width: 300px;
   height: 510px;
-  background-color: #333333;
+  background-color: white;
   border: 1px solid #999;
   box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
   border-radius: 2px;
@@ -360,12 +360,13 @@ td-card {
 td-card.card-0 {
   -webkit-transform: translate3d(0, 0px, 0);
   transform: translate3d(0, 0px, 0);
-  top: 0px;
+  top: -12px;
   z-index: 10;
 }
 td-card.card-1 {
   -webkit-transform: translate3d(0, 4px, 0);
   transform: translate3d(0, 4px, 0);
+  top: -6px;
   z-index: 9;
 }
 td-card.card-2 {
@@ -376,8 +377,6 @@ td-card.card-2 {
 
 td-card .image {
   position: relative;
-  border-bottom-left-radius: 10em;
-  border-bottom-right-radius: 10em;
   height: 250px;
   background-image: url(https://snap-photos.s3.amazonaws.com/img-thumbs/280h/F40CE2375D.jpg);
   background-repeat: no-repeat;
@@ -594,13 +593,13 @@ td-card img {
 
 
 	.current-navbar-overlay-top {
-		background: linear-gradient(rgba(51, 51, 51, 1), rgba(51, 51, 51, .85)); 
+		background: linear-gradient(rgba(0, 44, 78, 1), rgba(0, 44, 78, .85)); 
 		min-height: 100%;
 		min-width: 100%;		
 	}
 
 	.current-navbar-overlay-bottom {
-		background: linear-gradient(rgba(51, 51, 51, .85), rgba(51, 51, 51, .85)); 
+		background: linear-gradient(rgba(0, 44, 78, .85), rgba(0, 44, 78, .85)); 
 		min-height: 100%;
 		min-width: 100%;		
 	}
@@ -608,7 +607,108 @@ td-card img {
 	/* Card */
 
 	.card-overlay {
-		background: linear-gradient(rgba(51, 51, 51, .5), rgba(51, 51, 51, .5)); 
+		background: linear-gradient(rgba(51, 51, 51, .6), rgba(51, 51, 51, .6)); 
 		min-height: 100%;
 		min-width: 100%;	
+
+	}
+
+	.navbar-background-card {
+		background-image: url(../img/navbarred.png);
+		background-repeat: no-repeat;
+    	background-size: cover;
+    	border: none;
+    	color: white !important;
+    	padding: 0px;
+	}
+
+	.card-food-overlay {
+		background: linear-gradient(rgba(211, 47, 47, .85), rgba(211, 47, 47, .55)); 
+		min-height: 100%;
+		min-width: 100%;			
+	}
+
+
+	.card-food-overlay-body {
+		background: linear-gradient(rgba(211, 47, 47, .65), rgba(211, 47, 47, .65)); 
+		min-height: 100%;
+		min-width: 100%;			
+	}
+
+
+	.background-card-food {
+		background-image: url(../img/red-bg.png);
+		background-repeat: no-repeat;
+    	background-size: cover;
+    	border: none;		
+	}
+
+	.background-spots-bottom {
+		background-image: url(../img/navbarred.png);
+    	background-size: cover;
+    	border: none;				
+	}
+	
+	.bar-spots-overlay {
+		background: linear-gradient(rgba(211, 47, 47, .85), rgba(211, 47, 47, .55));
+		color: white !important;
+		min-height: 100%;
+		min-width: 100%;		
+	}
+
+	.bottom-buttoms-cards {
+		border-radius: 10em;
+		padding: 8px;
+		width: 60px;
+		background-color: rgb(211, 47, 47);
+		border: 1px solid rgb(211, 47, 47);
+		color: white;
+	}
+
+	body > ion-nav-view > div > ion-view > div > ion-content > td-cards > div > td-card.card-0 > div > div:nth-child(5) > div > button.activated {
+		background-color: rgb(171, 46, 46);
+		border-color: rgb(171, 46, 46);
+		color: white !important;
+	}
+	body > ion-nav-view > div > ion-view > div > ion-content > td-cards > div > td-card.card-0 > div > div:nth-child(5) > div > button:focus {
+		background-color: rgb(171, 46, 46);
+		border-color: rgb(171, 46, 46);
+		color: white !important;
+	}
+	body > ion-nav-view > div > ion-view > div > ion-content > td-cards > div > td-card.card-0 > div > div:nth-child(5) > div > button:hover {
+		background-color: rgb(211, 47, 47);
+		border: 1px solid rgb(211, 47, 47);
+		color: white !important;
+	}
+	body > ion-nav-view > div > ion-view > div > ion-content > td-cards > div > td-card.card-0 > div > div:nth-child(5) > div > button:active {
+		background-color: rgb(211, 47, 47);
+		border: 1px solid rgb(211, 47, 47);
+		color: white !important;
+	}
+	body > ion-nav-view > div > ion-view > div > ion-content > td-cards > div > td-card.card-0 > div > div:nth-child(5) > div > button:visited {
+		background-color: rgb(171, 46, 46);
+		border-color: rgb(171, 46, 46);
+		color: white !important;
+	}
+
+	body > ion-nav-view > div > ion-view > div > ion-content > td-cards > div > td-card.card-0 > div > div:nth-child(5) > div:nth-child(3) > a.activated {
+		background-color: rgb(171, 46, 46);
+		border-color: rgb(171, 46, 46);
+		color: white !important;
+	}
+
+	.fork-inactive {
+		color: rgba(10, 10, 10, .50) !important;
+	}
+
+	.dislike-button {
+		color: red !important;
+	}
+
+	.like-button {
+		color: green !important;
+	}
+
+	.active-rating {
+		color: #F9A825;
 	}

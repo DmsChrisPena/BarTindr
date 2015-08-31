@@ -1,67 +1,112 @@
-<ion-view view-title="Location" name="Location">
-  <ion-header-bar class="bar-positive" align-title="center">
-    <div class="buttons pull-left">
-      <button class="button button-icon" nav-direction="back" ui-sref="home">
-        <i class="ion-chevron-left"></i>
-      </button>
+<ion-view view-title="Location" name="Location" class="background-card-food">
+  <div class="card-food-overlay-body">
+  <ion-header-bar class="navbar-background-card" align-title="center">
+    <div class="card-food-overlay row">
+       <div class="buttons pull-left">
+        <button style="color: white" class="button button-icon" nav-direction="back" ui-sref="home">
+          <i class="ion-chevron-left"></i>
+        </button>
+      </div>
+        <div class="col col-80" style="padding: 0px; padding-left: 20px;">
+          <h4 class="text-center" style="color: white;">Food &nbsp; <i class="icon ion-fork"></i> <i class="icon ion-knife"></i> </h4>
+        </div>
     </div>
-    <h1 class="title">Eat</h1>
   </ion-header-bar>
   <ion-content class="has-header" scroll="false">
        <td-cards>
           <td-card ng-repeat="card in everythingWeNeed | limitTo: 50" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft(card)" on-swipe-right="cardSwipedRight(card)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{$index}}">
             <div class="image" style="background-image: url({{card.imageUrl.items[0].prefix + '300x300' + card.imageUrl.items[0].suffix}}) !important">
               <div class="card-overlay">
+                <div class="row" style="padding: 0px; margin: 0px;">
+                  <div class="col" style="padding-top: 3px; padding-right: 10px;">
+                    <p style="text-align: left; color: rgba(255, 255, 255, .65); font-size: 12px;" ng-bind-html="card.tier.tier | tierFilter"></p>
+                  </div>
+                  <div class="col" style="padding-top: 3px; padding-right: 10px;">
+                    <p style="text-align: right; color: rgba(255, 255, 255, .65); font-size: 12px;">{{card.city}}, {{card.state}}</p>
+                  </div>
+                </div>
+                <div class="row" style="padding-bottom: 5px;">
+                  <div class="col" style="padding: 0px;">
+                    <h2 class="text-center" style="color: white; border-radius: 10em; padding: 4px; margin-top: 40px; ;margin-bottom: 0px;">{{card.name | limitTo: 30}}</h2>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col">
-                    <h3 class="text-center" style="color: white; background-color: rgba(0, 44, 78, .2); border-radius: 10em; padding: 4px; margin-top: 30px; ;margin-bottom: 0px;">{{card.name | limitTo: 30}}</h3> <br />
                     <p class="text-center" style="color: white; margin-bottom: 0px;">{{card.category}}</p>
                   </div>
                 </div>
               </div>
-              <div class="no-text">NOPE</div>
-              <!-- <img ng-src="{{card.imageUrl.items[0].prefix + '300x220' + card.imageUrl.items[0].suffix}}"> -->
+              <div class="no-text">DISLIKE</div>
               <div class="yes-text">LIKE</div>
 
             </div>
             <div class="row">
+              <div class="col" style="padding-top: 0px;">
+                <p style="font-size: 20px; text-align: left;" ng-bind-html="card.rating | cardRating"></p> 
+              </div>
               <div class="col">
-                <p class="text-center">{{card.rating}}</p> <br />
-                <p class="text-center" style="color: white; argin-bottom: 0px; color: rgba(255, 255, 255, .75);">{{card.distance | toMiles1}}</p>
+                <p style="text-align: right;">{{card.distance | toMiles1}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col" style="padding-top: 0px;">
+                <p class="text-center"><i class="icon ion-clock" style="font-size: 20px;"></i> &nbsp; {{card.hours.status}}</p>
               </div>
             </div>
             <div class="row">
               <div class="col">
-                <p class="text-center">{{card.hours.status}}</p>
+                <p class="text-center"><i class="icon ion-ios-location-outline" style="font-size: 20px;"></i> &nbsp; {{card.address | limitTo: 30}}</p>
               </div>
             </div>
-            <div class="row">
-              <div class="col">
-                <p class="text-center">{{card.address}}</p>
+            <div class="row actived-button-thing" style="padding-bottom: 0px;">
+              <div class="col col-33" style="padding-bottom: 0px;">
+                <button class="button icon ion-ios-telephone bottom-buttoms-cards center-block"></button> <br />
+              </div>
+              <div class="col col-33" style="padding-bottom: 0px;">
+                <button class="button icon ion-map bottom-buttoms-cards center-block"></button>
+              </div>
+              <div class="col col-33" style="padding-bottom: 0px;">
+                <a class="button icon ion-ios-world-outline bottom-buttoms-cards center-block" href="{{card.websiteUrl}}" target="_blank"></a>
+              </div>
+            </div>
+            <div class="row row-bottom" style="border-top: 1px solid rgba(10, 10, 10, .1);">
+              <div class="col" style="border-right: 1px solid rgba(10, 10, 10, .1); padding-bottom: 0px;">
+                <button class="button button-clear button-positive center-block dislike-button">
+                  Dislike
+                </button>
+              </div>
+              <div class="col" style="padding-bottom: 0px;">
+                <button class="button button-clear button-positive center-block like-button">
+                  Like
+                </button>
               </div>
             </div>
           </td-card>
         </td-cards>
    </ion-content>
+   </div>
 </ion-view>
 
-    <ion-pull-up-footer on-expand="footerExpand()" on-collapse="footerCollapse()">
-      <ion-pull-up-footer class="bar-calm">
-        <div class="title" ion-pull-up-trigger>Your Spots</div>
-        <ion-pull-up-handle width="80" height="15" toggle="ion-chevron-down ion-chevron-up" style="border-radius: 5px 5px 0 0">
-          <i class="icon ion-ios-arrow-up"></i>
-        </ion-pull-up-handle>
-        <ion-pull-up-content scroll="true">
-            <div class="list card">
-                <div ng-repeat="spot in spotsData.places" class="item item-body">
-                    <div>
-                      <h5 class="text-center">{{spot.name}}</h5>
-                      <img ng-src="{{spot.prefix ? spot.prefix + '150x150' + spot.suffix : 'http://extrawallpaper.com/wp-content/uploads/2014/11/Best-top-desktop-food-wallpapers-hd-food-wallpaper-food-pictures-image-photo-31.jpg'}}" style="height: 150px; width: 150px;" class="img-responsive center-block" alt="Not working">
-                    </div>
-                </div>
-            </div>
-        </ion-pull-up-content>
-    </ion-pull-up-footer>
+    <ion-pull-up-footer on-expand="footerExpand()" on-collapse="footerCollapse()"class="background-spots-bottom">
+      <div>
+         <ion-pull-up-footer class="bar-spots-overlay">
+          <div class="title" ion-pull-up-trigger>Your Spots</div>
+          <ion-pull-up-handle width="80" height="15" toggle="ion-chevron-down ion-chevron-up" style="border-radius: 5px 5px 0 0; background-color: linear-gradient(rgba(211, 47, 47, 1), rgba(211, 47, 47, 1))">
+            <i class="icon ion-ios-arrow-up"></i>
+          </ion-pull-up-handle>
+          <ion-pull-up-content scroll="true">
+              <div class="list card">
+                  <div ng-repeat="spot in spotsData.places" class="item item-body">
+                      <div>
+                        <h5 class="text-center">{{spot.name}}</h5>
+                        <img ng-src="{{spot.prefix ? spot.prefix + '150x150' + spot.suffix : 'http://extrawallpaper.com/wp-content/uploads/2014/11/Best-top-desktop-food-wallpapers-hd-food-wallpaper-food-pictures-image-photo-31.jpg'}}" style="height: 150px; width: 150px;" class="img-responsive center-block" alt="Not working">
+                      </div>
+                  </div>
+              </div>
+          </ion-pull-up-content>
+      </ion-pull-up-footer>       
+    </div>
+  </ion-pull-up-footer>
 
 
 <!--     <ul class="list">
