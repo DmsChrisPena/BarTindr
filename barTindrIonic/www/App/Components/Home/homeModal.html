@@ -17,30 +17,32 @@
     </div>
 
   </ion-header-bar>
-	<ion-content style="background-color:#33425b" scroll="false">
-		<button class="button button-full button-clear button-stable, icon ion-map"  nav-direction="forward" ng-click="closeModal()" ui-sref="locationList">
-		  Your Locations
-		</button>
-		<hr/>
-		<button class="button button-full button-clear button-stable, icon ion-earth" nav-direction="forward" ng-click="closeModal(showlocationOptions());">
-		  Create Location
-		</button>
-		<hr/>
-		<button class="button button-full button-clear button-stable, icon ion-ios-location-outline" nav-direction="forward" ng-click="closeModal()" ui-sref="spots">
-		  Spots
-		</button>
-		<hr/>
-		<button class="button button-full button-clear button-stable, icon ion-ios-help-outline" nav-direction="forward" ng-click="closeModal()" ui-sref="intro">
-		  Walkthrough
-		</button>
-		<hr/>
-		<button class="button button-full button-clear button-stable, icon ion-ios-list-outline" ng-click="closeModal()" ui-sref="privacyPolicy">
-		Privacy Policy
-		</button>
-		<hr/>
-		<button  class="button button-full button-clear button-stable" nav-direction="back" ng-click="closeModal(logoutUser())">
-		  Logout
-		</button>
+	<ion-content class="background-hamburger" scroll="false">
+		<div class="background-overlay-hamburger">
+			<button class="button button-full button-clear button-stable, icon ion-map" style="margin-top: 4px;" nav-direction="forward" ng-click="closeModal()" ui-sref="locationList">
+			  Your Locations
+			</button>
+			<hr/>
+			<button class="button button-full button-clear button-stable, icon ion-earth" nav-direction="forward" ng-click="closeModal(showlocationOptions());">
+			  Create Location
+			</button>
+			<hr/>
+			<button class="button button-full button-clear button-stable, icon ion-ios-location-outline" nav-direction="forward" ng-click="closeModal()" ui-sref="spots">
+			  Spots
+			</button>
+			<hr/>
+			<button class="button button-full button-clear button-stable, icon ion-ios-help-outline" nav-direction="forward" ng-click="closeModal()" ui-sref="intro">
+			  Walkthrough
+			</button>
+			<hr/>
+			<button class="button button-full button-clear button-stable, icon ion-ios-list-outline" ng-click="closeModal()" ui-sref="privacyPolicy">
+			Privacy Policy
+			</button>
+			<hr/>
+			<button  class="button button-full button-clear button-stable" nav-direction="back" ng-click="closeModal(logoutUser())">
+			  Logout
+			</button>			
+		</div>
 		<hr/>
 	</ion-content>
 

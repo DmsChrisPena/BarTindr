@@ -229,12 +229,47 @@ body > ion-nav-view > ion-view > ion-content > div.scroll > div.register-form-bg
   .home-bg {
 	min-height: 100%;
 	min-width: 100%;
-	background-image: url("../img/home.png");
+	background-image: url("../img/home-turnhere-screen.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center; 
     padding: 0px;
 	}
+
+	.home-button {
+		border-radius: 50px;
+		background: transparent;
+		border: 1px solid white;
+		color: transparent;
+		min-height: 57px;
+		min-width: 57px;
+	}
+
+	.center-home-button {
+		border-radius: 10em;
+		background: transparent;
+		border: 1px solid white;
+		color: transparent;
+		min-height: 158px;
+		min-width: 158px;		
+	}
+
+	body > ion-nav-view > ion-view > ion-content > div.scroll > div.row.row-center > div > a.activated {
+		background-color: rgba(238, 238, 238, .3);
+		border: 3px solid rgba(238, 238, 238, .3);
+	}
+
+	body > ion-nav-view > ion-view > ion-content > div.scroll > div:nth-child(2) > div > a.activated {
+		background-color: rgba(238, 238, 238, .3);
+		border: 3px solid rgba(238, 238, 238, .3);
+	}
+
+	body > ion-nav-view > ion-view > ion-content > div.scroll > a.activated {
+		background-color: rgba(238, 238, 238, .3);
+		border: 3px solid rgba(238, 238, 238, .3);
+	}
+
+
 
 	/* Location List */
 
@@ -758,7 +793,7 @@ td-card img {
 
 	/* Food */
 	.card-drink-overlay {
-		background: linear-gradient(rgba(66, 66, 66, .85), rgba(66, 66, 66, .55)); 
+		background: linear-gradient(rgba(66, 66, 66, .85), rgba(66, 66, 66, .85)); 
 		min-height: 100%;
 		min-width: 100%;			
 	}
@@ -821,4 +856,23 @@ td-card img {
 		color: white !important;
 		min-height: 100%;
 		min-width: 100%;	
+	}
+
+	/* Hamburgers!!! */
+
+	.background-hamburger {
+		background-image: url(https://snap-photos.s3.amazonaws.com/img-thumbs/960w/0ZH7SYONA5.jpg);
+		background-repeat: no-repeat;
+    	background-size: cover;
+    	border: none;			
+	}
+
+	.background-overlay-hamburger {
+		background: linear-gradient(rgba(66, 66, 66, .85), rgba(66, 66, 66, .85)); 
+		min-height: 100%;
+		min-width: 100%;
+	}
+
+	.background-overlay-hamburger button {
+		color: #FFFFFF !important;
 	}

@@ -7,7 +7,36 @@
     <h1 class="title" style="color: white">Home</h1>
   </ion-header-bar>
   <ion-content class="has-header">
-	<button class="button button-block button-assertive" nav-direction="back" ng-click="logoutUser()">
+	
+	<div class="row row-center" style="margin-top: 102px;">
+		<div class="col text-center">
+			<a class="button icon ion-gear-a home-button" style="margin-left: 96px;" nav-direction="forward" ng-click="showlocationOptions();"></a>	
+		</div>
+		<div class="col text-center">
+			<a class="button icon ion-gear-a home-button" style="margin-left: 76px;" nav-direction="forward" ui-sref="locationList"></a>	
+		</div>
+		<div class="col">
+			
+		</div>
+	</div>
+	<div class="row">
+		<div class="col text-center" style="margin-top: 35px;">
+			<a class="button icon ion-gear-a center-home-button" nav-direction="forward" ui-sref="spots"></a>
+		</div>
+	</div>
+	<a class="button icon ion-gear-a home-button" style="position: absolute; top: 247px; left: 26px;" nav-direction="forward" ui-sref="do"></a>	
+	<a class="button icon ion-gear-a home-button" style="position: absolute; top: 312px; left: 107px;" nav-direction="forward" ui-sref="drink"></a>	
+	<a class="button icon ion-gear-a home-button" style="position: absolute; top: 313px; left: 211px;" nav-direction="forward" ui-sref="food"></a>	
+	<a class="button icon ion-gear-a home-button" style="position: absolute; top: 247px; left: 295px;" nav-direction="forward" ui-sref="shop"></a>	
+
+  </ion-content>
+</ion-view>
+
+
+
+
+
+<!-- 	<button class="button button-block button-assertive" nav-direction="back" ng-click="logoutUser()">
 	  Logout
 	</button>
 
@@ -37,12 +66,4 @@
 
 	<button class="button button-block button-royal" nav-direction="forward" ui-sref="spots">
 	  Spots
-	</button>
-
-  </ion-content>
-</ion-view>
-
-
-
-
-
+	</button> -->
