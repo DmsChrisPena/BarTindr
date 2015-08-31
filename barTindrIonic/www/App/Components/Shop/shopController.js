@@ -7,6 +7,9 @@
 		$scope.everythingWeNeed = [];
 		$scope.getPlaces = getPlaces;
 		$scope.likePlace = likePlace;
+		$scope.getSpots = getSpots;
+
+
 		function getPlaces(lat, lng, radius, section) {
 			var promises = [];
 			
@@ -31,6 +34,7 @@
 					+ '&offset=0&limit=50&client_id=QVSPFCY2CMP0LWO1NDRQIBN523IOX22IYTQGG02RSIJTJTOE&client_secret=3MKDIXJAHAVOPV2YLIROCEQG1WXBWUXVYUIFCOGSOISHA1GD&v=20150822'
 			}).success(function(data){
 				console.log(data);
+				$scope.getSpots();
 				var totalResults = Math.trunc(parseInt((data.response.totalResults/50)) + 1);
 				for(i = 0; i < totalResults; i++){
 					promises.push($.ajax({
@@ -93,8 +97,10 @@
 				url: "http://localhost:52355/api/Places/",
 				data: vm
 			}).success(function(data){
+				$scope.getSpots();
 				console.log(data);
 			}).error(function(data){
+				$scope.getSpots();
 				console.log(data);
 			});
 		}
@@ -108,6 +114,18 @@
 		}).error(function(data){
 			console.log(data);
 		});
+
+		function getSpots() {
+			$http({
+				method: 'GET',
+				url: 'http://localhost:52355/api/activePlaces/'
+			}).success(function(data){
+				$scope.spotsData = data;
+				console.log(data);
+			}).error(function(data){
+				console.log(data);
+			});			
+		}
 
 	$scope.cardDestroyed = function(index) {
     $scope.everythingWeNeed.splice(index, 1);

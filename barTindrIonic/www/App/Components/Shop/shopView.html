@@ -95,13 +95,43 @@
             <i class="icon ion-ios-arrow-up"></i>
           </ion-pull-up-handle>
           <ion-pull-up-content scroll="true">
-              <div class="list card">
-                  <div ng-repeat="spot in spotsData.places" class="item item-body">
-                      <div>
-                        <h5 class="text-center">{{spot.name}}</h5>
-                        <img ng-src="{{spot.prefix ? spot.prefix + '150x150' + spot.suffix : 'http://extrawallpaper.com/wp-content/uploads/2014/11/Best-top-desktop-food-wallpapers-hd-food-wallpaper-food-pictures-image-photo-31.jpg'}}" style="height: 150px; width: 150px;" class="img-responsive center-block" alt="Not working">
+              <div class="list card" style="padding-top: 0px; padding-bottom: 0px; margin-left: 0px; margin-right: 0px;">
+                <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
+                  <ion-item ng-repeat="spots in spotsData.places" class="spots-background" style="background-image: url({{spots.prefix + '400x400' + spots.suffix}}) !important;">
+                    <div class="spots-bg-overlay">
+                      <div class="row" style="padding-bottom: 0px;">
+                        <div class="col" style="padding-bottom: 0px;">
+                          <h4 class="text-center" style="color: white; font-size: 18px; margin-bottom: 0px;">{{spots.name}}</h4>
+                          <div class="row">
+                            <div class="col col-20"><p style="text-align: pull-left" ng-bind-html="spots.rating | cardRating"></p></div>
+                            <div class="col col-60"><p class="text-center" style="color: rgba(255,255,255, .6); 12px;">{{spots.category}}</p></div>
+                            <div class="col col-20"><p style="color: rgba(255,255,255, .6); 12px; text-align: pull-right">{{spots.distance | toMiles1}}</p></div>
+                          </div>
+                        </div>
                       </div>
-                  </div>
+                      <div class="row">
+                        <div class="col col-50">
+                          <p class="text-center" style="font-size: 12px; color: white;">{{spots.address}} <br /> {{spots.city}}, {{spots.state}}</p>
+                        </div>
+                        <div class="col col-50">
+                          <p style="font-size: 12px; color: white;" class="text-center"><i class="icon ion-clock" style="font-size: 20px;"></i><br/>{{spots.status}}</p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <button class="button icon ion-ios-telephone center-block spots-controls"></button>
+                        </div>
+                        <div class="col">
+                          <button class="button icon ion-map center-block spots-controls"></button>
+                        </div>
+                        <div class="col">
+                          <button class="button icon ion-ios-world-outline center-block spots-controls"></button>
+                        </div>
+                      </div>
+                      <ion-option-button class="button-assertive" ng-click="deleteSpot(spots.placeId);">Delete</ion-option-button>          
+                    </div>
+                  </ion-item>
+                </ion-list>
               </div>
           </ion-pull-up-content>
       </ion-pull-up-footer>       
