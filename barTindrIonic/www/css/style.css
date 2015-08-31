@@ -802,3 +802,23 @@ td-card img {
     	background-size: cover;
     	border: none;		
 	}
+
+	/* Do */
+	.card-do-overlay-body {
+		background: linear-gradient(rgba(255, 152, 0, .65), rgba(255, 152, 0, .65)); 
+		min-height: 100%;
+		min-width: 100%;		
+	}
+
+	.card-do-overlay {
+		background: linear-gradient(rgba(255, 152, 0, .85), rgba(255, 152, 0, .55)); 
+		min-height: 100%;
+		min-width: 100%;
+	}
+
+	.bar-spots-overlay-do {
+		background: linear-gradient(rgba(255, 152, 0, .85), rgba(255, 152, 0, .55));
+		color: white !important;
+		min-height: 100%;
+		min-width: 100%;	
+	}
