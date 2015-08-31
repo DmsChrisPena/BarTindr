@@ -1,7 +1,7 @@
-<ion-view view-title="Location" name="Location" class="background-card-food">
-  <div class="card-food-overlay-body">
+<ion-view view-title="Location" name="Location" class="background-card-shop">
+  <div class="card-shop-overlay-body">
   <ion-header-bar class="navbar-background-card" align-title="center">
-    <div class="card-food-overlay row">
+    <div class="card-shop-overlay row">
        <div class="buttons pull-left">
         <button style="color: white" class="button button-icon" nav-direction="back" ui-sref="home">
           <i class="ion-chevron-left"></i>
@@ -89,7 +89,7 @@
 
     <ion-pull-up-footer on-expand="footerExpand()" on-collapse="footerCollapse()"class="background-spots-bottom">
       <div>
-         <ion-pull-up-footer class="bar-spots-overlay">
+         <ion-pull-up-footer class="bar-spots-overlay-shop">
           <div class="title" ion-pull-up-trigger>Your Spots</div>
           <ion-pull-up-handle width="80" height="15" toggle="ion-chevron-down ion-chevron-up" style="border-radius: 5px 5px 0 0; background-color: linear-gradient(rgba(211, 47, 47, 1), rgba(211, 47, 47, 1))">
             <i class="icon ion-ios-arrow-up"></i>
@@ -103,7 +103,7 @@
                         <div class="col" style="padding-bottom: 0px;">
                           <h4 class="text-center" style="color: white; font-size: 18px; margin-bottom: 0px;">{{spots.name}}</h4>
                           <div class="row">
-                            <div class="col col-20"><p style="text-align: pull-left" ng-bind-html="spots.rating | cardRating"></p></div>
+                            <div class="col col-20"><p style="text-align: pull-left" ng-bind-html="spots.rating | cardRatingFood"></p></div>
                             <div class="col col-60"><p class="text-center" style="color: rgba(255,255,255, .6); 12px;">{{spots.category}}</p></div>
                             <div class="col col-20"><p style="color: rgba(255,255,255, .6); 12px; text-align: pull-right">{{spots.distance | toMiles1}}</p></div>
                           </div>
