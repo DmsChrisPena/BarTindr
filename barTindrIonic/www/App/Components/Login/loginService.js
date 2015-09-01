@@ -13,7 +13,7 @@
 			var deferred = $q.defer();
 
 			$http({
-				url: 'http://localhost:52355/Token',
+				url: 'http://turnhere-api.azurewebsites.net/Token',
 				method: 'POST',
 				data: 'username=' + username + '&password=' + password + '&grant_type=password',
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }

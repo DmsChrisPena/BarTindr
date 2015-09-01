@@ -1,4 +1,4 @@
-<ion-view view-title="Location" name="Location" class="background-card-food">
+<ion-view view-title="Location" name="Location" class="background-card-drink">
   <div class="card-drink-overlay-body">
   <ion-header-bar class="navbar-background-card" align-title="center">
     <div class="card-drink-overlay row">
@@ -63,7 +63,7 @@
                 <a class="button icon ion-ios-telephone bottom-buttoms-cards center-block" href="tel:{{card.phone}}" style="background-color: rgb(66, 66, 66); border-color: rgb(66, 66, 66);"></a> <br />
               </div>
               <div class="col col-33" style="padding-bottom: 0px;">
-                <a class="button icon ion-map bottom-buttoms-cards center-block" ng-click="routeMe();" style="background-color: rgb(66, 66, 66); border-color: rgb(66, 66, 66);"></a>
+                <a class="button icon ion-map bottom-buttoms-cards center-block"  ng-click="routeMe(card.latitude, card.longitude, card.fullAddress);" style="background-color: rgb(66, 66, 66); border-color: rgb(66, 66, 66);"></a>
               </div>
               <div class="col col-33" style="padding-bottom: 0px;">
                 <a class="button icon ion-ios-world-outline bottom-buttoms-cards center-block" style="background-color: rgb(66, 66, 66); border-color: rgb(66, 66, 66);" href="{{card.websiteUrl}}" target="_blank"></a>

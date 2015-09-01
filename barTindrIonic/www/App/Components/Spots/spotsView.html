@@ -39,10 +39,10 @@
           </div>
           <div class="row text-center">
             <div class="col">
-              <a class="button icon ion-ios-telephone spots-controls" href="tel:{{card.phone}}"></a>
+              <a class="button icon ion-ios-telephone spots-controls" href="tel:{{spots.phone}}"></a>
             </div>
             <div class="col">
-              <a class="button icon ion-map spots-controls" ng-click="routeMe();"></a>
+              <a class="button icon ion-map spots-controls" ng-click="routeMe(spots.latitude, spots.longitude, spots.fullAddress);"></a>
             </div>
             <div class="col">
               <a class="button icon ion-ios-world-outline spots-controls" href="{{spots.websiteUrl}}" target="_blank"></a>

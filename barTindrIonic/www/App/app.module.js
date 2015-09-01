@@ -16,7 +16,7 @@
   .filter('cardRatingDrink', cardRatingDrink)
   .filter('cardRatingDo', cardRatingDo)
   .filter('cardRatingShop', cardRatingShop)
-  .filter('tierFilter', tierFilter);
+  .filter('tierFilter', tierFilter)
 
   function tierFilter() {
     return function(input) {

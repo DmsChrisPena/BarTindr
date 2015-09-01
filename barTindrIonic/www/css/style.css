@@ -413,19 +413,28 @@ td-card {
 td-card.card-0 {
   -webkit-transform: translate3d(0, 0px, 0);
   transform: translate3d(0, 0px, 0);
-  top: -12px;
+  top: -18px;
   z-index: 10;
 }
 td-card.card-1 {
   -webkit-transform: translate3d(0, 4px, 0);
   transform: translate3d(0, 4px, 0);
-  top: -6px;
+  top: -12px;
   z-index: 9;
 }
 td-card.card-2 {
   -webkit-transform: translate3d(0, 8px, 0);
   transform: translate3d(0, 8px, 0);
+  top: -6px;
   z-index: 8;
+}
+
+}
+td-card.card-3 {
+  -webkit-transform: translate3d(0, 8px, 0);
+  transform: translate3d(0, 8px, 0);
+  top: -1px;
+  z-index: 7;
 }
 
 td-card .image {
@@ -894,3 +903,51 @@ td-card img {
 	.background-overlay-hamburger button {
 		color: #FFFFFF !important;
 	}
+
+	.background-card-drink {
+		background-image: url(../img/blue.png);
+		background-repeat: no-repeat;
+    	background-size: cover;
+    	border: none;		
+	}
+
+	/* WalkThrough */ 
+/* iPhone6 */
+.device-background.iphone6 {
+  width: 114%;
+  height: 100%;
+  z-index: 7;
+  position: absolute;
+  left: -7%;
+  background-size: 100%;
+  background-position-y: 26px;
+  background-position-x: center; }
+
+.device-slider.iphone6 .slider-slide .slide-body .slide-body-wrapper {
+  margin-top: 25.5%; }
+
+.device-background.iphone6, .device-background.iphone6.black {
+  background-image: url(../img/device-mockups/iphone_6/iphone_6_black_port.png); }
+
+.device-background.iphone6.white {
+  background-image: url(../img/device-mockups/iphone_6/iphone_6_white_port.png); }
+
+.device-background.iphone6.gold {
+  background-image: url(../img/device-mockups/iphone_6/iphone_6_gold_port.png); }
+
+/* iPhone5 */
+.device-background.iphone5 {
+  width: 130%;
+  height: 100%;
+  z-index: 7;
+  position: absolute;
+  left: -15%;
+  background-size: 100%;
+  background-position-y: 0px;
+  background-position-x: center; }
+
+.device-background.iphone5, .device-background.iphone5.black {
+  background-image: url(../img/device-mockups/iphone_5/iphone_5_port_black.png); }
+
+.device-background.iphone5.white {
+  background-image: url(../img/device-mockups/iphone_5/iphone_5_port_white.png); }

@@ -10,6 +10,11 @@
 		$scope.findLocation = findLocation;
 		$scope.saveLocation = saveLocation;
 
+		locationService.findGeolocation().then(function(data){
+			console.log(data);
+		}, function(data){
+			console.log(data);
+		});
 
 		//Variables
 		$scope.center = {};

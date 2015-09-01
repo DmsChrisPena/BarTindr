@@ -51,7 +51,7 @@
 				deferred.resolve(position);
 			}
 
-			function fail() {
+			function fail(data) {
 				deferred.reject("We could not find your location... Try again.");
 			}
 
